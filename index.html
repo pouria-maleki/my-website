@@ -3,120 +3,182 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pouria Maleki – AI & Control Systems Researcher</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet" />
+  <title>Pouria Maleki – AI & Control Systems</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Poppins', sans-serif;
     }
     body {
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: #ffffff;
-      min-height: 100vh;
-      overflow-x: hidden;
-      padding: 2rem;
+      background: #0f172a;
+      color: #e2e8f0;
+      line-height: 1.6;
     }
     header {
+      background: linear-gradient(to right, #1e293b, #0f172a);
+      padding: 3rem 2rem;
       text-align: center;
-      animation: fadeIn 1.5s ease-in-out;
+      animation: fadeIn 1.5s ease;
     }
     header h1 {
       font-size: 3rem;
-      color: #00ffff;
+      color: #38bdf8;
     }
     header h2 {
-      font-weight: 300;
-      font-size: 1.5rem;
-      margin-top: 0.5rem;
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      color: #94a3b8;
+    }
+    .typed-text {
+      color: #22d3ee;
+      font-weight: bold;
+    }
+    nav {
+      background: #1e293b;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav a {
+      color: #94a3b8;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: #38bdf8;
     }
     section {
-      margin-top: 3rem;
-      animation: slideIn 1.2s ease forwards;
+      max-width: 900px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+      animation: slideIn 1s ease;
     }
-    .section-title {
-      font-size: 1.8rem;
+    h3 {
+      color: #38bdf8;
       margin-bottom: 1rem;
-      color: #00ffd5;
     }
-    .content-block {
-      margin-bottom: 2rem;
-      border-left: 3px solid #00ffff;
-      padding-left: 1rem;
+    ul li {
+      margin-bottom: 0.6rem;
     }
-    a {
-      color: #00ffff;
-      text-decoration: none;
+    .project, .edu, .pub {
+      margin-bottom: 1.5rem;
     }
-    a:hover {
-      text-decoration: underline;
-    }
-    .contact {
-      margin-top: 2rem;
-      font-size: 0.95rem;
-      color: #aaa;
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #64748b;
+      border-top: 1px solid #334155;
     }
     @keyframes fadeIn {
-      0% {opacity: 0; transform: translateY(-20px);}
-      100% {opacity: 1; transform: translateY(0);}
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     @keyframes slideIn {
-      0% {opacity: 0; transform: translateX(-30px);}
-      100% {opacity: 1; transform: translateX(0);}
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Pouria Maleki</h1>
-    <h2>AI-Powered Control Systems | PhD Applicant</h2>
+    <h2><span class="typed-text"></span></h2>
   </header>
 
-  <section>
-    <div class="section-title">About Me</div>
-    <div class="content-block">
-      <p>
-        I'm an Electrical Engineering (Control Systems) graduate passionate about combining AI with automation. My research spans deep reinforcement learning, computer vision, and intelligent system design.
-        Currently seeking a PhD opportunity to further explore the convergence of AI, robotics, and control engineering.
-      </p>
-    </div>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#publications">Publications</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-    <div class="section-title">Research Interests</div>
-    <div class="content-block">
-      <ul>
-        <li>Reinforcement Learning for Control</li>
-        <li>Energy Optimization & Smart Grids</li>
-        <li>Object Detection & Deep Learning</li>
-        <li>Intelligent Traffic Systems</li>
-        <li>Medical Device AI Algorithms</li>
-      </ul>
-    </div>
+  <section id="about">
+    <h3>About Me</h3>
+    <p>AI researcher and Control Systems engineer with a deep passion for intelligent automation, smart infrastructure, and interdisciplinary innovation. Actively seeking PhD positions in AI + Control + Robotics fields.</p>
+  </section>
 
-    <div class="section-title">Notable Projects</div>
-    <div class="content-block">
-      <p><strong>⚙️ Intelligent Traffic Control (Thesis)</strong> – Applied deep Q-learning to traffic light systems using SUMO simulation and YOLO-based video analysis.</p>
-      <p><strong>🔬 Cancer Detection Device</strong> – Co-developed hardware/software system tested in Tehran's cancer institute, achieving 98% accuracy in early detection.</p>
-      <p><strong>💡 Smart Cooling System</strong> – Fuzzy and adaptive control for multi-unit AC systems powered by renewable energy sources.</p>
+  <section id="education">
+    <h3>Education</h3>
+    <div class="edu">
+      <strong>M.Sc. Electrical Engineering – Control</strong><br>
+      Bu Ali Sina University, 2018–2021<br>
+      GPA: 3.91/4.0 | Thesis: Intelligent Traffic Light Control using DNN + RL
     </div>
-
-    <div class="section-title">Publications</div>
-    <div class="content-block">
-      <ul>
-        <li><a href="https://ieeexplore.ieee.org/document/10432884/">YOLO-based Vehicle Detection (IEEE SAMI, 2024)</a></li>
-        <li><a href="https://ieeexplore.ieee.org/document/10737603">Flood Risk Prediction with Deep Learning (IEEE SISY, 2024)</a></li>
-        <li><a href="https://jad.shahroodut.ac.ir/article_3164.html">Iranian Vehicle Dataset (JADM, 2024)</a></li>
-        <li><a href="https://ieeexplore.ieee.org/document/10506386">Sustainable Cooling Systems (ICCIA, 2023)</a></li>
-      </ul>
-    </div>
-
-    <div class="section-title">Contact & Profiles</div>
-    <div class="content-block contact">
-      Email: <a href="mailto:p.maleki.1994@gmail.com">p.maleki.1994@gmail.com</a><br>
-      LinkedIn: <a href="https://www.linkedin.com/in/pouria-maleki">pouria-maleki</a> | Google Scholar: <a href="https://scholar.google.com/citations?user=YkH4p6kAAAAJ">YkH4p6kAAAAJ</a><br>
-      Website: <a href="https://pouriamaleki.com">pouriamaleki.com</a>
+    <div class="edu">
+      <strong>B.Sc. Electrical Engineering – Control</strong><br>
+      Hamedan University of Technology, 2012–2017<br>
+      GPA: 3.46/4.0 | Thesis: Energy-efficient Air Conditioning Control (SMC)
     </div>
   </section>
+
+  <section id="publications">
+    <h3>Publications</h3>
+    <div class="pub">
+      <ul>
+        <li><a href="https://ieeexplore.ieee.org/document/10432884">YOLO Vehicle Detection – IEEE SAMI 2024</a></li>
+        <li><a href="https://ieeexplore.ieee.org/document/10737603">Flood Risk Prediction with LSTM – IEEE SISY 2024</a></li>
+        <li><a href="https://jad.shahroodut.ac.ir/article_3164.html">Iranian Vehicle Dataset – JADM 2024</a></li>
+        <li><a href="https://ieeexplore.ieee.org/document/10506386">Fuzzy Logic for Smart Cooling – ICCIA 2023</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h3>Projects</h3>
+    <div class="project">
+      <strong>Intelligent Traffic Light Control</strong> – RL + YOLO, SUMO sim, delay reduction at intersections.
+    </div>
+    <div class="project">
+      <strong>Cancer Detection Device</strong> – Hardware + Deep Learning, 98% accuracy, real-world testing.
+    </div>
+    <div class="project">
+      <strong>Smart Energy AC System</strong> – Hybrid grid-wind power with fuzzy & adaptive control.
+    </div>
+  </section>
+
+  <section id="skills">
+    <h3>Skills</h3>
+    <ul>
+      <li>Python, MATLAB, TensorFlow, PyTorch, Keras</li>
+      <li>Embedded: Raspberry Pi, STM32, Arduino</li>
+      <li>Control: Sliding Mode, Fuzzy, Adaptive, Classic</li>
+      <li>Software: Altium Designer, Multisim, AutoCAD</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h3>Contact</h3>
+    <p>Email: <a href="mailto:p.maleki.1994@gmail.com">p.maleki.1994@gmail.com</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/pouria-maleki">/pouria-maleki</a></p>
+    <p>Google Scholar: <a href="https://scholar.google.com/citations?user=YkH4p6kAAAAJ">YkH4p6kAAAAJ</a></p>
+  </section>
+
+  <footer>
+    &copy; 2025 Pouria Maleki. All rights reserved.
+  </footer>
+
+  <script>
+    new Typed('.typed-text', {
+      strings: [
+        "AI Researcher", 
+        "Control Systems Engineer",
+        "Deep Learning Developer",
+        "PhD Applicant in Robotics & AI"
+      ],
+      typeSpeed: 50,
+      backSpeed: 30,
+      loop: true
+    });
+  </script>
 </body>
 </html>
