@@ -1,338 +1,1138 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  Linkedin, 
-  GraduationCap, 
-  Github, 
-  Mail, 
-  Cpu, 
-  Brain, 
-  LineChart, 
-  Layers, 
-  FileText, 
-  User, 
-  Briefcase, 
-  Code, 
-  PhoneCall, 
-  ExternalLink 
-} from 'lucide-react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-export default function App() {
-  // States for Captcha and Form
-  const [captcha, setCaptcha] = useState({ num1: 0, num2: 0 });
-  const [userAnswer, setUserAnswer] = useState('');
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  <!-- ===== SEO PRIMARY ===== -->
+  <title>Pouria Maleki | Electrical Engineer · AI & Control Systems Researcher</title>
+  <meta name="description" content="Pouria Maleki (پوریا ملکی) — Electrical Engineer specialized in Control Systems, Deep Learning, and Reinforcement Learning. Researcher, educator, and innovator based in Hamedan, Iran.">
+  <meta name="keywords" content="Pouria Maleki, Pooria Maleki, Poria Maleki, Poriya Maleki, پوریا ملکی, Electrical Engineer, Control Systems, Deep Learning, Reinforcement Learning, YOLO, Traffic Control, AI Researcher, Hamedan, Iran, Bu Ali Sina University">
+  <meta name="author" content="Pouria Maleki">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://pouriamaleki.com/">
 
-  // Generate simple math captcha
-  const generateCaptcha = () => {
-    setCaptcha({
-      num1: Math.floor(Math.random() * 10),
-      num2: Math.floor(Math.random() * 10)
-    });
-    setUserAnswer('');
-  };
+  <!-- ===== OPEN GRAPH ===== -->
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Pouria Maleki | AI & Control Systems Engineer">
+  <meta property="og:description" content="Electrical Engineer specialized in Deep Learning, RL, and Intelligent Control. 4+ publications on IEEE and top journals.">
+  <meta property="og:url" content="https://pouriamaleki.com/">
+  <meta property="og:image" content="https://pouriamaleki.com/images/1.png">
 
-  useEffect(() => {
-    generateCaptcha();
-    
-    // Inject JSON-LD Schema for advanced SEO (Pouria Maleki identity graph)
-    const schemaData = {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Pouria Maleki",
-      "alternateName": ["Pooria Maleki", "Poria Maleki", "Poriya Maleki", "پوریا ملکی"],
-      "url": "https://pouriamaleki.com",
-      "jobTitle": "Electrical Engineer & AI Researcher",
-      "alumniOf": {
-        "@type": "EducationalOrganization",
-        "name": "Bu-Ali Sina University"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/in/pouria-maleki",
-        "https://scholar.google.com/citations?user=YkH4p6kAAAAJ&hl=En",
-        "https://github.com/pouria-maleki",
-        "https://www.researchgate.net/profile/Pouria-Maleki"
-      ]
-    };
+  <!-- ===== TWITTER CARD ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pouria Maleki | AI & Control Systems Engineer">
+  <meta name="twitter:description" content="Researcher in Deep Learning, Reinforcement Learning & Intelligent Control Systems.">
 
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.innerHTML = JSON.stringify(schemaData);
-    document.head.appendChild(script);
+  <!-- ===== STRUCTURED DATA (JSON-LD) ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Pouria Maleki",
+    "alternateName": ["Pooria Maleki", "Poria Maleki", "Poriya Maleki", "پوریا ملکی"],
+    "url": "https://pouriamaleki.com",
+    "email": "p.maleki.1994@gmail.com",
+    "jobTitle": "Electrical Engineer & AI Researcher",
+    "description": "Electrical Engineer specialized in Control Systems, Deep Learning, and Reinforcement Learning",
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "Bu Ali Sina University" },
+      { "@type": "CollegeOrUniversity", "name": "Hamedan University of Technology" }
+    ],
+    "sameAs": [
+      "https://www.linkedin.com/in/pouria-maleki",
+      "https://scholar.google.com/citations?user=YkH4p6kAAAAJ",
+      "https://www.researchgate.net/profile/Pouria-Maleki",
+      "https://github.com/pouria-maleki"
+    ]
+  }
+  </script>
 
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
+  <!-- ===== FONTS ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
 
-  const handleSubmit = (e) => {
-    const isCorrect = parseInt(userAnswer, 10) === captcha.num1 + captcha.num2;
-    if (!isCorrect) {
-      e.preventDefault();
-      alert('پاسخ کپچا اشتباه است. لطفاً دوباره تلاش کنید.');
-      generateCaptcha();
+  <style>
+    :root {
+      --bg:       #080810;
+      --bg2:      #0f0f1a;
+      --bg3:      #14142a;
+      --card:     #111122;
+      --border:   rgba(0,212,255,0.12);
+      --cyan:     #00D4FF;
+      --purple:   #7B2FFF;
+      --gradient: linear-gradient(135deg, #00D4FF 0%, #7B2FFF 100%);
+      --text:     #f0f0f0;
+      --muted:    #8888aa;
+      --radius:   14px;
+      --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
     }
-  };
 
-  return (
-    <div className="min-h-screen bg-slate-900 text-slate-100 font-sans scroll-smooth">
-      
-      {/* SEO Hidden Elements for indexing assistance */}
-      <div className="hidden">
-        <h1>پوریا ملکی - Pouria Maleki - Pooria Maleki - Poria Maleki - Poriya Maleki</h1>
-        <p>وبسایت شخصی پوریا ملکی پژوهشگر هوش مصنوعی و مهندس کنترل</p>
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg2); }
+    ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 3px; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top:0; left:0; right:0; z-index:100;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px;
+      background: rgba(8,8,16,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: var(--transition);
+    }
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700; font-size: 1.1rem;
+      background: var(--gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+    }
+    .nav-links { display:flex; gap:30px; list-style:none; }
+    .nav-links a {
+      color: var(--muted); font-size: 0.85rem; font-weight:500;
+      text-decoration: none; letter-spacing: 0.03em;
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--cyan); }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    #neural-canvas {
+      position: absolute; inset:0; width:100%; height:100%;
+      opacity: 0.35;
+    }
+    .hero-content {
+      position: relative; z-index:2;
+      text-align: center; padding: 0 20px;
+      max-width: 780px;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items:center; gap:8px;
+      font-size: 0.78rem; font-weight:500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--cyan);
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.2);
+      padding: 6px 16px; border-radius: 100px;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow span { width:6px; height:6px; border-radius:50%; background:var(--cyan); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
+
+    .hero-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 700; line-height: 1;
+      letter-spacing: -0.04em;
+      background: linear-gradient(135deg, #ffffff 30%, #00D4FF 70%, #7B2FFF 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+    .hero-title {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: var(--muted); font-weight:300; margin-bottom: 32px;
+      line-height: 1.6;
+    }
+    .hero-title strong { color: var(--text); font-weight:500; }
+    .hero-cta {
+      display: inline-flex; align-items:center; gap:10px;
+      padding: 14px 32px;
+      background: var(--gradient);
+      color: #fff; font-weight:600; font-size:0.95rem;
+      border-radius: 100px; text-decoration: none;
+      box-shadow: 0 0 30px rgba(0,212,255,0.2), 0 0 60px rgba(123,47,255,0.1);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(0,212,255,0.35), 0 0 80px rgba(123,47,255,0.2);
+    }
+    .hero-scroll {
+      position: absolute; bottom:36px; left:50%; transform:translateX(-50%);
+      display:flex; flex-direction:column; align-items:center; gap:8px;
+      color: var(--muted); font-size:0.7rem; letter-spacing:0.1em;
+      text-transform:uppercase; animation: bounce 2s infinite;
+    }
+    @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+    .hero-scroll i { font-size:1.1rem; }
+
+    /* ─── SECTIONS ─── */
+    .section {
+      max-width: 1100px; margin: 0 auto;
+      padding: 100px 24px;
+    }
+    .section-label {
+      font-size: 0.72rem; font-weight:600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--cyan);
+      margin-bottom: 14px;
+    }
+    .section-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight:700; letter-spacing:-0.03em;
+      margin-bottom: 56px; line-height:1.15;
+    }
+    .section-heading em {
+      font-style:normal;
+      background: var(--gradient);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+
+    /* ─── ABOUT ─── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 60px; align-items: start;
+    }
+    .about-photo-wrap {
+      position: sticky; top: 100px;
+    }
+    .about-photo {
+      width: 100%; aspect-ratio:1;
+      border-radius: 20px;
+      background: var(--bg3);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      position:relative;
+    }
+    .about-photo::before {
+      content:'';
+      position:absolute; inset:-1px;
+      border-radius:21px;
+      background: var(--gradient);
+      z-index:-1;
+      opacity:0.5;
+    }
+    .about-photo img { width:100%; height:100%; object-fit:cover; }
+    .about-photo-placeholder {
+      width:100%; height:100%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:4rem; color:var(--muted);
+    }
+    .about-socials { margin-top: 20px; display:flex; flex-wrap:wrap; gap:8px; }
+    .social-chip {
+      display:inline-flex; align-items:center; gap:6px;
+      padding:7px 14px; border-radius:100px;
+      background: var(--card); border:1px solid var(--border);
+      color:var(--muted); font-size:0.78rem; font-weight:500;
+      text-decoration:none; transition: all var(--transition);
+    }
+    .social-chip:hover { border-color: var(--cyan); color:var(--cyan); }
+    .about-text p {
+      font-size:1.05rem; line-height:1.8; color:rgba(240,240,240,0.8);
+      margin-bottom:18px;
+    }
+    .about-stats {
+      display:grid; grid-template-columns:repeat(3,1fr);
+      gap:16px; margin-top:40px;
+    }
+    .stat-card {
+      background:var(--card); border:1px solid var(--border);
+      border-radius:var(--radius); padding:20px;
+      text-align:center;
+    }
+    .stat-num {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:2rem; font-weight:700;
+      background:var(--gradient);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .stat-label { font-size:0.75rem; color:var(--muted); margin-top:4px; }
+
+    /* ─── SKILLS ─── */
+    .skills-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(280px,1fr));
+      gap:16px;
+    }
+    .skill-card {
+      background:var(--card); border:1px solid var(--border);
+      border-radius:var(--radius); padding:24px;
+      transition: all var(--transition);
+      cursor:default;
+    }
+    .skill-card:hover {
+      border-color:rgba(0,212,255,0.4);
+      transform:translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,212,255,0.08);
+    }
+    .skill-header { display:flex; align-items:center; gap:14px; margin-bottom:16px; }
+    .skill-icon {
+      width:44px; height:44px; border-radius:10px;
+      background:rgba(0,212,255,0.08);
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.3rem; color:var(--cyan);
+      flex-shrink:0;
+    }
+    .skill-name { font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:1rem; }
+    .skill-pct { font-size:0.78rem; color:var(--muted); margin-left:auto; }
+    .skill-bar {
+      height:3px; background:rgba(255,255,255,0.06);
+      border-radius:2px; overflow:hidden;
+    }
+    .skill-fill {
+      height:100%; border-radius:2px;
+      background:var(--gradient);
+      width:0; transition: width 0.9s cubic-bezier(0.4,0,0.2,1);
+    }
+    .skill-card:hover .skill-fill { width:var(--w,70%) !important; }
+
+    /* ─── TIMELINE (Education & Experience) ─── */
+    .timeline { position:relative; }
+    .timeline::before {
+      content:''; position:absolute;
+      left:0; top:0; bottom:0; width:1px;
+      background: linear-gradient(to bottom, transparent, var(--cyan), var(--purple), transparent);
+    }
+    .tl-item {
+      padding-left:36px; margin-bottom:44px; position:relative;
+    }
+    .tl-dot {
+      position:absolute; left:-6px; top:6px;
+      width:13px; height:13px; border-radius:50%;
+      background:var(--gradient);
+      box-shadow:0 0 0 4px rgba(0,212,255,0.12);
+    }
+    .tl-card {
+      background:var(--card); border:1px solid var(--border);
+      border-radius:var(--radius); padding:22px 26px;
+      transition:all var(--transition);
+    }
+    .tl-card:hover { border-color:rgba(0,212,255,0.35); transform:translateX(4px); }
+    .tl-meta {
+      display:flex; align-items:center; gap:10px;
+      margin-bottom:10px; flex-wrap:wrap;
+    }
+    .tl-type {
+      font-size:0.68rem; font-weight:600; letter-spacing:0.1em;
+      text-transform:uppercase; padding:3px 10px; border-radius:100px;
+    }
+    .tl-type.edu { background:rgba(0,212,255,0.12); color:var(--cyan); }
+    .tl-type.work { background:rgba(123,47,255,0.12); color:#a07bff; }
+    .tl-year { font-size:0.78rem; color:var(--muted); }
+    .tl-title {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:1.05rem; font-weight:600; margin-bottom:6px;
+    }
+    .tl-place { font-size:0.85rem; color:var(--muted); margin-bottom:10px; }
+    .tl-desc { font-size:0.88rem; line-height:1.6; color:rgba(240,240,240,0.7); }
+
+    /* ─── PROJECTS ─── */
+    .projects-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(300px,1fr));
+      gap:20px;
+    }
+    .proj-card {
+      background:var(--card); border:1px solid var(--border);
+      border-radius:var(--radius); padding:26px;
+      transition:all var(--transition); position:relative;
+      overflow:hidden;
+    }
+    .proj-card::before {
+      content:''; position:absolute;
+      top:0; left:0; right:0; height:2px;
+      background:var(--gradient);
+      transform:scaleX(0); transform-origin:left;
+      transition:transform var(--transition);
+    }
+    .proj-card:hover::before { transform:scaleX(1); }
+    .proj-card:hover { border-color:rgba(0,212,255,0.25); transform:translateY(-4px); }
+    .proj-tag {
+      display:inline-block; font-size:0.68rem; font-weight:600;
+      letter-spacing:0.08em; text-transform:uppercase;
+      padding:4px 10px; border-radius:6px; margin-bottom:14px;
+      background:rgba(123,47,255,0.15); color:#b07bff;
+    }
+    .proj-title {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:1.05rem; font-weight:600; margin-bottom:10px;
+    }
+    .proj-desc { font-size:0.87rem; line-height:1.65; color:rgba(240,240,240,0.65); }
+
+    /* ─── PUBLICATIONS ─── */
+    .pub-list { display:flex; flex-direction:column; gap:16px; }
+    .pub-card {
+      background:var(--card); border:1px solid var(--border);
+      border-radius:var(--radius); padding:24px 28px;
+      display:grid; grid-template-columns:1fr auto;
+      gap:16px; align-items:start;
+      transition:all var(--transition);
+    }
+    .pub-card:hover { border-color:rgba(0,212,255,0.3); }
+    .pub-year-badge {
+      font-size:0.72rem; font-weight:700; letter-spacing:0.1em;
+      color:var(--bg); background:var(--gradient);
+      padding:4px 10px; border-radius:6px;
+      white-space:nowrap; flex-shrink:0;
+    }
+    .pub-title {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:1rem; font-weight:600; margin-bottom:8px; line-height:1.4;
+    }
+    .pub-meta { font-size:0.82rem; color:var(--muted); margin-bottom:10px; }
+    .pub-link {
+      display:inline-flex; align-items:center; gap:6px;
+      font-size:0.8rem; color:var(--cyan); text-decoration:none;
+      font-weight:500; transition:opacity var(--transition);
+    }
+    .pub-link:hover { opacity:0.75; }
+
+    /* ─── INTERESTS ─── */
+    .interests-wrap {
+      background:var(--card); border:1px solid var(--border);
+      border-radius:20px; padding:40px; position:relative; overflow:hidden;
+    }
+    .interests-wrap::after {
+      content:''; position:absolute;
+      right:-80px; top:-80px;
+      width:300px; height:300px; border-radius:50%;
+      background: radial-gradient(circle, rgba(123,47,255,0.15) 0%, transparent 70%);
+      pointer-events:none;
+    }
+    .interest-tags { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+    .interest-tag {
+      padding:10px 20px; border-radius:100px;
+      background:rgba(0,212,255,0.07);
+      border:1px solid rgba(0,212,255,0.2);
+      font-size:0.88rem; font-weight:500; color:var(--cyan);
+      transition:all var(--transition); cursor:default;
+    }
+    .interest-tag:hover {
+      background:rgba(0,212,255,0.14);
+      transform:translateY(-2px);
+    }
+
+    /* ─── REFERENCES ─── */
+    .refs-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(260px,1fr));
+      gap:16px;
+    }
+    .ref-card {
+      background:var(--card); border:1px solid var(--border);
+      border-radius:var(--radius); padding:22px;
+      transition:all var(--transition);
+    }
+    .ref-card:hover { border-color:rgba(0,212,255,0.3); transform:translateY(-3px); }
+    .ref-avatar {
+      width:44px; height:44px; border-radius:50%;
+      background:var(--gradient);
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Space Grotesk',sans-serif; font-weight:700;
+      font-size:1rem; color:#fff; margin-bottom:14px;
+    }
+    .ref-name { font-family:'Space Grotesk',sans-serif; font-weight:600; margin-bottom:4px; }
+    .ref-org { font-size:0.8rem; color:var(--muted); margin-bottom:12px; line-height:1.4; }
+    .ref-email {
+      font-size:0.78rem; color:var(--cyan); word-break:break-all;
+    }
+
+    /* ─── CONTACT ─── */
+    .contact-wrap {
+      display:grid; grid-template-columns:1fr 1fr; gap:48px;
+      align-items:start;
+    }
+    .contact-info h3 {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:1.6rem; font-weight:700; margin-bottom:16px;
+    }
+    .contact-info p {
+      font-size:0.95rem; line-height:1.7;
+      color:rgba(240,240,240,0.7); margin-bottom:24px;
+    }
+    .contact-detail {
+      display:flex; align-items:center; gap:12px;
+      font-size:0.88rem; color:var(--muted); margin-bottom:12px;
+    }
+    .contact-detail i { color:var(--cyan); width:18px; }
+    .form-card {
+      background:var(--card); border:1px solid var(--border);
+      border-radius:20px; padding:32px;
+    }
+    .form-row { margin-bottom:18px; }
+    .form-row label {
+      display:block; font-size:0.8rem; font-weight:500;
+      color:var(--muted); margin-bottom:7px; letter-spacing:0.04em;
+    }
+    .form-row input, .form-row textarea {
+      width:100%; background:var(--bg2);
+      border:1px solid var(--border);
+      border-radius:10px; padding:12px 16px;
+      color:var(--text); font-size:0.9rem; font-family:inherit;
+      outline:none; transition:border-color var(--transition);
+    }
+    .form-row input:focus, .form-row textarea:focus {
+      border-color:var(--cyan);
+    }
+    .form-row textarea { resize:vertical; min-height:110px; }
+    .captcha-row {
+      display:flex; align-items:center; gap:10px;
+      background:var(--bg2); border:1px solid var(--border);
+      border-radius:10px; padding:12px 16px; margin-bottom:18px;
+    }
+    .captcha-row label { font-size:0.85rem; color:var(--muted); }
+    #captchaResult {
+      width:54px; text-align:center;
+      background:var(--bg3); border:1px solid var(--border);
+      border-radius:6px; padding:6px; color:var(--text);
+      font-size:0.9rem; outline:none;
+    }
+    #captchaResult:focus { border-color:var(--cyan); }
+    .btn-submit {
+      width:100%; padding:14px;
+      background:var(--gradient);
+      border:none; border-radius:10px;
+      color:#fff; font-size:0.95rem; font-weight:600;
+      cursor:pointer; font-family:inherit;
+      transition:all var(--transition);
+    }
+    .btn-submit:hover {
+      opacity:0.9; transform:translateY(-1px);
+      box-shadow:0 8px 30px rgba(0,212,255,0.25);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top:1px solid var(--border);
+      padding:32px 24px;
+      text-align:center;
+      font-size:0.82rem; color:var(--muted);
+    }
+    footer span { color:var(--cyan); }
+
+    /* ─── FADE-IN ANIMATION ─── */
+    .fade-in {
+      opacity:0; transform:translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity:1; transform:translateY(0); }
+
+    /* ─── RESPONSIVE ─── */
+    @media(max-width:900px) {
+      nav { padding:0 20px; }
+      .nav-links { display:none; }
+      .about-grid { grid-template-columns:1fr; }
+      .about-photo-wrap { position:relative; top:auto; max-width:220px; }
+      .contact-wrap { grid-template-columns:1fr; }
+      .pub-card { grid-template-columns:1fr; }
+    }
+    @media(max-width:600px) {
+      .about-stats { grid-template-columns:1fr 1fr; }
+      .section { padding:70px 16px; }
+    }
+    @media(prefers-reduced-motion:reduce) {
+      * { animation:none!important; transition:none!important; }
+    }
+
+    /* ─── MOBILE NAV HAMBURGER ─── */
+    .hamburger {
+      display:none; background:none; border:none;
+      cursor:pointer; flex-direction:column; gap:5px; padding:4px;
+    }
+    .hamburger span {
+      width:22px; height:2px; background:var(--text);
+      border-radius:2px; transition:var(--transition);
+      display:block;
+    }
+    @media(max-width:900px){ .hamburger{ display:flex; } }
+    .mobile-menu {
+      display:none; position:fixed; inset:64px 0 0 0;
+      background:rgba(8,8,16,0.97); z-index:99;
+      flex-direction:column; align-items:center; justify-content:center; gap:30px;
+    }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:1.4rem; font-weight:600; color:var(--text);
+      text-decoration:none; transition:color var(--transition);
+    }
+    .mobile-menu a:hover { color:var(--cyan); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">Pouria Maleki</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Education</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" class="close-menu">About</a>
+  <a href="#skills" class="close-menu">Skills</a>
+  <a href="#experience" class="close-menu">Education & Experience</a>
+  <a href="#projects" class="close-menu">Projects</a>
+  <a href="#publications" class="close-menu">Publications</a>
+  <a href="#interests" class="close-menu">Interests</a>
+  <a href="#references" class="close-menu">References</a>
+  <a href="#contact" class="close-menu">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="neural-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span></span> Available for Research Collaboration</div>
+    <h1 class="hero-name">Pouria Maleki</h1>
+    <p class="hero-title">
+      <strong>Electrical Engineer</strong> · Control Systems &amp; AI Researcher<br>
+      Deep Learning · Reinforcement Learning · Intelligent Control
+    </p>
+    <a href="#about" class="hero-cta"><i class="fas fa-arrow-down"></i> Explore My Work</a>
+  </div>
+  <div class="hero-scroll">
+    <span>scroll</span>
+    <i class="fas fa-chevron-down"></i>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="section-label fade-in">About</div>
+  <h2 class="section-heading fade-in">Engineer, Researcher,<br><em>Educator</em></h2>
+  <div class="about-grid fade-in">
+    <div class="about-photo-wrap">
+      <div class="about-photo">
+        <img src="images/1.png" alt="Pouria Maleki — Electrical Engineer and AI Researcher" onerror="this.parentElement.innerHTML='<div class=about-photo-placeholder><i class=fas fa-user></i></div>'">
       </div>
-
-      {/* Navigation Bar */}
-      <nav className="fixed top-0 left-0 right-0 h-16 bg-slate-950/80 backdrop-blur-md border-b border-slate-800 flex justify-between items-center px-6 md:px-12 z-50">
-        <div className="font-bold text-xl bg-gradient-to-r from-red-500 to-rose-400 bg-clip-text text-transparent">
-          Pouria Maleki
-        </div>
-        <ul className="hidden md:flex gap-6 text-sm font-medium text-slate-300">
-          <li><a href="#about" className="hover:text-red-500 transition">About</a></li>
-          <li><a href="#skills" className="hover:text-red-500 transition">Skills</a></li>
-          <li><a href="#experience" className="hover:text-red-500 transition">Experience</a></li>
-          <li><a href="#publications" className="hover:text-red-500 transition">Publications</a></li>
-          <li><a href="#contact" className="hover:text-red-500 transition">Contact</a></li>
-        </ul>
-      </nav>
-
-      {/* Hero Section */}
-      <header className="relative h-screen flex flex-col justify-center items-center text-center px-4 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-purple-950/20 to-slate-950">
-        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:30px_30px] pointer-events-none" />
-        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">
-          Welcome to My{" "}
-          <span className="bg-gradient-to-r from-red-500 to-amber-500 bg-clip-text text-transparent">
-            Digital Space
-          </span>
-        </h1>
-        <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-8 leading-relaxed">
-          I am an Electrical Engineer specializing in Control Systems, AI, and Reinforcement Learning. 
-          Bridging the gap between classical engineering and deep learning architectures.
-        </p>
-        <a 
-          href="#about" 
-          className="px-8 py-3 bg-red-600 hover:bg-red-700 text-white rounded-full font-medium shadow-lg shadow-red-900/40 transition duration-300 transform hover:-translate-y-1"
-        >
-          Explore Profile
+      <div class="about-socials">
+        <a class="social-chip" href="https://www.linkedin.com/in/pouria-maleki" target="_blank" rel="noopener">
+          <i class="fab fa-linkedin"></i> LinkedIn
         </a>
-      </header>
-
-      {/* About Me Section */}
-      <section id="about" className="max-w-6xl mx-auto px-6 py-24 border-t border-slate-800/60">
-        <div className="flex flex-col md:flex-row gap-12 items-center">
-          <div className="relative group w-48 h-48 md:w-64 md:h-64 flex-shrink-0">
-            <div className="absolute inset-0 bg-gradient-to-tr from-red-600 to-amber-500 rounded-3xl blur-md opacity-70 group-hover:opacity-100 transition duration-500" />
-            <div className="relative w-full h-full bg-slate-800 rounded-3xl overflow-hidden border border-slate-700">
-              <img 
-                src="images/1.png" 
-                alt="Pouria Maleki - پوریا ملکی" 
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-          <div className="flex-1">
-            <h2 className="text-3xl font-bold mb-6 flex items-center gap-3">
-              <User className="text-red-500" /> About Me / درباره من
-            </h2>
-            <p className="text-slate-300 leading-relaxed mb-4 text-justify">
-              Hello! I'm <strong>Pouria Maleki</strong>, an Electrical Engineer specializing in Control Systems. 
-              My core research focus involves modernizing classic industrial control structures using Deep Learning, 
-              Computer Vision (YOLO networks), and Deep Reinforcement Learning algorithms.
-            </p>
-            <p className="text-slate-400 leading-relaxed mb-6 text-justify">
-              من پوریا ملکی هستم، پژوهشگر سیستم‌های کنترل و هوش مصنوعی. هدف من توسعه سیستم‌های هوشمند و متصل با استفاده از فریم‌ورک‌های عمیق و پیاده‌سازی کاربردی آن‌ها در چالش‌های مهندسی دنیای واقعی است.
-            </p>
-            
-            {/* Social Icons Stack */}
-            <div className="flex flex-wrap gap-3">
-              <a href="https://www.linkedin.com/in/pouria-maleki" target="_blank" rel="noreferrer" className="p-3 bg-slate-800 hover:bg-red-600 rounded-xl transition text-slate-300 hover:text-white flex items-center gap-2 text-sm">
-                <Linkedin size={18} /> LinkedIn
-              </a>
-              <a href="https://scholar.google.com/citations?user=YkH4p6kAAAAJ&hl=En" target="_blank" rel="noreferrer" className="p-3 bg-slate-800 hover:bg-red-600 rounded-xl transition text-slate-300 hover:text-white flex items-center gap-2 text-sm">
-                <GraduationCap size={18} /> Google Scholar
-              </a>
-              <a href="https://github.com/pouria-maleki" target="_blank" rel="noreferrer" className="p-3 bg-slate-800 hover:bg-red-600 rounded-xl transition text-slate-300 hover:text-white flex items-center gap-2 text-sm">
-                <Github size={18} /> GitHub
-              </a>
-              <a href="mailto:p.maleki.1994@gmail.com" className="p-3 bg-slate-800 hover:bg-red-600 rounded-xl transition text-slate-300 hover:text-white flex items-center gap-2 text-sm">
-                <Mail size={18} /> Email
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Skills Section */}
-      <section id="skills" className="max-w-6xl mx-auto px-6 py-24 border-t border-slate-800/60">
-        <h2 className="text-3xl font-bold mb-12 text-center flex justify-center items-center gap-3">
-          <Code className="text-red-500" /> Expertise & Toolkit
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            { title: "Python & PyTorch", level: "90%", icon: <Brain className="text-red-400" /> },
-            { title: "Control Systems & MATLAB", level: "90%", icon: <LineChart className="text-amber-400" /> },
-            { title: "Embedded & Microcontrollers", level: "80%", icon: <Cpu className="text-emerald-400" /> },
-            { title: "Deep Reinforcement Learning", level: "85%", icon: <Layers className="text-blue-400" /> },
-            { title: "Industrial PLC (Siemens Step 7)", level: "70%", icon: <Cpu className="text-purple-400" /> },
-            { title: "Computer Vision & YOLO", level: "85%", icon: <Brain className="text-rose-400" /> }
-          ].map((skill, index) => (
-            <div key={index} className="p-6 bg-slate-950/40 border border-slate-800 rounded-2xl hover:border-red-500/50 transition duration-300 group">
-              <div className="flex justify-between items-center mb-4">
-                <div className="p-2 bg-slate-900 rounded-xl group-hover:scale-110 transition">{skill.icon}</div>
-                <span className="text-xs text-slate-500 font-mono">{skill.level}</span>
-              </div>
-              <h3 className="font-semibold text-slate-200 mb-2">{skill.title}</h3>
-              <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-                <div className="bg-gradient-to-r from-red-500 to-amber-500 h-full transition-all duration-1000" style={{ width: skill.level }} />
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Experience & Education */}
-      <section id="experience" className="max-w-6xl mx-auto px-6 py-24 border-t border-slate-800/60">
-        <h2 className="text-3xl font-bold mb-12 flex items-center gap-3">
-          <Briefcase className="text-red-500" /> Journey & Timeline
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-xl font-bold text-slate-400 mb-6">Education</h3>
-            <div className="space-y-6 border-l-2 border-slate-800 pl-4">
-              <div className="relative">
-                <div className="absolute w-3 h-3 bg-red-500 rounded-full -left-[22px] top-1.5" />
-                <h4 className="font-bold text-slate-200">M.Sc. in Electrical Engineering - Control</h4>
-                <p className="text-sm text-red-400">Bu-Ali Sina University | 2018 - 2021</p>
-                <p className="text-sm text-slate-400 mt-1">GPA: 3.91/4 (Ranked 1st in Cohort). Thesis focused on Deep Intelligent Traffic Architectures.</p>
-              </div>
-              <div className="relative">
-                <div className="absolute w-3 h-3 bg-slate-700 rounded-full -left-[22px] top-1.5" />
-                <h4 className="font-bold text-slate-200">B.Sc. in Electrical Engineering</h4>
-                <p className="text-sm text-slate-400">Hamedan University of Technology | 2012 - 2017</p>
-                <p className="text-sm text-slate-400 mt-1">GPA: 3.46/4. Designed adaptive sliding mode controllers for thermal loops.</p>
-              </div>
-            </div>
-          </div>
-          <div>
-            <h3 className="text-xl font-bold text-slate-400 mb-6">Professional Highlights</h3>
-            <div className="space-y-6 border-l-2 border-slate-800 pl-4">
-              <div className="relative">
-                <div className="absolute w-3 h-3 bg-amber-500 rounded-full -left-[22px] top-1.5" />
-                <h4 className="font-bold text-slate-200">Electronics Teacher & Instructor</h4>
-                <p className="text-sm text-amber-400">Ministry of Education | 2018 - Present</p>
-                <p className="text-sm text-slate-400 mt-1">Teaching embedded systems architectures, microcontrollers (STM32/Arduino), and PCB prototyping.</p>
-              </div>
-              <div className="relative">
-                <div className="absolute w-3 h-3 bg-slate-700 rounded-full -left-[22px] top-1.5" />
-                <h4 className="font-bold text-slate-200">Embedded Systems Audio Architect</h4>
-                <p className="text-sm text-slate-400">Azad University Research Project | 2019</p>
-                <p className="text-sm text-slate-400 mt-1">Deployed real-time acoustic sorting and digital signal processing routines on ARM Cortex-M3 pipelines.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Publications */}
-      <section id="publications" className="max-w-6xl mx-auto px-6 py-24 border-t border-slate-800/60">
-        <h2 className="text-3xl font-bold mb-12 flex items-center gap-3">
-          <FileText className="text-red-500" /> Peer-Reviewed Publications
-        </h2>
-        <div className="space-y-4">
-          {[
-            {
-              title: "Object Detection for Vehicles with YOLO Network",
-              desc: "Engineered emergency-vehicle optimization vectors using customized YOLO layers. Evaluated across 29,000+ localized high-resolution frames.",
-              link: "https://ieeexplore.ieee.org/abstract/document/10432884",
-              venue: "IEEE SAMI"
-            },
-            {
-              title: "Iranian Vehicle Images Dataset for Object Detection Algorithm",
-              desc: "Curated and structuralized standard bounding-box configurations yielding a 10% structural performance increase over general weights.",
-              link: "https://jad.shahroodut.ac.ir/article_3164.html",
-              venue: "Journal of AI & Data"
-            },
-            {
-              title: "Flood Risk Analysis with Deep Learning Protocols",
-              desc: "Comparative assessment benchmarking LSTM recurrent arrays against classic supervised random forest structural parameters.",
-              link: "https://ieeexplore.ieee.org/abstract/document/10737603",
-              venue: "IEEE Explore"
-            }
-          ].map((pub, idx) => (
-            <div key={idx} className="p-6 bg-slate-950/60 border border-slate-800 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:bg-slate-950 transition">
-              <div>
-                <span className="text-xs font-mono px-2 py-1 bg-red-950 text-red-400 border border-red-900 rounded-md">{pub.venue}</span>
-                <h3 className="font-bold text-lg text-slate-200 mt-2">{pub.title}</h3>
-                <p className="text-sm text-slate-400 mt-1 max-w-3xl">{pub.desc}</p>
-              </div>
-              <a href={pub.link} target="_blank" rel="noreferrer" className="flex items-center gap-1 text-sm font-medium text-red-400 hover:text-red-300 transition shrink-0">
-                Paper <ExternalLink size={14} />
-              </a>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="max-w-4xl mx-auto px-6 py-24 border-t border-slate-800/60 text-center">
-        <h2 className="text-3xl font-bold mb-4 flex justify-center items-center gap-3">
-          <PhoneCall className="text-red-500" /> Let's Connect
-        </h2>
-        <p className="text-slate-400 mb-8 max-w-md mx-auto">
-          Have an academic research query, opportunity, or professional alignment request? Send a secure message.
-        </p>
-        
-        <div className="bg-slate-950 border border-slate-800 rounded-3xl p-8 text-left max-w-xl mx-auto shadow-xl">
-          <form 
-            action="https://formsubmit.co/p.maleki.1994@gmail.com" 
-            method="POST"
-            onSubmit={handleSubmit}
-            className="space-y-4"
-          >
-            <input type="hidden" name="_captcha" value="false" />
-            
-            <div>
-              <label className="block text-sm font-medium text-slate-400 mb-1">Name</label>
-              <input type="text" name="name" required className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-slate-200 focus:outline-none focus:border-red-500 transition" />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-slate-400 mb-1">Email</label>
-              <input type="email" name="email" required className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-slate-200 focus:outline-none focus:border-red-500 transition" />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-slate-400 mb-1">Message</label>
-              <textarea name="message" rows="4" required className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-slate-200 focus:outline-none focus:border-red-500 transition" />
-            </div>
-
-            {/* Ant-Spam Verification */}
-            <div className="bg-slate-900/60 p-4 border border-slate-800 rounded-xl">
-              <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Security Verification</label>
-              <div className="flex items-center gap-3">
-                <span className="text-lg font-mono text-slate-200">{captcha.num1} + {captcha.num2} =</span>
-                <input 
-                  type="number" 
-                  value={userAnswer}
-                  onChange={(e) => setUserAnswer(e.target.value)}
-                  required 
-                  className="w-20 bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-center text-slate-200 focus:outline-none focus:border-red-500 transition"
-                />
-              </div>
-            </div>
-
-            <button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-3 rounded-xl shadow-lg transition">
-              Send Verified Message
-            </button>
-          </form>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="border-t border-slate-900 bg-slate-950 text-slate-600 py-8 text-center text-xs space-y-2">
-        <p>© 2026 Pouria Maleki (پوریا ملکی). All Structural Rights Reserved.</p>
-        <p>Built using modern React & Tailwind CSS paradigms.</p>
-      </footer>
+        <a class="social-chip" href="https://scholar.google.com/citations?user=YkH4p6kAAAAJ&hl=En" target="_blank" rel="noopener">
+          <i class="fas fa-graduation-cap"></i> Scholar
+        </a>
+        <a class="social-chip" href="https://www.researchgate.net/profile/Pouria-Maleki" target="_blank" rel="noopener">
+          <i class="fab fa-researchgate"></i> ResearchGate
+        </a>
+        <a class="social-chip" href="https://github.com/pouria-maleki" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+        <a class="social-chip" href="mailto:p.maleki.1994@gmail.com">
+          <i class="fas fa-envelope"></i> Email
+        </a>
+      </div>
     </div>
-  );
+    <div class="about-text">
+      <p>
+        Hello! I'm <strong>Pouria Maleki (پوریا ملکی)</strong>, an Electrical Engineer specializing in Control Systems from Hamedan, Iran. My work sits at the intersection of <strong>Artificial Intelligence</strong>, <strong>Deep Reinforcement Learning</strong>, and real-world control engineering challenges.
+      </p>
+      <p>
+        With a Master's degree from Bu Ali Sina University (GPA 3.91/4, Rank 1), I've channeled my academic foundation into both research and hands-on teaching. I currently teach electronics and programming at the Ministry of Education while actively contributing to IEEE-published research.
+      </p>
+      <p>
+        My mission is to advance intelligent systems that are not just technically rigorous but genuinely impactful — from smarter urban traffic control to sustainable energy management.
+      </p>
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-num">4+</div>
+          <div class="stat-label">IEEE Publications</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3.91</div>
+          <div class="stat-label">M.S. GPA / 4</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">6+</div>
+          <div class="stat-label">Years Teaching</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section" style="background:var(--bg2); max-width:100%; padding:100px 0;">
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;">
+    <div class="section-label fade-in">Technical Proficiency</div>
+    <h2 class="section-heading fade-in">Skills &amp; <em>Tools</em></h2>
+    <div class="skills-grid fade-in">
+      <div class="skill-card" style="--w:90%">
+        <div class="skill-header">
+          <div class="skill-icon"><i class="fab fa-python"></i></div>
+          <span class="skill-name">Python</span>
+          <span class="skill-pct">90%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+      </div>
+      <div class="skill-card" style="--w:90%">
+        <div class="skill-header">
+          <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
+          <span class="skill-name">MATLAB &amp; Simulink</span>
+          <span class="skill-pct">90%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+      </div>
+      <div class="skill-card" style="--w:85%">
+        <div class="skill-header">
+          <div class="skill-icon"><i class="fas fa-brain"></i></div>
+          <span class="skill-name">Deep Learning &amp; ML</span>
+          <span class="skill-pct">85%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+      </div>
+      <div class="skill-card" style="--w:80%">
+        <div class="skill-header">
+          <div class="skill-icon"><i class="fas fa-robot"></i></div>
+          <span class="skill-name">Reinforcement Learning</span>
+          <span class="skill-pct">80%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-card" style="--w:80%">
+        <div class="skill-header">
+          <div class="skill-icon"><i class="fas fa-microchip"></i></div>
+          <span class="skill-name">Arduino / C++</span>
+          <span class="skill-pct">80%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-card" style="--w:80%">
+        <div class="skill-header">
+          <div class="skill-icon"><i class="fab fa-raspberry-pi"></i></div>
+          <span class="skill-name">Raspberry Pi &amp; IoT</span>
+          <span class="skill-pct">80%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-card" style="--w:75%">
+        <div class="skill-header">
+          <div class="skill-icon"><i class="fas fa-industry"></i></div>
+          <span class="skill-name">Siemens S7-300 / STEP 7</span>
+          <span class="skill-pct">75%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+      </div>
+      <div class="skill-card" style="--w:80%">
+        <div class="skill-header">
+          <div class="skill-icon"><i class="fas fa-eye"></i></div>
+          <span class="skill-name">Computer Vision &amp; YOLO</span>
+          <span class="skill-pct">80%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION & EXPERIENCE -->
+<section id="experience" class="section">
+  <div class="section-label fade-in">Background</div>
+  <h2 class="section-heading fade-in">Education &amp; <em>Experience</em></h2>
+  <div class="timeline fade-in">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-meta">
+          <span class="tl-type edu">Education</span>
+          <span class="tl-year">2018 – 2021</span>
+        </div>
+        <div class="tl-title">M.S. Electrical Engineering — Control Systems</div>
+        <div class="tl-place">Bu Ali Sina University, Hamedan, Iran</div>
+        <div class="tl-desc">GPA: 3.91/4 · Ranked 1st in class. Thesis: Intelligent traffic signal control using Deep Neural Networks and Reinforcement Learning.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-meta">
+          <span class="tl-type edu">Education</span>
+          <span class="tl-year">2012 – 2017</span>
+        </div>
+        <div class="tl-title">B.S. Electrical Engineering — Control Systems</div>
+        <div class="tl-place">Hamedan University of Technology, Iran</div>
+        <div class="tl-desc">GPA: 3.46/4. Thesis: Energy-saving air conditioning unit using a sliding mode controller.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-meta">
+          <span class="tl-type work">Work</span>
+          <span class="tl-year">2018 – Present</span>
+        </div>
+        <div class="tl-title">Electronics Teacher</div>
+        <div class="tl-place">Ministry of Education, Iran</div>
+        <div class="tl-desc">Teaching Electricity, Magnetism, Circuit Theory, PCB Design, Microcontroller Programming (AVR/ARM), and embedded systems to technical students.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-meta">
+          <span class="tl-type work">Work</span>
+          <span class="tl-year">2019</span>
+        </div>
+        <div class="tl-title">Audio Processor &amp; Monitoring System Designer</div>
+        <div class="tl-place">Islamic Azad University, Hamedan</div>
+        <div class="tl-desc">Real-time voice detection and vehicle monitoring using Raspberry Pi and STM32F103.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-meta">
+          <span class="tl-type work">Work</span>
+          <span class="tl-year">2017</span>
+        </div>
+        <div class="tl-title">MATLAB Instructor</div>
+        <div class="tl-place">Hamedan University of Technology</div>
+        <div class="tl-desc">Focused on Control Systems and Signal Processing toolboxes.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-meta">
+          <span class="tl-type work">Work</span>
+          <span class="tl-year">2013</span>
+        </div>
+        <div class="tl-title">Electrical Panel Builder</div>
+        <div class="tl-place">Iran Trans Co</div>
+        <div class="tl-desc">Transformer repairs and power distribution systems assembly.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section" style="background:var(--bg2); max-width:100%; padding:100px 0;">
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;">
+    <div class="section-label fade-in">Portfolio</div>
+    <h2 class="section-heading fade-in">Thesis &amp; <em>Projects</em></h2>
+    <div class="projects-grid fade-in">
+      <div class="proj-card">
+        <span class="proj-tag">M.S. Thesis</span>
+        <div class="proj-title">Deep Q-Learning for Traffic Signal Control</div>
+        <div class="proj-desc">Explored Deep Q-Learning and RL to minimize vehicle waiting times and reduce emissions at intersections — combining real-time computer vision with adaptive control.</div>
+      </div>
+      <div class="proj-card">
+        <span class="proj-tag">Computer Vision</span>
+        <div class="proj-title">Intelligent Traffic Light System (2021)</div>
+        <div class="proj-desc">Integrated Q-learning with YOLO object detection to build a self-optimizing traffic control system that adapts to real-time vehicle density.</div>
+      </div>
+      <div class="proj-card">
+        <span class="proj-tag">IoT &amp; Embedded</span>
+        <div class="proj-title">Smart Greenhouse Monitoring (2019)</div>
+        <div class="proj-desc">Microcontroller-based system for real-time monitoring of temperature, humidity, CO₂, and lighting in agricultural greenhouses.</div>
+      </div>
+      <div class="proj-card">
+        <span class="proj-tag">B.S. Thesis</span>
+        <div class="proj-title">Energy-Saving AC Control</div>
+        <div class="proj-desc">Designed an adaptive sliding mode controller for air conditioning units, achieving significant energy reductions compared to conventional ON/OFF control.</div>
+      </div>
+      <div class="proj-card">
+        <span class="proj-tag">Signal Processing</span>
+        <div class="proj-title">Real-Time Audio Processor</div>
+        <div class="proj-desc">Voice detection and classification system using Raspberry Pi &amp; STM32 for vehicle monitoring applications in noisy environments.</div>
+      </div>
+      <div class="proj-card">
+        <span class="proj-tag">Web Platform</span>
+        <div class="proj-title">Internship Site Matching Platform (2016)</div>
+        <div class="proj-desc">Full-stack web application to help engineering students at HUT discover and apply for relevant internship opportunities.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications" class="section">
+  <div class="section-label fade-in">Research</div>
+  <h2 class="section-heading fade-in">Selected <em>Publications</em></h2>
+  <div class="pub-list fade-in">
+    <div class="pub-card">
+      <div>
+        <div class="pub-title">Object Detection for Vehicles with YOLO — Iranian Vehicle Dataset</div>
+        <div class="pub-meta">IEEE · 2024 · Vehicle dataset with 29,759 images</div>
+        <a class="pub-link" href="https://ieeexplore.ieee.org/abstract/document/10432884" target="_blank" rel="noopener">
+          <i class="fas fa-external-link-alt"></i> Read on IEEE Xplore
+        </a>
+      </div>
+      <span class="pub-year-badge">2024</span>
+    </div>
+    <div class="pub-card">
+      <div>
+        <div class="pub-title">Iranian Vehicle Images Dataset for Object Detection — YOLOv8 Benchmark</div>
+        <div class="pub-meta">Journal of AI &amp; Data Mining · 3,000 labeled images · 91.7% precision</div>
+        <a class="pub-link" href="https://jad.shahroodut.ac.ir/article_3164.html" target="_blank" rel="noopener">
+          <i class="fas fa-external-link-alt"></i> Read Full Article
+        </a>
+      </div>
+      <span class="pub-year-badge">2024</span>
+    </div>
+    <div class="pub-card">
+      <div>
+        <div class="pub-title">Flood Risk Analysis with Deep Learning — LSTM, Random Forest &amp; SVM Comparison</div>
+        <div class="pub-meta">IEEE · 2024 · Hazard prediction &amp; risk mitigation</div>
+        <a class="pub-link" href="https://ieeexplore.ieee.org/abstract/document/10737603" target="_blank" rel="noopener">
+          <i class="fas fa-external-link-alt"></i> Read on IEEE Xplore
+        </a>
+      </div>
+      <span class="pub-year-badge">2024</span>
+    </div>
+    <div class="pub-card">
+      <div>
+        <div class="pub-title">Sustainable Energy Management in Cooling Systems via Fuzzy Logic &amp; Adaptive Nonlinear Control</div>
+        <div class="pub-meta">IEEE · 2023 · Renewable wind energy integration</div>
+        <a class="pub-link" href="https://ieeexplore.ieee.org/abstract/document/10506386" target="_blank" rel="noopener">
+          <i class="fas fa-external-link-alt"></i> Read on IEEE Xplore
+        </a>
+      </div>
+      <span class="pub-year-badge">2023</span>
+    </div>
+  </div>
+</section>
+
+<!-- INTERESTS -->
+<section id="interests" class="section" style="background:var(--bg2); max-width:100%; padding:100px 0;">
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;">
+    <div class="section-label fade-in">Focus Areas</div>
+    <h2 class="section-heading fade-in">Research <em>Interests</em></h2>
+    <div class="interests-wrap fade-in">
+      <p style="font-size:1rem;line-height:1.7;color:rgba(240,240,240,0.75);max-width:640px;">
+        I aim to contribute as a researcher and teaching assistant at a leading academic institution, engaging in advanced AI-driven research and interdisciplinary collaborations that bridge control systems with emerging technologies.
+      </p>
+      <div class="interest-tags">
+        <span class="interest-tag"><i class="fas fa-robot" style="margin-right:6px"></i>Reinforcement Learning</span>
+        <span class="interest-tag"><i class="fas fa-brain" style="margin-right:6px"></i>Deep Learning</span>
+        <span class="interest-tag"><i class="fas fa-cogs" style="margin-right:6px"></i>Intelligent Control Systems</span>
+        <span class="interest-tag"><i class="fas fa-eye" style="margin-right:6px"></i>Computer Vision</span>
+        <span class="interest-tag"><i class="fas fa-traffic-light" style="margin-right:6px"></i>Smart Traffic Management</span>
+        <span class="interest-tag"><i class="fas fa-leaf" style="margin-right:6px"></i>Sustainable Energy</span>
+        <span class="interest-tag"><i class="fas fa-network-wired" style="margin-right:6px"></i>IoT &amp; Embedded Systems</span>
+        <span class="interest-tag"><i class="fas fa-water" style="margin-right:6px"></i>Natural Disaster Prediction</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section id="references" class="section">
+  <div class="section-label fade-in">Academics</div>
+  <h2 class="section-heading fade-in">Academic <em>References</em></h2>
+  <div class="refs-grid fade-in">
+    <div class="ref-card">
+      <div class="ref-avatar">AM</div>
+      <div class="ref-name">Dr. Amir Mosavi</div>
+      <div class="ref-org">Obuda University, Budapest, Hungary</div>
+      <div class="ref-email">amir.mosavi@nik.uni-obuda.hu</div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-avatar">HK</div>
+      <div class="ref-name">Dr. Hassan Khotanlou</div>
+      <div class="ref-org">Bu-Ali Sina University, Hamedan, Iran</div>
+      <div class="ref-email">khotanlou@basu.ac.ir</div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-avatar">SG</div>
+      <div class="ref-name">Dr. Soheil Ganjefar</div>
+      <div class="ref-org">Iran University of Science &amp; Technology, Tehran</div>
+      <div class="ref-email">s_ganjefar@iust.ac.ir</div>
+    </div>
+    <div class="ref-card">
+      <div class="ref-avatar">AR</div>
+      <div class="ref-name">Dr. Abbas Ramazani</div>
+      <div class="ref-org">Bu-Ali Sina University, Hamedan, Iran</div>
+      <div class="ref-email">a.ramazani@basu.ac.ir</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section" style="background:var(--bg2); max-width:100%; padding:100px 0;">
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;">
+    <div class="section-label fade-in">Get In Touch</div>
+    <h2 class="section-heading fade-in">Let's <em>Connect</em></h2>
+    <div class="contact-wrap fade-in">
+      <div class="contact-info">
+        <h3>Open to Collaboration</h3>
+        <p>Whether you're interested in research collaboration, academic opportunities, or discussing ideas in AI and control systems — I'd love to hear from you.</p>
+        <div class="contact-detail"><i class="fas fa-envelope"></i> p.maleki.1994@gmail.com</div>
+        <div class="contact-detail"><i class="fas fa-map-marker-alt"></i> Hamedan, Iran</div>
+        <div class="contact-detail"><i class="fas fa-graduation-cap"></i> Open to PhD opportunities</div>
+      </div>
+      <div class="form-card">
+        <form id="contact-form" action="https://formsubmit.co/p.maleki.1994@gmail.com" method="POST">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://pouriamaleki.com/thankyou.html">
+          <div class="form-row">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-row">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+          </div>
+          <div class="form-row">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Your message..." required></textarea>
+          </div>
+          <div class="captcha-row">
+            <label>
+              Verify: <strong id="num1"></strong> + <strong id="num2"></strong> =
+            </label>
+            <input type="text" id="captchaResult" name="captchaResult" placeholder="?" required>
+          </div>
+          <button type="submit" class="btn-submit">
+            <i class="fas fa-paper-plane" style="margin-right:8px"></i>Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>Pouria Maleki</span> (پوریا ملکی) · All rights reserved</p>
+  <p style="margin-top:6px;font-size:0.76rem;">Also known as Pooria Maleki · Poria Maleki · Poriya Maleki</p>
+</footer>
+
+<script>
+/* ── NEURAL CANVAS ── */
+(function() {
+  const canvas = document.getElementById('neural-canvas');
+  const ctx = canvas.getContext('2d');
+  let nodes = [], W, H, animId;
+  const N = 55, MAXDIST = 130;
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  for (let i = 0; i < N; i++) {
+    nodes.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      r: Math.random() * 2 + 1.5
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    nodes.forEach(n => {
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 0 || n.x > W) n.vx *= -1;
+      if (n.y < 0 || n.y > H) n.vy *= -1;
+    });
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const d = Math.sqrt(dx*dx + dy*dy);
+        if (d < MAXDIST) {
+          const alpha = (1 - d / MAXDIST) * 0.45;
+          const grad = ctx.createLinearGradient(nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y);
+          grad.addColorStop(0, `rgba(0,212,255,${alpha})`);
+          grad.addColorStop(1, `rgba(123,47,255,${alpha})`);
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.strokeStyle = grad;
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+      }
+    }
+    nodes.forEach(n => {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0,212,255,0.7)';
+      ctx.fill();
+    });
+    animId = requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── HAMBURGER ── */
+const hbg = document.getElementById('hamburger');
+const mob = document.getElementById('mobileMenu');
+hbg.addEventListener('click', () => mob.classList.toggle('open'));
+document.querySelectorAll('.close-menu').forEach(el =>
+  el.addEventListener('click', () => mob.classList.remove('open'))
+);
+
+/* ── SCROLL FADE-IN ── */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+/* ── SKILL BAR ANIMATE ON HOVER ── */
+// bars already set via CSS :hover, initial fill is present in HTML
+
+/* ── CAPTCHA ── */
+let r1, r2;
+function genCaptcha() {
+  r1 = Math.floor(Math.random() * 10);
+  r2 = Math.floor(Math.random() * 10);
+  document.getElementById('num1').textContent = r1;
+  document.getElementById('num2').textContent = r2;
 }
+genCaptcha();
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  const val = parseInt(document.getElementById('captchaResult').value, 10);
+  if (val !== r1 + r2) {
+    e.preventDefault();
+    alert('Captcha answer is incorrect. Please try again.');
+    genCaptcha();
+    document.getElementById('captchaResult').value = '';
+  }
+});
+
+/* ── ACTIVE NAV ON SCROLL ── */
+const sections = document.querySelectorAll('section[id], section[id]');
+const navAs = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navAs.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--cyan)' : '';
+  });
+});
+</script>
+</body>
+</html>
