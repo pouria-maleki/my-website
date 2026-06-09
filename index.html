@@ -1,887 +1,338 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pouria Maleki - Personal Introduction</title>
-  <meta name="description" content="A modern single-page personal website showcasing Pouria Maleki's profile, skills, experiences, and publications.">
-  <meta name="keywords" content="Pouria Maleki, Electrical Engineer, Control Systems, CV, Portfolio, Single Page">
-  <meta name="author" content="Your Name">
+import React, { useState, useEffect } from 'react';
+import { 
+  Linkedin, 
+  GraduationCap, 
+  Github, 
+  Mail, 
+  Cpu, 
+  Brain, 
+  LineChart, 
+  Layers, 
+  FileText, 
+  User, 
+  Briefcase, 
+  Code, 
+  PhoneCall, 
+  ExternalLink 
+} from 'lucide-react';
 
-  <!-- لینک فونت Poppins از گوگل -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link 
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" 
-    rel="stylesheet"
-  >
-  <!-- لینک Font Awesome برای آیکون‌ها -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    integrity="sha512-acZspzIY3vZ3Oy6GXQn6lTSAWzznI6rg/1Dcx1ppznHy2Linb9meuazYW41ItFQGa6eGKuTQhjZGLXdSWdh85Q=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
+export default function App() {
+  // States for Captcha and Form
+  const [captcha, setCaptcha] = useState({ num1: 0, num2: 0 });
+  const [userAnswer, setUserAnswer] = useState('');
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
-  <!-- استایل اصلی در همین فایل -->
-  <style>
-    /* ریست کلی */
-    * {
-      margin: 0; 
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-    html, body {
-      scroll-behavior: smooth;
-      background-color: #fafafa;
-      color: #333;
-    }
+  // Generate simple math captcha
+  const generateCaptcha = () => {
+    setCaptcha({
+      num1: Math.floor(Math.random() * 10),
+      num2: Math.floor(Math.random() * 10)
+    });
+    setUserAnswer('');
+  };
 
-    /* ناوبری بالا (هدر ثابت) */
-    nav {
-      position: fixed;
-      top: 0; 
-      left: 0; 
-      right: 0;
-      height: 60px;
-      background-color: rgba(255,255,255,0.95);
-      backdrop-filter: blur(4px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 30px;
-      z-index: 999;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    nav .logo {
-      font-weight: 600;
-      font-size: 1.2rem;
-      color: #e74c3c;
-    }
-    nav ul {
-      list-style: none; 
-      display: flex;
-      gap: 20px;
-    }
-    nav ul li a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-    nav ul li a:hover {
-      color: #e74c3c;
-    }
+  useEffect(() => {
+    generateCaptcha();
+    
+    // Inject JSON-LD Schema for advanced SEO (Pouria Maleki identity graph)
+    const schemaData = {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Pouria Maleki",
+      "alternateName": ["Pooria Maleki", "Poria Maleki", "Poriya Maleki", "پوریا ملکی"],
+      "url": "https://pouriamaleki.com",
+      "jobTitle": "Electrical Engineer & AI Researcher",
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Bu-Ali Sina University"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/pouria-maleki",
+        "https://scholar.google.com/citations?user=YkH4p6kAAAAJ&hl=En",
+        "https://github.com/pouria-maleki",
+        "https://www.researchgate.net/profile/Pouria-Maleki"
+      ]
+    };
 
-    /* بخش Hero در بالای صفحه */
-    header {
-      width: 100%;
-      height: 100vh;
-      background: 
-        linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6)),
-        url('images/11.png');
-      /* عکس پس زمینه - در صورت نیاز با لینک یا مسیر دلخواه جایگزین کنید */
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed; /* افکت پارالاکس */
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: #fff;
-      padding: 0 20px;
-    }
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      text-shadow: 0 2px 5px rgba(0,0,0,0.4);
-    }
-    header p {
-      font-size: 1.2rem;
-      max-width: 800px;
-      margin: 0 auto 2rem auto;
-      line-height: 1.6;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
-    }
-    .hero-btn {
-      display: inline-block;
-      padding: 12px 30px;
-      font-size: 1rem;
-      background-color: #e74c3c;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 4px;
-      transition: background 0.3s;
-    }
-    .hero-btn:hover {
-      background-color: #c0392b;
-    }
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.innerHTML = JSON.stringify(schemaData);
+    document.head.appendChild(script);
 
-    /* ساختار سکشن‌ها */
-    section {
-      width: 100%;
-      padding: 60px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .section-title {
-      text-align: center;
-      margin-bottom: 40px;
-      font-size: 2rem;
-      color: #e74c3c;
-      position: relative;
-    }
-    .section-title::after {
-      content: "";
-      display: block;
-      width: 60px;
-      height: 3px;
-      background-color: #e74c3c;
-      margin: 10px auto 0 auto;
-      border-radius: 2px;
-    }
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
 
-    /* بخش درباره من (About) */
-    #about .about-content {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      align-items: center;
-      justify-content: center;
+  const handleSubmit = (e) => {
+    const isCorrect = parseInt(userAnswer, 10) === captcha.num1 + captcha.num2;
+    if (!isCorrect) {
+      e.preventDefault();
+      alert('پاسخ کپچا اشتباه است. لطفاً دوباره تلاش کنید.');
+      generateCaptcha();
     }
-    #about .profile-pic {
-      flex: 1 1 250px;
-      max-width: 300px;
-      text-align: center;
-    }
-    #about .profile-pic img {
-      width: 100%;
-      border-radius: 50%;
-      border: 4px solid #e74c3c;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-    #about .about-text {
-      flex: 1 1 500px;
-      max-width: 600px;
-    }
-    #about .about-text p {
-      font-size: 1.1rem;
-      line-height: 1.7;
-      margin-bottom: 1rem;
-    }
+  };
 
-    /* لینک‌های اجتماعی */
-    .social-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 25px;
-    }
-    .social-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background-color: #e74c3c;
-      color: #fff;
-      padding: 8px 16px;
-      border-radius: 4px;
-      font-size: 0.9rem;
-      text-decoration: none;
-      transition: background 0.3s;
-    }
-    .social-button:hover {
-      background-color: #c0392b;
-    }
-    .social-button i {
-      font-size: 1rem;
-    }
-
-    /* بخش مهارت‌ها (Skills) */
-    #skills .skills-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-    .skill-item {
-      background-color: #fff;
-      border-radius: 6px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      flex: 1 1 250px;
-      max-width: 300px;
-      padding: 20px;
-      text-align: center;
-      transition: transform 0.3s;
-      position: relative; /* برای جای‌گذاری استیکر */
-    }
-    .skill-item:hover {
-      transform: translateY(-5px);
-    }
-    .skill-item i {
-      font-size: 2rem;
-      color: #e74c3c;
-      margin-bottom: 10px;
-    }
-    .skill-item h3 {
-      margin-bottom: 10px;
-      font-size: 1.2rem;
-      color: #333;
-    }
-    /* استیکر متحرک یا انیمیشن برای مهارت‌ها */
-    .skill-sticker {
-      width: 40px;
-      position: absolute;
-      top: -10px;
-      right: -10px;
-      animation: floatSticker 2s ease-in-out infinite alternate;
-    }
-    @keyframes floatSticker {
-      0% { transform: translateY(0px); }
-      100% { transform: translateY(-10px); }
-    }
-
-    .progress-bar {
-      background-color: #f2f2f2;
-      height: 8px;
-      border-radius: 4px;
-      margin: 10px 0;
-      overflow: hidden;
-      position: relative;
-    }
-    .progress-bar span {
-      display: block;
-      height: 100%;
-      width: 0;
-      background-color: #e74c3c;
-      border-radius: 4px;
-      transition: width 1s;
-    }
-    /* زمانی که موس روی کارت برود، نوار پر شود */
-    .skill-item:hover .progress-bar span {
-      width: var(--skill-level, 70%);
-    }
-
-    /* بخش تحصیلات و سوابق (Education & Experience) */
-    #education-experience .ed-ex-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    .ed-ex-box {
-      flex: 1 1 300px;
-      background-color: #fff;
-      border-radius: 6px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      padding: 20px;
-      transition: transform 0.3s;
-    }
-    .ed-ex-box:hover {
-      transform: scale(1.02);
-    }
-    .ed-ex-box h3 {
-      color: #e74c3c;
-      margin-bottom: 10px;
-      font-size: 1.2rem;
-    }
-    .ed-ex-box p {
-      margin-bottom: 5px;
-      line-height: 1.6;
-    }
-
-    /* پایان‌نامه و پروژه‌ها */
-    #thesis-projects .thesis-projects-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    .tp-box {
-      flex: 1 1 300px;
-      background-color: #fff;
-      border-radius: 6px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      padding: 20px;
-      transition: transform 0.3s;
-    }
-    .tp-box:hover {
-      transform: translateY(-5px);
-    }
-    .tp-box h4 {
-      color: #e74c3c;
-      margin-bottom: 10px;
-      font-size: 1.1rem;
-    }
-    .tp-box p {
-      line-height: 1.6;
-      margin-bottom: 10px;
-    }
-
-    /* بخش مقالات */
-    #publications .pub-container {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .pub-item {
-      background-color: #fff;
-      border-radius: 6px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      padding: 20px;
-      transition: background 0.3s;
-    }
-    .pub-item:hover {
-      background-color: #f5f5f5;
-    }
-    .pub-item h4 {
-      color: #e74c3c;
-      margin-bottom: 8px;
-      font-size: 1.1rem;
-    }
-    .pub-item p {
-      line-height: 1.6;
-    }
-    .article-link {
-      color: #e74c3c;
-      text-decoration: underline;
-      cursor: pointer;
-    }
-    .article-link:hover {
-      color: #c0392b;
-    }
-
-    /* بخش علاقمندی‌ها (Interests) */
-    #interests .interests-text {
-      background-color: #fff;
-      border-radius: 6px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      padding: 20px;
-      line-height: 1.7;
-    }
-
-    /* بخش رفرنس‌ها (References) */
-    #references .refs-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    .ref-box {
-      flex: 1 1 300px;
-      background-color: #fff;
-      border-radius: 6px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      padding: 20px;
-      transition: transform 0.3s;
-    }
-    .ref-box:hover {
-      transform: translateY(-5px);
-    }
-    .ref-box h5 {
-      color: #e74c3c;
-      margin-bottom: 6px;
-    }
-    .ref-box p {
-      line-height: 1.6;
-    }
-
-    /* بخش تماس (Contact) - ساده بدون کپتچا */
-    #contact .contact-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      text-align: center;
-    }
-    #contact .contact-container p {
-      max-width: 600px;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-    .form-wrapper {
-      width: 100%;
-      max-width: 600px;
-      background-color: #fff;
-      border-radius: 6px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      padding: 20px;
-      text-align: left;
-    }
-    .form-wrapper label {
-      display: block;
-      margin: 10px 0 5px;
-      font-weight: 500;
-    }
-    .form-wrapper input[type="text"],
-    .form-wrapper input[type="email"],
-    .form-wrapper textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 1rem;
-      outline: none;
-      margin-bottom: 15px;
-    }
-    .form-wrapper button[type="submit"] {
-      display: inline-block;
-      background-color: #e74c3c;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      font-size: 1rem;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .form-wrapper button[type="submit"]:hover {
-      background-color: #c0392b;
-    }
-
-    /* فوتر */
-    footer {
-      background-color: #333;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-    }
-    footer a {
-      color: #fff;
-      text-decoration: underline;
-    }
-
-    /* ریسپانسیو ساده */
-    @media (max-width: 768px) {
-      nav ul {
-        display: none; /* برای سادگی */
-      }
-      header h1 {
-        font-size: 2.2rem;
-      }
-      #about .about-content {
-        flex-direction: column;
-      }
-      #skills .skills-container,
-      #education-experience .ed-ex-container,
-      #thesis-projects .thesis-projects-container,
-      #references .refs-container {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-  </style>
-</head>
-<body>
-  <!-- ناوبری بالا -->
-  <nav>
-    <div class="logo">Pouria Maleki</div>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#education-experience">Education/Exp</a></li>
-      <li><a href="#thesis-projects">Thesis/Projects</a></li>
-      <li><a href="#publications">Publications</a></li>
-      <li><a href="#interests">Interests</a></li>
-      <li><a href="#references">References</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- صفحه اصلی (هیرو) -->
-  <header id="home">
-    <h1>Welcome to My Personal Website</h1>
-    <p>
-      I am an Electrical Engineer specialized in Control Systems, AI, and Reinforcement Learning.
-      Here, you can discover my skills, experiences, publications, and how to connect with me.
-    </p>
-    <a class="hero-btn" href="#about">Explore More</a>
-  </header>
-
-  <!-- درباره من -->
-  <section id="about">
-    <h2 class="section-title">About Me</h2>
-    <div class="about-content">
-      <div class="profile-pic">
-        <!-- عکس پروفایل -->
-        <img src="images/1.png" alt="Profile Picture">
+  return (
+    <div className="min-h-screen bg-slate-900 text-slate-100 font-sans scroll-smooth">
+      
+      {/* SEO Hidden Elements for indexing assistance */}
+      <div className="hidden">
+        <h1>پوریا ملکی - Pouria Maleki - Pooria Maleki - Poria Maleki - Poriya Maleki</h1>
+        <p>وبسایت شخصی پوریا ملکی پژوهشگر هوش مصنوعی و مهندس کنترل</p>
       </div>
-      <div class="about-text">
-        <p>
-          Hello! I'm <strong>Pouria Maleki</strong>, an Electrical Engineer (Control Systems) from Hamedan, Iran.
-          My passion lies in Researching and Implementing cutting-edge methods in Artificial Intelligence,
-          Deep Learning, and Reinforcement Learning to tackle real-world control problems.
+
+      {/* Navigation Bar */}
+      <nav className="fixed top-0 left-0 right-0 h-16 bg-slate-950/80 backdrop-blur-md border-b border-slate-800 flex justify-between items-center px-6 md:px-12 z-50">
+        <div className="font-bold text-xl bg-gradient-to-r from-red-500 to-rose-400 bg-clip-text text-transparent">
+          Pouria Maleki
+        </div>
+        <ul className="hidden md:flex gap-6 text-sm font-medium text-slate-300">
+          <li><a href="#about" className="hover:text-red-500 transition">About</a></li>
+          <li><a href="#skills" className="hover:text-red-500 transition">Skills</a></li>
+          <li><a href="#experience" className="hover:text-red-500 transition">Experience</a></li>
+          <li><a href="#publications" className="hover:text-red-500 transition">Publications</a></li>
+          <li><a href="#contact" className="hover:text-red-500 transition">Contact</a></li>
+        </ul>
+      </nav>
+
+      {/* Hero Section */}
+      <header className="relative h-screen flex flex-col justify-center items-center text-center px-4 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-purple-950/20 to-slate-950">
+        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:30px_30px] pointer-events-none" />
+        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">
+          Welcome to My{" "}
+          <span className="bg-gradient-to-r from-red-500 to-amber-500 bg-clip-text text-transparent">
+            Digital Space
+          </span>
+        </h1>
+        <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-8 leading-relaxed">
+          I am an Electrical Engineer specializing in Control Systems, AI, and Reinforcement Learning. 
+          Bridging the gap between classical engineering and deep learning architectures.
         </p>
-        <p>
-          As a teacher and researcher, I thrive on interdisciplinary collaborations that connect
-          machine learning with industrial automation. Outside academia, I enjoy working on IoT
-          projects and developing energy-efficient solutions to modern engineering challenges.
-        </p>
-        <!-- لینک‌های اجتماعی (بدون شماره تلفن) -->
-        <div class="social-links">
-          <!-- LinkedIn -->
-          <a class="social-button" href="https://www.linkedin.com/in/pouria-maleki" target="_blank">
-            <i class="fab fa-linkedin"></i> LinkedIn
-          </a>
-          <!-- Google Scholar -->
-          <a class="social-button" href="https://scholar.google.com/citations?user=YkH4p6kAAAAJ&hl=En" target="_blank">
-            <i class="fas fa-graduation-cap"></i> Google Scholar
-          </a>
-          <!-- ResearchGate -->
-          <a class="social-button" href="https://www.researchgate.net/profile/Pouria-Maleki" target="_blank">
-            <i class="fab fa-researchgate"></i> ResearchGate
-          </a>
-          <!-- GitHub -->
-          <a class="social-button" href="https://github.com/pouria-maleki" target="_blank">
-            <i class="fab fa-github"></i> GitHub
-          </a>
-          <!-- Email -->
-          <a class="social-button" href="mailto:p.maleki.1994@gmail.com">
-            <i class="fas fa-envelope"></i> Email
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+        <a 
+          href="#about" 
+          className="px-8 py-3 bg-red-600 hover:bg-red-700 text-white rounded-full font-medium shadow-lg shadow-red-900/40 transition duration-300 transform hover:-translate-y-1"
+        >
+          Explore Profile
+        </a>
+      </header>
 
-  <!-- مهارت‌ها (با استیکرهای متحرک از فولدر images) -->
-  <section id="skills">
-    <h2 class="section-title">My Skills</h2>
-    <div class="skills-container">
-      <!-- نمونه آیتم مهارت 1 -->
-      <div class="skill-item">
-        <!-- استیکر انیمیشنی برای Python (فایل محلی: images/python.gif) -->
-        <img 
-          src="images/python.gif" 
-          alt="Python Sticker" 
-          class="skill-sticker" 
-        />
-        <i class="fab fa-python"></i>
-        <h3>Python</h3>
-        <div class="progress-bar">
-          <span style="--skill-level:90%"></span>
-        </div>
-      </div>
-      <!-- مهارت 2: Arduino -->
-      <div class="skill-item">
-        <img 
-          src="images/arduino.gif" 
-          alt="Arduino Sticker" 
-          class="skill-sticker" 
-        />
-        <i class="fas fa-microchip"></i>
-        <h3>Arduino / C/C++</h3>
-        <div class="progress-bar">
-          <span style="--skill-level:80%"></span>
-        </div>
-      </div>
-      <!-- مهارت 3: Deep Learning -->
-      <div class="skill-item">
-        <img 
-          src="images/brain.gif"
-          alt="Deep Learning Sticker" 
-          class="skill-sticker" 
-        />
-        <i class="fas fa-brain"></i>
-        <h3>Machine Learning & Deep Learning</h3>
-        <div class="progress-bar">
-          <span style="--skill-level:80%"></span>
-        </div>
-      </div>
-      <!-- مهارت 4: Matlab & Simulink -->
-      <div class="skill-item">
-        <img 
-          src="images/matlab.gif"
-          alt="Matlab Sticker" 
-          class="skill-sticker" 
-        />
-        <i class="fas fa-chart-line"></i>
-        <h3>Matlab & Simulink</h3>
-        <div class="progress-bar">
-          <span style="--skill-level:90%"></span>
-        </div>
-      </div>
-      <!-- مهارت 5: Raspberry Pi -->
-      <div class="skill-item">
-        <img 
-          src="images/pi.gif"
-          alt="Raspberry Pi Sticker" 
-          class="skill-sticker" 
-        />
-        <i class="fab fa-raspberry-pi"></i>
-        <h3>Raspberry Pi</h3>
-        <div class="progress-bar">
-          <span style="--skill-level:80%"></span>
-        </div>
-      </div>
-      <!-- مهارت 6: Siemens -->
-      <div class="skill-item">
-        <img 
-          src="images/siemens.gif"
-          alt="Siemens Sticker" 
-          class="skill-sticker" 
-        />
-        <i class="fas fa-industry"></i>
-        <h3>Siemens S7-300 / STEP 7</h3>
-        <div class="progress-bar">
-          <span style="--skill-level:70%"></span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- تحصیلات و سوابق -->
-  <section id="education-experience">
-    <h2 class="section-title">Education & Experience</h2>
-    <div class="ed-ex-container">
-      <div class="ed-ex-box">
-        <h3>M.S. in Electrical Eng. - Control</h3>
-        <p>Bu Ali Sina University (2018-2021)</p>
-        <p>GPA: 3.91/4, Rank 1, Thesis: Intelligent traffic light control using DNNs.</p>
-      </div>
-      <div class="ed-ex-box">
-        <h3>B.S. in Electrical Eng. - Control</h3>
-        <p>Hamedan University of Technology (2012-2017)</p>
-        <p>GPA: 3.46/4, Thesis: Energy-saving AC using sliding mode controller.</p>
-      </div>
-      <div class="ed-ex-box">
-        <h3>Electronics Teacher</h3>
-        <p>Ministry of Education (2018–Present)</p>
-        <p>Teach Electricity, Magnetism, Circuits, PCB Design, Microcontroller Programming, etc.</p>
-      </div>
-      <div class="ed-ex-box">
-        <h3>MATLAB Instructor</h3>
-        <p>Hamedan Univ. of Tech (2017)</p>
-        <p>Focus on Control Systems, Signal Processing</p>
-      </div>
-      <div class="ed-ex-box">
-        <h3>Audio Processor Design</h3>
-        <p>Islamic Azad University (2019)</p>
-        <p>Voice detection with Raspberry Pi & STM32F103, real-time vehicle monitoring</p>
-      </div>
-      <div class="ed-ex-box">
-        <h3>Electrical Panel Builder</h3>
-        <p>Iran Trans Co (2013)</p>
-        <p>Transformer repairs, power distribution systems</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- پایان‌نامه و پروژه‌ها -->
-  <section id="thesis-projects">
-    <h2 class="section-title">Thesis & Projects</h2>
-    <div class="thesis-projects-container">
-      <!-- پایان‌نامه -->
-      <div class="tp-box">
-        <h4>Deep Q-Learning for Traffic Signal Control</h4>
-        <p>Explores RL and Deep Q-Learning to minimize vehicle waiting times and reduce emissions at intersections.</p>
-      </div>
-      <!-- پروژه 1 -->
-      <div class="tp-box">
-        <h4>Intelligent Traffic Light (2021)</h4>
-        <p>Used Q-learning + YOLO to optimize traffic flow and reduce congestion.</p>
-      </div>
-      <!-- پروژه 2 -->
-      <div class="tp-box">
-        <h4>Greenhouse Monitoring (2019)</h4>
-        <p>Microcontroller-based design for temperature, humidity, and gas monitoring in greenhouses.</p>
-      </div>
-      <!-- پروژه 3 -->
-      <div class="tp-box">
-        <h4>Internship Site Implementation (2016)</h4>
-        <p>Developed a web platform to aid HUT students in selecting internship opportunities.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- مقالات -->
-  <section id="publications">
-    <h2 class="section-title">Publications</h2>
-    <div class="pub-container">
-      <!-- مقاله 1 -->
-      <div class="pub-item">
-        <h4>Object Detection for Vehicles with YOLO (2024)</h4>
-        <p>
-          Vehicle Dataset with 29,759 images. YOLOv7 achieves 85% precision and 85% mAP@0.5, emphasizing emergency vehicles.
-          <br>
-          <a class="article-link" href="https://ieeexplore.ieee.org/abstract/document/10432884" target="_blank">
-            Read Full Article
-          </a>
-        </p>
-      </div>
-      <!-- مقاله 2 -->
-      <div class="pub-item">
-        <h4>Iranian Vehicle Images Dataset for Object Detection Algorithm</h4>
-        <p>
-          3,000 images labeled (car, truck, bus). YOLOv8s: 91.7% precision, 92.6% mAP@0.5. ~10% boost over COCO-trained YOLOv8s.
-          <br>
-          <a class="article-link" href="https://jad.shahroodut.ac.ir/article_3164.html" target="_blank">
-            Read Full Article
-          </a>
-        </p>
-      </div>
-      <!-- مقاله 3 -->
-      <div class="pub-item">
-        <h4>Flood Risk Analysis with Deep Learning (2024)</h4>
-        <p>
-          Compares LSTM, RF, and SVM. RF & LSTM excel in hazard prediction, enhancing risk mitigation strategies.
-          <br>
-          <a class="article-link" href="https://ieeexplore.ieee.org/abstract/document/10737603" target="_blank">
-            Read Full Article
-          </a>
-        </p>
-      </div>
-      <!-- مقاله 4 -->
-      <div class="pub-item">
-        <h4>Sustainable Energy Management in Cooling Systems (2023)</h4>
-        <p>
-          Uses fuzzy logic & adaptive nonlinear control for AC units. Balances renewable wind energy & grid power efficiently.
-          <br>
-          <a class="article-link" href="https://ieeexplore.ieee.org/abstract/document/10506386" target="_blank">
-            Read Full Article
-          </a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- علاقمندی‌ها -->
-  <section id="interests">
-    <h2 class="section-title">Interests</h2>
-    <div class="interests-text">
-      <p>
-        I am deeply interested in <strong>Control Engineering</strong> and <strong>Artificial Intelligence</strong>, aiming to contribute
-        as a researcher and teaching assistant in a leading academic institution. My goal is to engage in advanced AI-driven research
-        and interdisciplinary collaborations bridging control systems with emerging technologies.
-      </p>
-      <p>
-        <strong>Specific areas of interest include:</strong><br>
-        • Machine Learning<br>
-        • Deep Learning<br>
-        • Reinforcement Learning<br>
-        • Intelligent Control Systems
-      </p>
-    </div>
-  </section>
-
-  <!-- رفرنس‌ها -->
-  <section id="references">
-    <h2 class="section-title">References</h2>
-    <div class="refs-container">
-      <div class="ref-box">
-        <h5>Dr. Amir Mosavi</h5>
-        <p>Obuda University, Budapest, Hungary<br>
-           <em>amir.mosavi@nik.uni-obuda.hu</em></p>
-      </div>
-      <div class="ref-box">
-        <h5>Dr. Hassan Khotanlou</h5>
-        <p>Bu-Ali Sina University, Hamedan, Iran<br>
-           <em>khotanlou@basu.ac.ir | +98(81) 38303234</em></p>
-      </div>
-      <div class="ref-box">
-        <h5>Dr. Soheil Ganjefar</h5>
-        <p>Iran University of Science and Technology, Tehran<br>
-           <em>s_ganjefar@iust.ac.ir | +98(21) 73225763</em></p>
-      </div>
-      <div class="ref-box">
-        <h5>Dr. Abbas Ramazani</h5>
-        <p>Bu-Ali Sina University, Hamedan<br>
-           <em>a.ramazani@basu.ac.ir | +98(81) 38303229</em></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- تماس: ساده بدون کپتچا -->
-  <section id="contact">
-  <h2 class="section-title">Contact Me</h2>
-  <div class="contact-container">
-    <p>
-      If you'd like to discuss research, collaboration, or job opportunities,
-      please fill out the form below. I look forward to connecting with you!
-    </p>
-
-    <div class="form-wrapper">
-      <!-- فرم ارسال با استفاده از formsubmit.co -->
-      <form
-        id="contact-form"
-        action="https://formsubmit.co/p.maleki.1994@gmail.com"
-        method="POST"
-      >
-        <!-- هدایت به صفحه تشکر بعد از ارسال موفق -->
-        <input type="hidden" name="_next" value="https://yourdomain.com/thankYou.html">
-        <!-- غیرفعال‌کردن کپتچای پیش‌فرض FormSubmit -->
-        <input type="hidden" name="_captcha" value="false">
-
-        <!-- فیلدهای فرم -->
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required>
-
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-
-        <!-- کپچای ساده: نمایش دو عدد تصادفی و گرفتن حاصل‌جمع از کاربر -->
-        <div style="margin: 15px 0;">
-            <label>Please enter the Result :</label>
-          <div style="margin: 8px 0;">
-            <span id="num1" style="font-weight: bold; font-size: 1.1rem"></span>
-            <span> + </span>
-            <span id="num2" style="font-weight: bold; font-size: 1.1rem"></span>
-            <span> = </span>
-            <input
-              type="text"
-              id="captchaResult"
-              name="captchaResult"
-              style="width: 50px; text-align: center;"
-              required
-            >
+      {/* About Me Section */}
+      <section id="about" className="max-w-6xl mx-auto px-6 py-24 border-t border-slate-800/60">
+        <div className="flex flex-col md:flex-row gap-12 items-center">
+          <div className="relative group w-48 h-48 md:w-64 md:h-64 flex-shrink-0">
+            <div className="absolute inset-0 bg-gradient-to-tr from-red-600 to-amber-500 rounded-3xl blur-md opacity-70 group-hover:opacity-100 transition duration-500" />
+            <div className="relative w-full h-full bg-slate-800 rounded-3xl overflow-hidden border border-slate-700">
+              <img 
+                src="images/1.png" 
+                alt="Pouria Maleki - پوریا ملکی" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+          <div className="flex-1">
+            <h2 className="text-3xl font-bold mb-6 flex items-center gap-3">
+              <User className="text-red-500" /> About Me / درباره من
+            </h2>
+            <p className="text-slate-300 leading-relaxed mb-4 text-justify">
+              Hello! I'm <strong>Pouria Maleki</strong>, an Electrical Engineer specializing in Control Systems. 
+              My core research focus involves modernizing classic industrial control structures using Deep Learning, 
+              Computer Vision (YOLO networks), and Deep Reinforcement Learning algorithms.
+            </p>
+            <p className="text-slate-400 leading-relaxed mb-6 text-justify">
+              من پوریا ملکی هستم، پژوهشگر سیستم‌های کنترل و هوش مصنوعی. هدف من توسعه سیستم‌های هوشمند و متصل با استفاده از فریم‌ورک‌های عمیق و پیاده‌سازی کاربردی آن‌ها در چالش‌های مهندسی دنیای واقعی است.
+            </p>
+            
+            {/* Social Icons Stack */}
+            <div className="flex flex-wrap gap-3">
+              <a href="https://www.linkedin.com/in/pouria-maleki" target="_blank" rel="noreferrer" className="p-3 bg-slate-800 hover:bg-red-600 rounded-xl transition text-slate-300 hover:text-white flex items-center gap-2 text-sm">
+                <Linkedin size={18} /> LinkedIn
+              </a>
+              <a href="https://scholar.google.com/citations?user=YkH4p6kAAAAJ&hl=En" target="_blank" rel="noreferrer" className="p-3 bg-slate-800 hover:bg-red-600 rounded-xl transition text-slate-300 hover:text-white flex items-center gap-2 text-sm">
+                <GraduationCap size={18} /> Google Scholar
+              </a>
+              <a href="https://github.com/pouria-maleki" target="_blank" rel="noreferrer" className="p-3 bg-slate-800 hover:bg-red-600 rounded-xl transition text-slate-300 hover:text-white flex items-center gap-2 text-sm">
+                <Github size={18} /> GitHub
+              </a>
+              <a href="mailto:p.maleki.1994@gmail.com" className="p-3 bg-slate-800 hover:bg-red-600 rounded-xl transition text-slate-300 hover:text-white flex items-center gap-2 text-sm">
+                <Mail size={18} /> Email
+              </a>
+            </div>
           </div>
         </div>
+      </section>
 
-        <br>
-        <button type="submit">Send Message</button>
-      </form>
+      {/* Skills Section */}
+      <section id="skills" className="max-w-6xl mx-auto px-6 py-24 border-t border-slate-800/60">
+        <h2 className="text-3xl font-bold mb-12 text-center flex justify-center items-center gap-3">
+          <Code className="text-red-500" /> Expertise & Toolkit
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            { title: "Python & PyTorch", level: "90%", icon: <Brain className="text-red-400" /> },
+            { title: "Control Systems & MATLAB", level: "90%", icon: <LineChart className="text-amber-400" /> },
+            { title: "Embedded & Microcontrollers", level: "80%", icon: <Cpu className="text-emerald-400" /> },
+            { title: "Deep Reinforcement Learning", level: "85%", icon: <Layers className="text-blue-400" /> },
+            { title: "Industrial PLC (Siemens Step 7)", level: "70%", icon: <Cpu className="text-purple-400" /> },
+            { title: "Computer Vision & YOLO", level: "85%", icon: <Brain className="text-rose-400" /> }
+          ].map((skill, index) => (
+            <div key={index} className="p-6 bg-slate-950/40 border border-slate-800 rounded-2xl hover:border-red-500/50 transition duration-300 group">
+              <div className="flex justify-between items-center mb-4">
+                <div className="p-2 bg-slate-900 rounded-xl group-hover:scale-110 transition">{skill.icon}</div>
+                <span className="text-xs text-slate-500 font-mono">{skill.level}</span>
+              </div>
+              <h3 className="font-semibold text-slate-200 mb-2">{skill.title}</h3>
+              <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                <div className="bg-gradient-to-r from-red-500 to-amber-500 h-full transition-all duration-1000" style={{ width: skill.level }} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Experience & Education */}
+      <section id="experience" className="max-w-6xl mx-auto px-6 py-24 border-t border-slate-800/60">
+        <h2 className="text-3xl font-bold mb-12 flex items-center gap-3">
+          <Briefcase className="text-red-500" /> Journey & Timeline
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <h3 className="text-xl font-bold text-slate-400 mb-6">Education</h3>
+            <div className="space-y-6 border-l-2 border-slate-800 pl-4">
+              <div className="relative">
+                <div className="absolute w-3 h-3 bg-red-500 rounded-full -left-[22px] top-1.5" />
+                <h4 className="font-bold text-slate-200">M.Sc. in Electrical Engineering - Control</h4>
+                <p className="text-sm text-red-400">Bu-Ali Sina University | 2018 - 2021</p>
+                <p className="text-sm text-slate-400 mt-1">GPA: 3.91/4 (Ranked 1st in Cohort). Thesis focused on Deep Intelligent Traffic Architectures.</p>
+              </div>
+              <div className="relative">
+                <div className="absolute w-3 h-3 bg-slate-700 rounded-full -left-[22px] top-1.5" />
+                <h4 className="font-bold text-slate-200">B.Sc. in Electrical Engineering</h4>
+                <p className="text-sm text-slate-400">Hamedan University of Technology | 2012 - 2017</p>
+                <p className="text-sm text-slate-400 mt-1">GPA: 3.46/4. Designed adaptive sliding mode controllers for thermal loops.</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3 className="text-xl font-bold text-slate-400 mb-6">Professional Highlights</h3>
+            <div className="space-y-6 border-l-2 border-slate-800 pl-4">
+              <div className="relative">
+                <div className="absolute w-3 h-3 bg-amber-500 rounded-full -left-[22px] top-1.5" />
+                <h4 className="font-bold text-slate-200">Electronics Teacher & Instructor</h4>
+                <p className="text-sm text-amber-400">Ministry of Education | 2018 - Present</p>
+                <p className="text-sm text-slate-400 mt-1">Teaching embedded systems architectures, microcontrollers (STM32/Arduino), and PCB prototyping.</p>
+              </div>
+              <div className="relative">
+                <div className="absolute w-3 h-3 bg-slate-700 rounded-full -left-[22px] top-1.5" />
+                <h4 className="font-bold text-slate-200">Embedded Systems Audio Architect</h4>
+                <p className="text-sm text-slate-400">Azad University Research Project | 2019</p>
+                <p className="text-sm text-slate-400 mt-1">Deployed real-time acoustic sorting and digital signal processing routines on ARM Cortex-M3 pipelines.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Publications */}
+      <section id="publications" className="max-w-6xl mx-auto px-6 py-24 border-t border-slate-800/60">
+        <h2 className="text-3xl font-bold mb-12 flex items-center gap-3">
+          <FileText className="text-red-500" /> Peer-Reviewed Publications
+        </h2>
+        <div className="space-y-4">
+          {[
+            {
+              title: "Object Detection for Vehicles with YOLO Network",
+              desc: "Engineered emergency-vehicle optimization vectors using customized YOLO layers. Evaluated across 29,000+ localized high-resolution frames.",
+              link: "https://ieeexplore.ieee.org/abstract/document/10432884",
+              venue: "IEEE SAMI"
+            },
+            {
+              title: "Iranian Vehicle Images Dataset for Object Detection Algorithm",
+              desc: "Curated and structuralized standard bounding-box configurations yielding a 10% structural performance increase over general weights.",
+              link: "https://jad.shahroodut.ac.ir/article_3164.html",
+              venue: "Journal of AI & Data"
+            },
+            {
+              title: "Flood Risk Analysis with Deep Learning Protocols",
+              desc: "Comparative assessment benchmarking LSTM recurrent arrays against classic supervised random forest structural parameters.",
+              link: "https://ieeexplore.ieee.org/abstract/document/10737603",
+              venue: "IEEE Explore"
+            }
+          ].map((pub, idx) => (
+            <div key={idx} className="p-6 bg-slate-950/60 border border-slate-800 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:bg-slate-950 transition">
+              <div>
+                <span className="text-xs font-mono px-2 py-1 bg-red-950 text-red-400 border border-red-900 rounded-md">{pub.venue}</span>
+                <h3 className="font-bold text-lg text-slate-200 mt-2">{pub.title}</h3>
+                <p className="text-sm text-slate-400 mt-1 max-w-3xl">{pub.desc}</p>
+              </div>
+              <a href={pub.link} target="_blank" rel="noreferrer" className="flex items-center gap-1 text-sm font-medium text-red-400 hover:text-red-300 transition shrink-0">
+                Paper <ExternalLink size={14} />
+              </a>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="max-w-4xl mx-auto px-6 py-24 border-t border-slate-800/60 text-center">
+        <h2 className="text-3xl font-bold mb-4 flex justify-center items-center gap-3">
+          <PhoneCall className="text-red-500" /> Let's Connect
+        </h2>
+        <p className="text-slate-400 mb-8 max-w-md mx-auto">
+          Have an academic research query, opportunity, or professional alignment request? Send a secure message.
+        </p>
+        
+        <div className="bg-slate-950 border border-slate-800 rounded-3xl p-8 text-left max-w-xl mx-auto shadow-xl">
+          <form 
+            action="https://formsubmit.co/p.maleki.1994@gmail.com" 
+            method="POST"
+            onSubmit={handleSubmit}
+            className="space-y-4"
+          >
+            <input type="hidden" name="_captcha" value="false" />
+            
+            <div>
+              <label className="block text-sm font-medium text-slate-400 mb-1">Name</label>
+              <input type="text" name="name" required className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-slate-200 focus:outline-none focus:border-red-500 transition" />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-400 mb-1">Email</label>
+              <input type="email" name="email" required className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-slate-200 focus:outline-none focus:border-red-500 transition" />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-400 mb-1">Message</label>
+              <textarea name="message" rows="4" required className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-slate-200 focus:outline-none focus:border-red-500 transition" />
+            </div>
+
+            {/* Ant-Spam Verification */}
+            <div className="bg-slate-900/60 p-4 border border-slate-800 rounded-xl">
+              <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Security Verification</label>
+              <div className="flex items-center gap-3">
+                <span className="text-lg font-mono text-slate-200">{captcha.num1} + {captcha.num2} =</span>
+                <input 
+                  type="number" 
+                  value={userAnswer}
+                  onChange={(e) => setUserAnswer(e.target.value)}
+                  required 
+                  className="w-20 bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-center text-slate-200 focus:outline-none focus:border-red-500 transition"
+                />
+              </div>
+            </div>
+
+            <button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-3 rounded-xl shadow-lg transition">
+              Send Verified Message
+            </button>
+          </form>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-slate-900 bg-slate-950 text-slate-600 py-8 text-center text-xs space-y-2">
+        <p>© 2026 Pouria Maleki (پوریا ملکی). All Structural Rights Reserved.</p>
+        <p>Built using modern React & Tailwind CSS paradigms.</p>
+      </footer>
     </div>
-  </div>
-</section>
-
-<script>
-  // متغیرهای سراسری برای نگه‌داری دو عدد تصادفی
-  let random1, random2;
-
-  // تابع تولید اعداد تصادفی و نمایش در فرم
-  function generateRandomNumbers() {
-    // تولید دو عدد تصادفی بین 0 تا 9
-    random1 = Math.floor(Math.random() * 10);
-    random2 = Math.floor(Math.random() * 10);
-
-    // نمایش اعداد در اسپن‌های مربوطه
-    document.getElementById('num1').innerText = random1;
-    document.getElementById('num2').innerText = random2;
-  }
-
-  // تابع بررسی مقدار وارد شده برای کپچا
-  function validateCaptcha(event) {
-    const userValue = parseInt(document.getElementById('captchaResult').value, 10);
-    if (userValue !== random1 + random2) {
-      event.preventDefault(); // جلوی ارسال فرم را می‌گیرد
-      alert('کپچا اشتباه وارد شده است. لطفاً دوباره تلاش کنید.');
-    }
-  }
-
-  // پس از لود شدن صفحه، کپچا تولید شود و رویداد بررسی روی فرم تنظیم گردد
-  window.addEventListener('DOMContentLoaded', () => {
-    generateRandomNumbers(); // تولید اعداد تصادفی در هنگام بارگذاری
-    document
-      .getElementById('contact-form')
-      .addEventListener('submit', validateCaptcha); // بررسی هنگام ارسال فرم
-  });
-</script>
-  <!-- فوتر -->
-  <footer>
-    <p>© 2023 Pouria Maleki - All Rights Reserved</p>
-    <p>Design by <a href="https://pouriamaleki.com" target="_blank">Pouria Maleki</a></p>
-  </footer>
-</body>
-</html>
+  );
+}
