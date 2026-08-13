@@ -1,0 +1,10 @@
+{
+  "name": "Pouria Maleki Research Portfolio",
+  "short_name": "Pouria Maleki",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0b1120",
+  "description": "Research portfolio of Pouria Maleki: AI, computer vision, reinforcement learning and control systems.",
+  "icons": []
+}

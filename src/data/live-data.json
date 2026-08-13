@@ -1,0 +1,38 @@
+{
+  "syncedAt": null,
+  "semanticScholar": {
+    "status": "fallback",
+    "author": null,
+    "papers": []
+  },
+  "github": {
+    "status": "fallback",
+    "profile": {
+      "login": "pouria-maleki",
+      "html_url": "https://github.com/pouria-maleki",
+      "name": "Pouria Maleki",
+      "public_repos": 4,
+      "followers": 5
+    },
+    "repos": [
+      {
+        "name": "Iranian-Vehicle-images-dataset-for-detection",
+        "html_url": "https://github.com/pouria-maleki/Iranian-Vehicle-images-dataset-for-detection",
+        "description": "Iranian vehicle image dataset for object detection",
+        "language": null,
+        "stargazers_count": 5,
+        "forks_count": 0,
+        "updated_at": null
+      },
+      {
+        "name": "TVD-dataset",
+        "html_url": "https://github.com/pouria-maleki/TVD-dataset",
+        "description": "A new benchmark for object detection",
+        "language": "Jupyter Notebook",
+        "stargazers_count": 1,
+        "forks_count": 0,
+        "updated_at": null
+      }
+    ]
+  }
+}

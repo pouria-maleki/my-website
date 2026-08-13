@@ -4,31 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0b1120" />
+    <meta name="color-scheme" content="light dark" />
     <script>
       (function () {
-        var params = new URLSearchParams(location.search);
-        var lang = params.get('lang') || localStorage.getItem('lang') || 'en';
         var theme = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        document.documentElement.lang = lang === 'fa' ? 'fa' : 'en';
-        document.documentElement.dir = lang === 'fa' ? 'rtl' : 'ltr';
         if (theme === 'dark') document.documentElement.classList.add('dark');
       })();
     </script>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2285%22>🧠</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
     <title>Pouria Maleki | AI Researcher & Control Systems Engineer</title>
   </head>
   <body>
     <div id="root"></div>
-    <script>
-      // GitHub Pages SPA redirect recovery (paired with public/404.html)
-      (function () {
-        var redirect = sessionStorage.getItem('spa-redirect');
-        if (redirect) {
-          sessionStorage.removeItem('spa-redirect');
-          history.replaceState(null, '', redirect);
-        }
-      })();
-    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

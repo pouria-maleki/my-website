@@ -1,14 +1,17 @@
 export const SITE = {
   name: 'Pouria Maleki',
   faName: 'پوریا ملکی',
+  aliases: ['Pouria Maleki', 'پوریا ملکی', 'Pooria Maleki', 'Poria Maleki', 'Poriya Maleki'],
   url: 'https://pouriamaleki.com',
   email: 'p.maleki.1994@gmail.com',
+  location: { en: 'Hamedan, Iran', fa: 'همدان، ایران' },
   social: {
     linkedin: 'https://www.linkedin.com/in/pouria-maleki',
     scholar: 'https://scholar.google.com/citations?user=YkH4p6kAAAAJ&hl=en',
     researchGate: 'https://www.researchgate.net/profile/Pouria-Maleki',
     github: 'https://github.com/pouria-maleki'
-  }
+  },
+  personId: 'https://pouriamaleki.com/about#pouria-maleki'
 }
 
 export const references = [

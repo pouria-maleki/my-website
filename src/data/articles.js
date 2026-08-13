@@ -1,4 +1,51 @@
-export const articles = [
+const publicationMetadata = {
+  'iranian-vehicle-dataset-yolov8': {
+    publicationType: 'JournalArticle',
+    venue: 'Journal of Artificial Intelligence and Data Mining (JAIDM)',
+    doi: '10.22044/jadm.2024.13858.2501',
+    authors: ['Pouria Maleki', 'Abbas Ramazani', 'Hassan Khotanlou', 'Sina Ojaghi'],
+    githubUrl: 'https://github.com/pouria-maleki/Iranian-Vehicle-images-dataset-for-detection',
+    keywords: { en: ['Pouria Maleki','Iranian vehicle dataset','YOLOv8s','object detection','computer vision','intelligent transportation'], fa: ['پوریا ملکی','دیتاست خودروهای ایرانی','YOLOv8s','تشخیص شیء','بینایی ماشین','حمل‌ونقل هوشمند'] },
+    dataset: { name: 'Iranian Vehicle Images Dataset', description: 'A 3,000-image dataset of Iranian vehicles labeled for car, bus and truck object detection.', distributionUrl: 'https://github.com/pouria-maleki/Iranian-Vehicle-images-dataset-for-detection' }
+  },
+  'vehicle-detection-yolo-emergency-vehicles': {
+    publicationType: 'ConferencePaper',
+    venue: 'IEEE SAMI 2024',
+    doi: '10.1109/SAMI60510.2024.10432884',
+    authors: ['Pouria Maleki','Abbas Ramazani','Hassan Khotanlou','Sina Ojaghi','Milad Mousavi','Alexey Kalinin','Amir Mosavi'],
+    githubUrl: 'https://github.com/pouria-maleki/TVD-dataset',
+    keywords: { en: ['Pouria Maleki','YOLO','vehicle detection','emergency vehicles','TVD dataset','deep learning','traffic management'], fa: ['پوریا ملکی','YOLO','تشخیص خودرو','خودروهای امدادی','دیتاست TVD','یادگیری عمیق','مدیریت ترافیک'] },
+    dataset: { name: 'TVD Dataset', description: 'A 29,759-image, seven-class vehicle benchmark including ambulance and fire-truck classes.', distributionUrl: 'https://github.com/pouria-maleki/TVD-dataset' }
+  },
+  'flood-risk-machine-learning': {
+    publicationType: 'ConferencePaper',
+    venue: 'IEEE SISY 2024',
+    doi: '10.1109/SISY62279.2024.10737603',
+    authors: ['Saba Salmani Ghanbari','Bahram Choubin','Milad Mousavi','Pouria Maleki','Amir Mosavi'],
+    keywords: { en: ['Pouria Maleki','flood risk','LSTM','Random Forest','SVM','machine learning','infrastructure resilience'], fa: ['پوریا ملکی','ریسک سیلاب','LSTM','Random Forest','SVM','یادگیری ماشین','تاب‌آوری زیرساخت'] }
+  },
+  'sustainable-energy-fuzzy-control': {
+    publicationType: 'ConferencePaper',
+    venue: 'IEEE ICCIA 2023',
+    doi: '10.1109/ICCIA61416.2023.10506386',
+    authors: ['Mohammad Soofi','Niloufar Maleki','Hadi Delavari','Pouria Maleki'],
+    keywords: { en: ['Pouria Maleki','fuzzy logic','adaptive nonlinear control','energy management','HVAC','renewable energy'], fa: ['پوریا ملکی','منطق فازی','کنترل تطبیقی غیرخطی','مدیریت انرژی','HVAC','انرژی تجدیدپذیر'] }
+  },
+  'deep-reinforcement-learning-traffic-signals': {
+    publicationType: 'Thesis',
+    venue: 'Bu-Ali Sina University · M.S. Thesis',
+    authors: ['Pouria Maleki'],
+    keywords: { en: ['Pouria Maleki','reinforcement learning','DQN','Q-learning','SUMO','traffic signal control','YOLO'], fa: ['پوریا ملکی','یادگیری تقویتی','DQN','Q-learning','SUMO','کنترل چراغ راهنمایی','YOLO'] }
+  },
+  'offline-voice-detection-smart-homes': {
+    publicationType: 'ConferencePaper',
+    venue: '4th International Conference on Electrical Engineering, Computer, Mechanics and Artificial Intelligence',
+    authors: ['Sina Ojaghi','Javid Ghafourian','Pouria Maleki','Atefeh Hedayatnia'],
+    keywords: { en: ['Pouria Maleki','smart home','offline voice detection','Raspberry Pi','IoT','home automation'], fa: ['پوریا ملکی','خانه هوشمند','تشخیص گفتار آفلاین','Raspberry Pi','اینترنت اشیا','اتوماسیون خانگی'] }
+  }
+}
+
+const rawArticles = [
   {
     slug: 'iranian-vehicle-dataset-yolov8',
     category: { en: 'Computer Vision', fa: 'بینایی ماشین' },
@@ -402,7 +449,79 @@ The most important lesson from the thesis was learning how to combine **mathemat
 
 مهم‌ترین دستاورد این پایان‌نامه برای من، تجربه ترکیب **مدل‌سازی ریاضی، شبیه‌سازی، ادراک و بهینه‌سازی دنباله‌ای** در یک سیستم مهندسی بود؛ الگویی که در رباتیک، تخصیص منابع و بسیاری از کاربردهای بلادرنگ هوش مصنوعی نیز تکرار می‌شود.`
     }
+  },
+  {
+    slug: 'offline-voice-detection-smart-homes',
+    category: { en: 'IoT & Edge AI', fa: 'اینترنت اشیا و هوش لبه' },
+    date: '2023', readTime: 6, image: '/blog/smart-home-voice.svg',
+    sourceUrl: 'https://www.researchgate.net/publication/375910479_Offline_voice_detection_in_smart_homes',
+    title: { en: 'Offline Voice Detection in Smart Homes: Privacy-Aware Edge Automation', fa: 'تشخیص گفتار آفلاین در خانه هوشمند؛ اتوماسیون لبه با حفظ حریم خصوصی' },
+    excerpt: {
+      en: 'A multi-purpose smart-home automation concept that processes voice commands locally, combining offline interaction, Raspberry Pi-class edge computing and environmental control.',
+      fa: 'طرحی چندمنظوره برای خانه هوشمند که فرمان‌های صوتی را به‌صورت محلی پردازش می‌کند و تعامل آفلاین، رایانش لبه و کنترل محیط را در کنار هم قرار می‌دهد.'
+    },
+    content: {
+      en: `# Offline Voice Detection in Smart Homes
+
+Cloud voice assistants are convenient, but a smart home does not always need to send every command to an external service. This conference work explored a **multi-purpose smart-home automation system** in which voice interaction can be processed locally and connected to authentication, automation and environmental control.
+
+## Why offline voice matters
+
+Local processing can make a home-automation system more resilient to internet outages and can reduce the amount of private audio that needs to leave the local environment. For engineering prototypes, it also creates a useful edge-computing architecture: sensing, inference and actuation remain close to the device.
+
+## System idea
+
+The proposed smart-home concept brings several functions together:
+
+- Offline voice-command interaction
+- Home automation and device control
+- Authentication and access logic
+- Interaction with environmental sensors
+- Edge processing with embedded / Raspberry Pi-class hardware
+
+\`\`\`text
+Voice command → Local processing → Intent / authentication
+                         ↓
+Sensors → Smart-home controller → Lights / devices / environment
+\`\`\`
+
+## Engineering value
+
+The interesting part is not only speech recognition itself. It is the **integration problem**: connecting user interaction, embedded hardware, sensors and automation in a system that should remain responsive and dependable.
+
+That same design pattern appears across modern IoT systems—move essential intelligence closer to the device, keep control loops local where practical, and use network services as an enhancement rather than a single point of failure.`,
+      fa: `# تشخیص گفتار آفلاین در خانه هوشمند
+
+دستیارهای صوتی ابری راحت هستند، اما یک خانه هوشمند لزوماً نباید هر فرمان را برای پردازش به یک سرویس خارجی ارسال کند. در این مقاله کنفرانسی، یک **سامانه چندمنظوره اتوماسیون خانه هوشمند** بررسی شد که تعامل صوتی را به‌صورت محلی پردازش کرده و آن را با احراز هویت، اتوماسیون و کنترل محیط ترکیب می‌کند.
+
+## چرا پردازش آفلاین مهم است؟
+
+پردازش محلی می‌تواند سامانه را در زمان قطع اینترنت پایدارتر کند و نیاز به ارسال صدای خصوصی به خارج از محیط محلی را کاهش دهد. از دید مهندسی نیز یک معماری مناسب برای رایانش لبه ایجاد می‌شود؛ حس‌کردن، پردازش و عملگرها نزدیک به خود دستگاه باقی می‌مانند.
+
+## ایده سامانه
+
+طرح خانه هوشمند چند قابلیت را در یک معماری ترکیب می‌کند:
+
+- تعامل صوتی و فرمان آفلاین
+- اتوماسیون و کنترل تجهیزات خانه
+- منطق احراز هویت و دسترسی
+- تعامل با حسگرهای محیطی
+- پردازش لبه با سخت‌افزارهای نهفته و Raspberry Pi
+
+\`\`\`text
+فرمان صوتی ← پردازش محلی ← تشخیص قصد / احراز هویت
+                          ↓
+حسگرها ← کنترلر خانه هوشمند ← روشنایی / تجهیزات / محیط
+\`\`\`
+
+## ارزش مهندسی
+
+بخش جذاب پروژه فقط تشخیص گفتار نیست؛ مسئله اصلی **یکپارچه‌سازی سیستم** است: اتصال تعامل انسان، سخت‌افزار نهفته، حسگرها و اتوماسیون در سیستمی که باید سریع و قابل اعتماد باقی بماند.
+
+همین الگو در بسیاری از سامانه‌های IoT جدید دیده می‌شود: هوشمندی ضروری تا حد امکان نزدیک دستگاه اجرا شود، حلقه‌های کنترل حیاتی محلی بمانند و سرویس‌های شبکه نقش تکمیل‌کننده داشته باشند، نه یک نقطه شکست واحد.`
+    }
   }
 ]
 
+export const articles = rawArticles.map((article) => ({ ...publicationMetadata[article.slug], ...article }))
 export const getArticle = (slug) => articles.find((article) => article.slug === slug)

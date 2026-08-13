@@ -1,13 +1,14 @@
 {
   "name": "pouria-maleki-portfolio",
   "private": true,
-  "version": "2.0.0",
+  "version": "3.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/postbuild.mjs",
+    "build": "node scripts/sync-live-data.mjs && vite build && vite build --ssr src/entry-server.jsx --outDir dist-ssr && node scripts/prerender.mjs",
     "preview": "vite preview",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "sync": "node scripts/sync-live-data.mjs"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.15",
