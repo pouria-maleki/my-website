@@ -18,6 +18,11 @@ const routePairs = [
   ...articles.map(a => [`/blog/${a.slug}`, `/fa/blog/${a.slug}`])
 ]
 const routes = routePairs.flat()
+const articleRouteMap = new Map(articles.flatMap(a => [
+  [`/blog/${a.slug}`, a],
+  [`/fa/blog/${a.slug}`, a]
+]))
+const latestArticleUpdate = articles.map(a => a.updated || a.sortDate || a.date).filter(Boolean).sort().at(-1)
 
 function renderDocument(url) {
   const { html: appHtml, helmet } = render(url)
@@ -47,8 +52,15 @@ writeFileSync(resolve(dist, '200.html'), renderDocument('/'))
 const alternateMap = new Map(routePairs.flatMap(([en,fa]) => [[en,{en,fa}],[fa,{en,fa}]]))
 const xml = routes.map(route => {
   const pair = alternateMap.get(route)
-  const priority = route === '/' || route === '/fa' ? '1.0' : route.includes('/blog/') ? '0.8' : '0.9'
-  return `  <url>\n    <loc>${site}${route}</loc>\n    <xhtml:link rel="alternate" hreflang="en" href="${site}${pair.en}"/>\n    <xhtml:link rel="alternate" hreflang="fa" href="${site}${pair.fa}"/>\n    <xhtml:link rel="alternate" hreflang="x-default" href="${site}${pair.en}"/>\n    <changefreq>${route.includes('/blog/') ? 'monthly' : 'weekly'}</changefreq>\n    <priority>${priority}</priority>\n  </url>`
+  const article = articleRouteMap.get(route)
+  const lastmod = article?.updated || article?.sortDate || (route === '/blog' || route === '/fa/blog' ? latestArticleUpdate : null)
+  return `  <url>
+    <loc>${site}${route}</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="${site}${pair.en}"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="${site}${pair.fa}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="${site}${pair.en}"/>${lastmod ? `
+    <lastmod>${lastmod}</lastmod>` : ''}
+  </url>`
 }).join('\n')
 writeFileSync(resolve(dist, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${xml}\n</urlset>\n`)
 

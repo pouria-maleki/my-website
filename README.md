@@ -1,9 +1,16 @@
-# Pouria Maleki — Living Research Portfolio v3
+# Pouria Maleki — Living Research Portfolio v4
 
 A bilingual, SEO-first academic/research portfolio for **Pouria Maleki (پوریا ملکی)**. The project is built with React, Vite, Tailwind CSS and React Router, but it is also statically prerendered at build time so important pages and paper metadata are present in the initial HTML.
 
-## What changed in v3
+## What changed in v4
 
+- English pages now display only **Pouria Maleki** and Persian pages only **پوریا ملکی**; alternate spellings remain in structured data for entity SEO.
+- Skills now describe durable capabilities (Object Detection, YOLO/R-CNN families, dataset design, RL, intelligent control, Edge AI) instead of model-version lists.
+- The medical-AI project is presented as an **AI-assisted gastric & colorectal cancer detection prototype** with **98% reported accuracy during project evaluation**, avoiding unsupported clinical-validation wording.
+- Two new long-form bilingual research notes: **Object Detection in Practice: YOLO, R-CNN and Better Dataset Design** and **From Vehicle Detection to Smart Traffic Control**.
+- Blog archive now includes search, category filtering, featured “Start here” posts, key-takeaway cards, reading progress, and a generated table of contents.
+- Article Markdown no longer renders a duplicate H1; the page title remains the single primary H1.
+- Article JSON-LD now exposes all listed authors and an accurate `dateModified`; research notes stay BlogPosting-only while actual papers receive scholarly-work schema.
 - Prominent LinkedIn, GitHub, Google Scholar, ResearchGate and email links in the hero, header/mobile navigation, article author cards and footer.
 - Separate indexable English and Persian URLs (`/` and `/fa`) with matching `hreflang` links instead of language query parameters.
 - A dedicated `/about` and `/fa/about` researcher profile page.
@@ -13,7 +20,7 @@ A bilingual, SEO-first academic/research portfolio for **Pouria Maleki (پوری
 - Build-time Semantic Scholar sync for scholarly metrics and indexed papers. Google Scholar and ResearchGate remain prominent first-class profile links.
 - Weekly GitHub Actions rebuild so public GitHub/research data can refresh without manually editing the site.
 - Teaching experience is calculated from `2018` automatically, so the displayed number of years stays current.
-- Six bilingual research stories, including the previously missing **Offline Voice Detection in Smart Homes** work.
+- Eight bilingual research stories, including the previously missing **Offline Voice Detection in Smart Homes** work.
 - Strong entity SEO for `Pouria Maleki`, `پوریا ملکی`, and common transliterations.
 - `ProfilePage`, `Person`, `WebSite`, `CollectionPage`, `BlogPosting`, `ScholarlyArticle`, `Dataset` and `BreadcrumbList` JSON-LD where applicable.
 - Static prerendering + React hydration for every EN/FA page and article.
@@ -128,7 +135,7 @@ The repository already contains `.github/workflows/deploy.yml`.
 
 ## Portfolio-design research applied
 
-The v3 information architecture was shaped after comparing academic-profile guidance and portfolio patterns from more than ten sources, including Rice University, Elsevier, NC State, LSE, UC Berkeley, University of Delaware, Oregon State University, J-PAL, academic portfolio/template guides and researcher-visibility guidance. The recurring ideas applied here are:
+The v4 information architecture was shaped after comparing academic-profile guidance and portfolio patterns from more than ten sources, including Rice University, Elsevier, NC State, LSE, UC Berkeley, University of Delaware, Oregon State University, J-PAL, academic portfolio/template guides and researcher-visibility guidance. The recurring ideas applied here are:
 
 - Make identity, role and research direction immediately clear.
 - Treat the homepage as a concise navigation/impact layer rather than a full CV dump.

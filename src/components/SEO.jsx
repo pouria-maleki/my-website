@@ -22,7 +22,7 @@ function personSchema(lang) {
       { '@type': 'CollegeOrUniversity', name: 'Bu-Ali Sina University' },
       { '@type': 'CollegeOrUniversity', name: 'Hamedan University of Technology' }
     ],
-    knowsAbout: ['Artificial Intelligence','Computer Vision','YOLO','Deep Learning','Reinforcement Learning','Control Systems','Intelligent Transportation Systems','Embedded Systems','IoT','MATLAB','Python'],
+    knowsAbout: ['Artificial Intelligence','Computer Vision','Object Detection','YOLO','R-CNN','Deep Learning','Reinforcement Learning','Control Systems','Intelligent Transportation Systems','Embedded Systems','Edge AI','IoT','MATLAB','Python'],
     sameAs: [SITE.social.linkedin, SITE.social.github, SITE.social.scholar, SITE.social.researchGate, s2].filter(Boolean)
   }
 }
@@ -57,17 +57,18 @@ export default function SEO({ title, description, path = '/', image = '/blog/ira
     graph.push({
       '@type': 'BlogPosting', '@id': `${canonical}#article`,
       url: canonical, mainEntityOfPage: canonical, headline: title, description, image: [imageUrl], inLanguage: lang,
-      datePublished: article.date, dateModified: article.date,
-      author: { '@type': 'Person', '@id': SITE.personId, name: SITE.name, url: authorUrl },
+      datePublished: article.sortDate || article.date, dateModified: article.updated || article.sortDate || article.date,
+      author: (article.authors || [SITE.name]).map(name => ({ '@type': 'Person', name, ...(name === SITE.name ? { '@id': SITE.personId, url: authorUrl, sameAs: SITE.social.scholar } : {}) })),
       publisher: { '@id': SITE.personId },
       articleSection: article.category?.[lang], keywords: keywords.join(', '),
       isBasedOn: article.sourceUrl || undefined
     })
-    graph.push({
+    if (article.publicationType) graph.push({
       '@type': article.publicationType === 'Thesis' ? 'CreativeWork' : 'ScholarlyArticle',
       '@id': `${canonical}#scholarly-work`, name: article.title.en, alternateName: article.title.fa,
-      author: (article.authors || [SITE.name]).map(name => ({ '@type': 'Person', name, ...(name === SITE.name ? { '@id': SITE.personId } : {}) })),
-      datePublished: article.date, isPartOf: article.venue ? { '@type': 'CreativeWork', name: article.venue } : undefined,
+      author: (article.authors || [SITE.name]).map(name => ({ '@type': 'Person', name, ...(name === SITE.name ? { '@id': SITE.personId, url: authorUrl } : {}) })),
+      datePublished: article.date, dateModified: article.updated || article.date,
+      isPartOf: article.venue ? { '@type': 'CreativeWork', name: article.venue } : undefined,
       identifier: article.doi ? { '@type': 'PropertyValue', propertyID: 'DOI', value: article.doi } : undefined,
       sameAs: [article.sourceUrl, article.doi ? `https://doi.org/${article.doi}` : null, article.githubUrl].filter(Boolean),
       keywords: (article.keywords?.en || []).join(', ')
@@ -99,7 +100,7 @@ export default function SEO({ title, description, path = '/', image = '/blog/ira
     <link rel="alternate" hrefLang={alternateLang} href={alternate} />
     <link rel="alternate" hrefLang="x-default" href={xDefault} />
     <meta property="og:type" content={type} />
-    <meta property="og:site_name" content="Pouria Maleki · پوریا ملکی" />
+    <meta property="og:site_name" content={lang === 'fa' ? 'پوریا ملکی' : 'Pouria Maleki'} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />

@@ -45,13 +45,416 @@ const publicationMetadata = {
   }
 }
 
+const editorialMetadata = {
+  'iranian-vehicle-dataset-yolov8': {
+    kind: { en: 'Peer-reviewed publication', fa: 'مقاله علمی منتشرشده' }, featured: true, updated: '2026-08-14',
+    takeaways: {
+      en: ['3,000 Iranian vehicle images with 5,765 manually labeled bounding boxes', '91.7% precision and 92.6% mAP@0.5 with domain-specific training', 'A practical example of why data quality and domain fit can matter as much as model choice'],
+      fa: ['۳۰۰۰ تصویر خودروهای ایرانی با ۵۷۶۵ باکس برچسب‌گذاری‌شده دستی', 'دقت ۹۱٫۷٪ و mAP@0.5 برابر ۹۲٫۶٪ با آموزش دامنه‌محور', 'نمونه‌ای عملی از اینکه کیفیت و تناسب داده می‌تواند به اندازه انتخاب مدل مهم باشد']
+    }
+  },
+  'vehicle-detection-yolo-emergency-vehicles': {
+    kind: { en: 'IEEE conference paper', fa: 'مقاله کنفرانس IEEE' }, updated: '2026-08-14',
+    takeaways: {
+      en: ['29,759 images and 55,925 annotations across seven vehicle classes', 'Ambulance and fire-truck classes are modeled explicitly instead of being absorbed into generic vehicle labels', 'Best reported detector reached about 85% precision and 85% mAP@0.5'],
+      fa: ['۲۹٬۷۵۹ تصویر و ۵۵٬۹۲۵ برچسب در هفت کلاس خودرو', 'آمبولانس و خودروی آتش‌نشانی به‌صورت کلاس مستقل مدل شده‌اند', 'بهترین آشکارساز گزارش‌شده به حدود ۸۵٪ Precision و ۸۵٪ mAP@0.5 رسید']
+    }
+  },
+  'flood-risk-machine-learning': {
+    kind: { en: 'IEEE conference paper', fa: 'مقاله کنفرانس IEEE' }, updated: '2026-08-14',
+    takeaways: {
+      en: ['2,634 bridge records were modeled through exposure, criticality and overall risk scores', 'Random Forest performed best for exposure and criticality prediction', 'LSTM produced the lowest reported error for the final risk-score prediction'],
+      fa: ['۲۶۳۴ رکورد پل بر اساس امتیاز مواجهه، بحرانی‌بودن و ریسک نهایی مدل شد', 'Random Forest برای پیش‌بینی مواجهه و بحرانی‌بودن بهترین عملکرد را داشت', 'LSTM کمترین خطای گزارش‌شده را برای پیش‌بینی امتیاز ریسک نهایی ثبت کرد']
+    }
+  },
+  'sustainable-energy-fuzzy-control': {
+    kind: { en: 'IEEE conference paper', fa: 'مقاله کنفرانس IEEE' }, updated: '2026-08-14',
+    takeaways: {
+      en: ['A fuzzy supervisory layer balances comfort, electricity price and grid dependence', 'Adaptive nonlinear control coordinates aggregate air-conditioning loads', 'The MATLAB study evaluated 100 units under fixed-time, usage-time and real-time pricing'],
+      fa: ['لایه نظارتی فازی میان آسایش، قیمت برق و وابستگی به شبکه تعادل ایجاد می‌کند', 'کنترل تطبیقی غیرخطی بار تجمیعی سیستم‌های سرمایشی را هماهنگ می‌کند', 'شبیه‌سازی MATLAB صد واحد را در سه سناریوی قیمت‌گذاری بررسی کرد']
+    }
+  },
+  'deep-reinforcement-learning-traffic-signals': {
+    kind: { en: 'M.S. thesis note', fa: 'یادداشت پایان‌نامه کارشناسی ارشد' }, updated: '2026-08-14',
+    takeaways: {
+      en: ['SUMO provides the traffic environment while Q-learning / deep networks drive sequential decisions', 'Computer vision supplies traffic-state estimates for adaptive control', 'The project connects perception, simulation and control rather than treating AI as an isolated model'],
+      fa: ['SUMO محیط ترافیک را می‌سازد و Q-learning / شبکه‌های عمیق تصمیم‌گیری دنباله‌ای را انجام می‌دهند', 'بینایی ماشین وضعیت ترافیک را برای کنترل تطبیقی تخمین می‌زند', 'پروژه ادراک، شبیه‌سازی و کنترل را در یک سامانه واحد به هم متصل می‌کند']
+    }
+  },
+  'offline-voice-detection-smart-homes': {
+    kind: { en: 'Conference paper', fa: 'مقاله کنفرانسی' }, updated: '2026-08-14',
+    takeaways: {
+      en: ['Voice commands are processed locally on Raspberry Pi-class hardware', 'Offline operation improves resilience where connectivity is poor and limits unnecessary cloud dependence', 'The system combines voice interaction, automation, sensors and basic security logic'],
+      fa: ['فرمان صوتی روی سخت‌افزار کلاس Raspberry Pi به‌صورت محلی پردازش می‌شود', 'کارکرد آفلاین در اینترنت ضعیف پایدارتر است و وابستگی غیرضروری به ابر را کاهش می‌دهد', 'سامانه تعامل صوتی، اتوماسیون، حسگرها و منطق امنیتی را یکپارچه می‌کند']
+    }
+  },
+  'object-detection-yolo-rcnn-practical-guide': {
+    kind: { en: 'Research note', fa: 'یادداشت پژوهشی' }, featured: true, updated: '2026-08-14',
+    takeaways: {
+      en: ['Choose an object-detection family from the deployment constraints, not from version numbers', 'YOLO-style one-stage detectors favor compact real-time pipelines; R-CNN-style methods remain valuable when region-based reasoning or instance segmentation matters', 'Dataset design, annotation quality and domain shift often dominate the last few points of benchmark performance'],
+      fa: ['خانواده آشکارساز را بر اساس محدودیت کاربرد انتخاب کنید، نه صرفاً شماره نسخه', 'آشکارسازهای تک‌مرحله‌ای مانند YOLO برای پایپ‌لاین بلادرنگ مناسب‌اند و خانواده R-CNN در مسائل ناحیه‌محور و سگمنتیشن نمونه‌ای ارزشمند است', 'طراحی دیتاست، کیفیت برچسب و اختلاف دامنه اغلب از چند امتیاز بنچمارک مهم‌تر است']
+    }
+  },
+  'from-detection-to-smart-traffic-control': {
+    kind: { en: 'Research note', fa: 'یادداشت پژوهشی' }, updated: '2026-08-14',
+    takeaways: {
+      en: ['A smart intersection needs perception, state estimation, decision-making and control—not only a detector', 'Emergency-vehicle classes become useful when they change the controller objective or priority policy', 'The most interesting research question is how detection uncertainty propagates into reinforcement-learning decisions'],
+      fa: ['چهارراه هوشمند فقط آشکارساز نمی‌خواهد؛ ادراک، تخمین وضعیت، تصمیم‌گیری و کنترل باید یکپارچه باشند', 'کلاس خودروهای امدادی زمانی ارزش واقعی دارد که سیاست اولویت‌دهی کنترل‌کننده را تغییر دهد', 'یک سؤال مهم پژوهشی این است که عدم‌قطعیت تشخیص چگونه به تصمیم‌های یادگیری تقویتی منتقل می‌شود']
+    }
+  }
+}
+
 const rawArticles = [
+  {
+    slug: 'object-detection-yolo-rcnn-practical-guide',
+    sortDate: '2026-08-14', date: '2026', readTime: 11, image: '/blog/yolo-emergency.svg',
+    category: { en: 'Computer Vision', fa: 'بینایی ماشین' },
+    title: { en: 'Object Detection in Practice: YOLO, R-CNN and Better Dataset Design', fa: 'تشخیص شیء در عمل؛ YOLO، خانواده R-CNN و طراحی بهتر دیتاست' },
+    excerpt: {
+      en: 'A practical research note on choosing an object-detection approach from latency, localization, segmentation and dataset constraints—not from model-version numbers alone.',
+      fa: 'یک یادداشت کاربردی درباره انتخاب روش تشخیص شیء بر اساس تأخیر، دقت مکان‌یابی، سگمنتیشن و محدودیت داده؛ نه صرفاً شماره نسخه مدل.'
+    },
+    keywords: {
+      en: ['Pouria Maleki','object detection','YOLO','R-CNN','Faster R-CNN','Mask R-CNN','dataset design','computer vision'],
+      fa: ['پوریا ملکی','تشخیص شیء','YOLO','R-CNN','Faster R-CNN','Mask R-CNN','طراحی دیتاست','بینایی ماشین']
+    },
+    content: {
+      en: `# Object Detection in Practice: YOLO, R-CNN and Better Dataset Design
+
+When people describe computer-vision skills, they often list model names: *YOLOv5, YOLOv6, YOLOv7, YOLOv8*. That is useful for documenting experiments, but it is not the best way to explain engineering capability. A stronger question is: **what kind of perception problem are we solving, under what deployment constraints, and what data do we actually have?**
+
+My own vehicle-detection work has reinforced this view. The model family matters, but dataset definition, labels, domain shift, latency and the downstream control objective often matter more.
+
+## Start with the task, not the version number
+
+Object detection means locating and classifying objects in an image. In an intelligent-transportation system, that might mean cars, buses, motorcycles, ambulances and fire trucks. In medical imaging, the visual target and evaluation protocol can be very different. The detector should follow the task.
+
+A useful first split is between **one-stage** and **region-based / two-stage** approaches.
+
+### One-stage detectors: a compact real-time pipeline
+
+The original YOLO paper reframed object detection as a single end-to-end prediction problem. Instead of running a separate proposal-and-classification pipeline, one network predicts object locations and class probabilities from the full image. That design made YOLO influential for real-time perception.
+
+For engineering systems such as traffic monitoring, the attraction is clear:
+
+- a relatively compact inference pipeline;
+- good fit for video and edge-oriented applications;
+- easier integration with a control loop that needs frequent updates;
+- a mature ecosystem for training on custom datasets.
+
+This is why the YOLO family became a natural choice in my vehicle datasets and traffic-perception experiments.
+
+## R-CNN-style methods: region reasoning still matters
+
+The R-CNN line takes a different path. Faster R-CNN introduced a **Region Proposal Network (RPN)** that shares convolutional features with the detector, making region proposals part of the learned pipeline. Mask R-CNN then extended this idea with an additional branch for instance masks.
+
+That family remains conceptually important because it makes the region-level structure explicit. It is a useful comparison point when:
+
+- localization quality is central;
+- region proposals are useful to the task;
+- instance segmentation is required;
+- throughput is less important than richer per-instance analysis.
+
+So the right portfolio statement is not “I know four YOLO versions.” It is closer to: **I work on object detection and visual perception, understand one-stage and region-based detector families, and choose the architecture around the system requirement.**
+
+## The hidden variable: dataset quality
+
+Architecture discussions can distract from the most important practical variable: the data.
+
+In our Iranian Vehicle Images Dataset study, we collected **3,000 images** and manually created **5,765 bounding boxes** for car, bus and truck classes. Training on that domain-specific dataset produced **91.7% precision** and **92.6% mAP@0.5** in the reported experiment. The important lesson was not simply that a particular YOLO release worked; it was that a detector trained on data closer to the deployment domain could outperform a generic baseline by a meaningful margin.
+
+Our larger seven-class vehicle work pushed the same idea further. It separated **ambulances and fire trucks** from generic vehicle classes because those labels can matter to an intelligent traffic controller. If the final system needs to prioritize an ambulance, a detector that only says “truck” or “van” has lost information before the control problem even starts.
+
+## How I choose an object-detection approach
+
+I use a system-oriented checklist:
+
+| Question | Why it matters |
+|---|---|
+| Is inference real-time? | Influences model family, input size and deployment hardware |
+| Is bounding-box detection enough? | If not, instance segmentation may be more appropriate |
+| Are small or crowded objects critical? | Changes data collection, resolution and evaluation priorities |
+| Is the deployment domain different from public benchmarks? | Domain-specific data may be essential |
+| Is the output feeding a controller? | False negatives and class definitions may have asymmetric costs |
+| Can the dataset be expanded or relabeled? | Data work may outperform architecture swapping |
+
+## Metrics need context
+
+Precision, recall and mAP are useful, but the “best” detector depends on the application. Missing an emergency vehicle may be more costly than a small change in average mAP. A medical prototype may need a completely different validation strategy from a traffic camera. A real-time controller also cares about latency and stability, not only image-level accuracy.
+
+That is why I prefer to describe my computer-vision work through **problem definition → dataset → model family → evaluation → system integration**.
+
+## References and related work
+
+- [Redmon et al., *You Only Look Once: Unified, Real-Time Object Detection*, CVPR 2016](https://openaccess.thecvf.com/content_cvpr_2016/html/Redmon_You_Only_Look_CVPR_2016_paper.html).
+- [Ren et al., *Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks*, NeurIPS 2015](https://arxiv.org/abs/1506.01497).
+- [He et al., *Mask R-CNN*, ICCV 2017](https://openaccess.thecvf.com/content_iccv_2017/html/He_Mask_R-CNN_ICCV_2017_paper.html).
+- [Maleki et al., *Iranian Vehicle Images Dataset for Object Detection Algorithm*, JAIDM 2024](https://doi.org/10.22044/jadm.2024.13858.2501).
+- [Maleki et al., *Object Detection for Vehicles with YOLO*, IEEE SAMI 2024](https://doi.org/10.1109/SAMI60510.2024.10432884).
+
+The version number will change. **The engineering questions remain.**`,
+      fa: `# تشخیص شیء در عمل؛ YOLO، خانواده R-CNN و طراحی بهتر دیتاست
+
+وقتی درباره مهارت بینایی ماشین صحبت می‌شود، خیلی وقت‌ها فقط نام مدل‌ها ردیف می‌شوند: *YOLOv5، YOLOv6، YOLOv7، YOLOv8*. این برای مستندسازی آزمایش‌ها مفید است، اما برای نشان‌دادن توانایی مهندسی کافی نیست. سؤال مهم‌تر این است: **چه مسئله ادراکی را حل می‌کنیم، محدودیت اجرای واقعی چیست و چه داده‌ای در اختیار داریم؟**
+
+تجربه من در پروژه‌های تشخیص خودرو دقیقاً همین نکته را پررنگ کرده است. خانواده مدل مهم است، اما تعریف دیتاست، کیفیت برچسب، اختلاف دامنه، سرعت اجرا و هدف نهایی سیستم اغلب مهم‌ترند.
+
+## از مسئله شروع کنیم، نه شماره نسخه
+
+تشخیص شیء یعنی پیدا کردن موقعیت و کلاس اشیا در تصویر. در حمل‌ونقل هوشمند این اشیا می‌توانند خودرو، اتوبوس، موتورسیکلت، آمبولانس و خودروی آتش‌نشانی باشند. در تصویربرداری پزشکی، نوع هدف و پروتکل ارزیابی کاملاً متفاوت است. بنابراین معماری باید تابع مسئله باشد.
+
+یک تقسیم‌بندی مفید، تفاوت میان روش‌های **تک‌مرحله‌ای** و رویکردهای **ناحیه‌محور / دو‌مرحله‌ای** است.
+
+### آشکارسازهای تک‌مرحله‌ای؛ مناسب برای پایپ‌لاین بلادرنگ
+
+مقاله اصلی YOLO تشخیص شیء را به یک مسئله پیش‌بینی یکپارچه و انتها‌به‌انتها تبدیل کرد. به‌جای اینکه پیشنهاد ناحیه و طبقه‌بندی در چند مرحله جدا انجام شود، یک شبکه مستقیماً مکان و احتمال کلاس‌ها را از کل تصویر پیش‌بینی می‌کند.
+
+برای سامانه‌هایی مثل پایش ترافیک، این ساختار جذاب است چون:
+
+- پایپ‌لاین inference نسبتاً فشرده‌ای دارد؛
+- برای ویدئو و کاربردهای نزدیک به edge مناسب است؛
+- اتصال آن به حلقه کنترلی که به بروزرسانی سریع نیاز دارد ساده‌تر است؛
+- آموزش روی دیتاست اختصاصی اکوسیستم جاافتاده‌ای دارد.
+
+به همین دلیل خانواده YOLO در دیتاست‌های خودرو و آزمایش‌های ادراک ترافیکی من انتخاب طبیعی بوده است.
+
+## خانواده R-CNN؛ استدلال ناحیه‌ای هنوز مهم است
+
+خانواده R-CNN مسیر متفاوتی دارد. Faster R-CNN یک **Region Proposal Network (RPN)** را وارد معماری کرد که ویژگی‌های کانولوشنی را با آشکارساز به اشتراک می‌گذارد. Mask R-CNN نیز این ایده را با یک شاخه مستقل برای ماسک هر نمونه توسعه داد.
+
+این خانواده زمانی نقطه مقایسه مهمی است که:
+
+- کیفیت مکان‌یابی اهمیت بالایی دارد؛
+- پیشنهاد ناحیه بخشی مفید از مسئله است؛
+- instance segmentation نیاز داریم؛
+- تحلیل غنی‌تر هر شیء از throughput مهم‌تر است.
+
+بنابراین جمله قوی‌تر برای رزومه این نیست که «چهار نسخه YOLO بلدم». جمله دقیق‌تر این است: **روی تشخیص شیء و ادراک بصری کار می‌کنم، تفاوت خانواده‌های تک‌مرحله‌ای و ناحیه‌محور را می‌شناسم و معماری را بر اساس نیاز سیستم انتخاب می‌کنم.**
+
+## متغیر پنهان و مهم؛ کیفیت دیتاست
+
+بحث معماری گاهی ما را از مهم‌ترین عامل عملی دور می‌کند: داده.
+
+در پژوهش دیتاست خودروهای ایرانی، **۳۰۰۰ تصویر** و **۵۷۶۵ bounding box** برای سه کلاس خودرو، اتوبوس و کامیون تهیه و به‌صورت دستی برچسب‌گذاری شد. در آزمایش گزارش‌شده، آموزش دامنه‌محور به **Precision برابر ۹۱٫۷٪** و **mAP@0.5 برابر ۹۲٫۶٪** رسید. درس مهم فقط موفقیت یک نسخه خاص YOLO نبود؛ نکته اصلی این بود که داده نزدیک‌تر به دامنه واقعی می‌تواند یک baseline عمومی را به شکل معنی‌داری بهبود دهد.
+
+در دیتاست بزرگ‌تر هفت‌کلاسه نیز همین ایده ادامه پیدا کرد. **آمبولانس و خودروی آتش‌نشانی** از کلاس‌های عمومی جدا شدند، چون این برچسب‌ها برای کنترل‌کننده ترافیک هوشمند معنی عملی دارند. اگر هدف نهایی اولویت‌دادن به آمبولانس باشد، آشکارسازی که فقط «ون» یا «کامیون» بگوید، قبل از شروع مسئله کنترل بخشی از اطلاعات را از دست داده است.
+
+## برای انتخاب آشکارساز چه سؤال‌هایی می‌پرسم؟
+
+| سؤال | اهمیت |
+|---|---|
+| آیا inference باید بلادرنگ باشد؟ | روی خانواده مدل، اندازه ورودی و سخت‌افزار اثر دارد |
+| bounding box کافی است؟ | اگر نه، شاید instance segmentation مناسب‌تر باشد |
+| اشیای کوچک یا متراکم مهم‌اند؟ | رزولوشن، داده و معیار ارزیابی را تغییر می‌دهد |
+| دامنه واقعی با دیتاست عمومی متفاوت است؟ | ممکن است داده اختصاصی ضروری باشد |
+| خروجی وارد حلقه کنترل می‌شود؟ | هزینه خطاها و تعریف کلاس‌ها نامتقارن می‌شود |
+| امکان توسعه یا بازبرچسب‌گذاری دیتاست وجود دارد؟ | گاهی کار روی داده از تعویض معماری مؤثرتر است |
+
+## معیارها بدون زمینه کافی نیستند
+
+Precision، Recall و mAP لازم‌اند، اما «بهترین» مدل تابع کاربرد است. از دست دادن یک خودروی امدادی می‌تواند بسیار مهم‌تر از چند دهم درصد تغییر در mAP متوسط باشد. یک نمونه اولیه پزشکی نیز به پروتکل اعتبارسنجی کاملاً متفاوت از دوربین ترافیکی نیاز دارد. سامانه بلادرنگ علاوه بر دقت، به latency و پایداری هم حساس است.
+
+به همین دلیل ترجیح می‌دهم کار بینایی ماشین را با زنجیره **تعریف مسئله ← دیتاست ← خانواده مدل ← ارزیابی ← یکپارچه‌سازی سیستم** توضیح دهم.
+
+## منابع و کارهای مرتبط
+
+- [Redmon و همکاران، *You Only Look Once*، CVPR 2016](https://openaccess.thecvf.com/content_cvpr_2016/html/Redmon_You_Only_Look_CVPR_2016_paper.html).
+- [Ren و همکاران، *Faster R-CNN*، NeurIPS 2015](https://arxiv.org/abs/1506.01497).
+- [He و همکاران، *Mask R-CNN*، ICCV 2017](https://openaccess.thecvf.com/content_iccv_2017/html/He_Mask_R-CNN_ICCV_2017_paper.html).
+- [Maleki و همکاران، *Iranian Vehicle Images Dataset for Object Detection Algorithm*، 2024](https://doi.org/10.22044/jadm.2024.13858.2501).
+- [Maleki و همکاران، *Object Detection for Vehicles with YOLO*، IEEE SAMI 2024](https://doi.org/10.1109/SAMI60510.2024.10432884).
+
+شماره نسخه عوض می‌شود؛ **سؤال‌های مهندسی ماندگارترند.**`
+    }
+  },
+  {
+    slug: 'from-detection-to-smart-traffic-control',
+    sortDate: '2026-08-13', date: '2026', readTime: 10, image: '/blog/traffic-rl.svg',
+    category: { en: 'Intelligent Transportation', fa: 'حمل‌ونقل هوشمند' },
+    title: { en: 'From Vehicle Detection to Smart Traffic Control: Perception, RL and Emergency Priority', fa: 'از تشخیص خودرو تا کنترل هوشمند ترافیک؛ ادراک، یادگیری تقویتی و اولویت خودروهای امدادی' },
+    excerpt: {
+      en: 'A system-level view of how vehicle detection, traffic-state estimation and reinforcement learning can be connected into an adaptive intersection controller.',
+      fa: 'نگاهی سیستمی به اتصال تشخیص خودرو، تخمین وضعیت ترافیک و یادگیری تقویتی در یک کنترل‌کننده تطبیقی چهارراه.'
+    },
+    keywords: {
+      en: ['Pouria Maleki','smart traffic control','vehicle detection','reinforcement learning','YOLO','SUMO','emergency vehicle priority'],
+      fa: ['پوریا ملکی','کنترل هوشمند ترافیک','تشخیص خودرو','یادگیری تقویتی','YOLO','SUMO','اولویت خودروهای امدادی']
+    },
+    content: {
+      en: `# From Vehicle Detection to Smart Traffic Control
+
+A traffic camera that detects vehicles is useful, but it is not yet an intelligent traffic-control system. To change signal timing intelligently, the system needs a complete loop: **perception → state estimation → decision → control → feedback**.
+
+This is the thread that connects my M.S. thesis with the vehicle-detection datasets I later worked on.
+
+## Layer 1 — Perception
+
+The first layer answers visual questions: What vehicles are present? How many? Which lane? Are any of them emergency vehicles?
+
+Object detection is a natural tool because it returns both class and location. But the class design must reflect the control objective. If an ambulance is grouped into a generic van class, an emergency-priority policy cannot use that information reliably.
+
+That is one reason our seven-class dataset explicitly separates ambulance and fire-truck classes.
+
+## Layer 2 — State estimation
+
+Raw detections are not the state of the traffic-control problem. A controller needs a compact representation such as:
+
+- queue length by approach;
+- vehicle density;
+- waiting-time estimates;
+- lane occupancy;
+- emergency-vehicle presence;
+- current signal phase and elapsed phase time.
+
+This step is easy to underestimate. Detection uncertainty becomes control uncertainty. Missed vehicles, occlusion and class confusion can distort the state sent to the decision agent.
+
+## Layer 3 — Sequential decision-making
+
+In my M.S. thesis, the intersection was modeled in **SUMO** and the controller was studied with Q-learning / deep-network ideas. Reinforcement learning fits the problem because one signal action changes future queues. The controller cannot optimize only the current frame; it must learn a policy over sequences of decisions.
+
+A simplified loop is:
+
+\`\`\`text
+Camera / detector
+       ↓
+Traffic-state estimator
+       ↓
+RL policy → signal action
+       ↓
+Intersection / SUMO
+       ↓
+Delay, queue, throughput → reward
+       ↺
+\`\`\`
+
+## Emergency priority changes the objective
+
+Adding emergency-vehicle detection is not useful only because the dataset becomes more detailed. It changes what the controller can optimize.
+
+A normal objective might minimize average delay. With an ambulance present, the objective can become multi-criteria: reduce general congestion **while imposing a much larger penalty on emergency-vehicle delay**.
+
+That immediately creates interesting research questions:
+
+1. How should emergency priority be balanced against gridlock on conflicting approaches?
+2. How robust should the policy be to a false emergency detection?
+3. Should priority be rule-based, reward-based or handled by a supervisory layer?
+4. How early must the perception system detect the emergency vehicle to create a useful green corridor?
+
+## A better research metric than detector mAP alone
+
+If the detector feeds a controller, the final evaluation should not stop at image metrics. We should also measure system-level outcomes:
+
+| Layer | Example metrics |
+|---|---|
+| Perception | Precision, recall, mAP, latency |
+| State estimation | Queue-count error, occupancy error |
+| Control | Average waiting time, travel time, throughput |
+| Emergency priority | Emergency delay, clearance time |
+| Robustness | Performance under missed/false detections |
+
+This is a direction I find especially interesting: **evaluate perception by the decisions it enables**, not only by the boxes it draws.
+
+## Where I would take the project next
+
+A strong next experiment would compare three controllers under the same SUMO traffic scenarios:
+
+- fixed-time control;
+- RL control using ideal simulator state;
+- RL control using noisy states generated from a vision model.
+
+The gap between the second and third systems would quantify how perception quality affects control performance. We could then inject controlled detection errors and test whether uncertainty-aware state estimation or a safety supervisor makes the policy more robust.
+
+That moves the project from “YOLO + RL” as two technologies placed next to each other toward a single **perception-and-control research system**.`,
+      fa: `# از تشخیص خودرو تا کنترل هوشمند ترافیک
+
+دوربینی که خودروها را تشخیص می‌دهد مفید است، اما هنوز یک سامانه کنترل ترافیک هوشمند نیست. برای تغییر تطبیقی چراغ، یک حلقه کامل لازم است: **ادراک ← تخمین وضعیت ← تصمیم ← کنترل ← بازخورد**.
+
+این همان نخ مشترکی است که پایان‌نامه کارشناسی ارشد من را به کارهای بعدی روی دیتاست و تشخیص خودرو متصل می‌کند.
+
+## لایه اول — ادراک
+
+در این لایه سؤال‌های بصری پاسخ داده می‌شوند: چه خودروهایی حضور دارند؟ چند خودرو؟ در کدام مسیر؟ آیا خودروی امدادی وجود دارد؟
+
+تشخیص شیء ابزار طبیعی این مرحله است چون هم کلاس و هم موقعیت را برمی‌گرداند. اما تعریف کلاس‌ها باید با هدف کنترل هماهنگ باشد. اگر آمبولانس در کلاس عمومی «ون» قرار بگیرد، سیاست اولویت امدادی اطلاعات کافی نخواهد داشت.
+
+به همین دلیل در دیتاست هفت‌کلاسه ما، آمبولانس و خودروی آتش‌نشانی به‌صورت کلاس مستقل تعریف شدند.
+
+## لایه دوم — تخمین وضعیت
+
+خروجی خام آشکارساز هنوز state مناسب برای کنترل نیست. کنترل‌کننده به نمایش فشرده‌تری نیاز دارد، مثلاً:
+
+- طول صف هر ورودی؛
+- تراکم خودرو؛
+- تخمین زمان انتظار؛
+- اشغال خطوط؛
+- حضور خودروی امدادی؛
+- فاز فعلی چراغ و زمان سپری‌شده از آن.
+
+این مرحله خیلی مهم است. عدم‌قطعیت آشکارسازی مستقیماً به عدم‌قطعیت کنترل تبدیل می‌شود. خودروهای از‌دست‌رفته، occlusion و اشتباه کلاس می‌توانند state ارسالی به عامل تصمیم‌گیر را تحریف کنند.
+
+## لایه سوم — تصمیم‌گیری دنباله‌ای
+
+در پایان‌نامه کارشناسی ارشد من، چهارراه در **SUMO** مدل شد و کنترل با ایده‌های Q-learning و شبکه عمیق بررسی شد. یادگیری تقویتی برای این مسئله مناسب است چون هر تصمیم چراغ، صف‌های آینده را تغییر می‌دهد. کنترل‌کننده نباید فقط فریم فعلی را بهینه کند؛ باید سیاستی برای دنباله تصمیم‌ها یاد بگیرد.
+
+\`\`\`text
+دوربین / آشکارساز
+        ↓
+تخمین وضعیت ترافیک
+        ↓
+سیاست RL → فرمان چراغ
+        ↓
+چهارراه / SUMO
+        ↓
+تأخیر، صف، عبور → پاداش
+        ↺
+\`\`\`
+
+## اولویت امدادی تابع هدف را تغییر می‌دهد
+
+تشخیص خودروی امدادی فقط باعث جزئی‌تر شدن دیتاست نمی‌شود؛ تابع هدف کنترل‌کننده را تغییر می‌دهد.
+
+در حالت عادی شاید هدف کمینه‌کردن تأخیر متوسط باشد. با حضور آمبولانس، مسئله چندمعیاره می‌شود: کاهش تراکم عمومی **همراه با جریمه بسیار بزرگ‌تر برای تأخیر خودروی امدادی**.
+
+این موضوع چند سؤال پژوهشی مهم ایجاد می‌کند:
+
+1. اولویت امدادی چگونه با جلوگیری از قفل‌شدگی مسیرهای متقاطع متعادل شود؟
+2. سیاست در برابر تشخیص اشتباه آمبولانس چقدر باید مقاوم باشد؟
+3. اولویت بهتر است rule-based باشد، در reward وارد شود یا یک لایه supervisory داشته باشد؟
+4. سامانه ادراک باید خودروی امدادی را از چه فاصله‌ای تشخیص دهد تا green corridor مفید ایجاد شود؟
+
+## معیار بهتر از mAP آشکارساز
+
+وقتی خروجی مدل وارد کنترل‌کننده می‌شود، ارزیابی نباید در معیارهای تصویر متوقف شود:
+
+| لایه | نمونه معیار |
+|---|---|
+| ادراک | Precision، Recall، mAP، Latency |
+| تخمین وضعیت | خطای شمارش صف و اشغال مسیر |
+| کنترل | زمان انتظار، زمان سفر، throughput |
+| اولویت امدادی | تأخیر خودروی امدادی، زمان عبور |
+| پایداری | عملکرد در حضور miss و false detection |
+
+این جهت برای من بسیار جذاب است: **کیفیت ادراک را با تصمیم‌هایی که ممکن می‌کند ارزیابی کنیم، نه فقط با باکس‌هایی که رسم می‌کند.**
+
+## مرحله بعدی پژوهش
+
+یک آزمایش خوب می‌تواند سه کنترل‌کننده را در سناریوهای یکسان SUMO مقایسه کند:
+
+- کنترل زمان‌ثابت؛
+- RL با state ایده‌آل شبیه‌ساز؛
+- RL با state نویزی حاصل از مدل بینایی ماشین.
+
+فاصله عملکرد سیستم دوم و سوم نشان می‌دهد کیفیت ادراک چقدر روی کنترل اثر دارد. بعد می‌توان خطاهای تشخیص را به‌صورت کنترل‌شده تزریق کرد و سنجید آیا تخمین وضعیت uncertainty-aware یا یک لایه ایمنی، سیاست را مقاوم‌تر می‌کند یا نه.
+
+در این حالت پروژه دیگر صرفاً «YOLO + RL» به‌عنوان دو فناوری کنار هم نیست؛ بلکه یک **سامانه پژوهشی یکپارچه ادراک و کنترل** خواهد بود.`
+    }
+  },
   {
     slug: 'iranian-vehicle-dataset-yolov8',
     category: { en: 'Computer Vision', fa: 'بینایی ماشین' },
     date: '2024', readTime: 8, image: '/blog/iranian-vehicle-dataset.svg',
     sourceUrl: 'https://jad.shahroodut.ac.ir/article_3164.html',
-    title: { en: 'Iranian Vehicle Images Dataset for Object Detection with YOLOv8s', fa: 'مجموعه‌داده تصاویر خودروهای ایرانی برای تشخیص شیء با YOLOv8s' },
+    title: { en: 'Iranian Vehicle Images Dataset for Object Detection', fa: 'مجموعه‌داده تصاویر خودروهای ایرانی برای تشخیص شیء' },
     excerpt: {
       en: 'A domain-specific dataset of 3,000 Iranian vehicle images and 5,765 manually labeled bounding boxes improved YOLOv8s performance over a COCO-trained baseline.',
       fa: 'یک مجموعه‌داده بومی شامل ۳۰۰۰ تصویر خودرو و ۵۷۶۵ باکس برچسب‌گذاری‌شده که عملکرد YOLOv8s را نسبت به مدل آموزش‌دیده با COCO به‌طور محسوسی بهبود داد.'
@@ -159,8 +562,8 @@ model.train(
     category: { en: 'Deep Learning', fa: 'یادگیری عمیق' },
     date: '2024', readTime: 9, image: '/blog/yolo-emergency.svg',
     sourceUrl: 'https://ieeexplore.ieee.org/abstract/document/10432884/',
-    title: { en: 'Object Detection for Vehicles with YOLO: Including Emergency Vehicles', fa: 'تشخیص خودرو با YOLO؛ با تمرکز بر خودروهای امدادی' },
-    excerpt: { en: 'A seven-class vehicle benchmark with 29,759 images separates ambulances and fire trucks from generic vehicle classes and evaluates YOLOv5, YOLOv6 and YOLOv7.', fa: 'بنچمارکی هفت‌کلاسه با ۲۹٬۷۵۹ تصویر که آمبولانس و خودروی آتش‌نشانی را به‌صورت مستقل مدل می‌کند و YOLOv5، YOLOv6 و YOLOv7 را مقایسه می‌کند.' },
+    title: { en: 'Vehicle Object Detection with Dedicated Emergency-Vehicle Classes', fa: 'تشخیص شیء خودرو با کلاس‌های مستقل خودروهای امدادی' },
+    excerpt: { en: 'A seven-class, 29,759-image vehicle benchmark that treats ambulances and fire trucks as dedicated object-detection classes and evaluates real-time detector performance.', fa: 'بنچمارکی هفت‌کلاسه با ۲۹٬۷۵۹ تصویر که آمبولانس و خودروی آتش‌نشانی را به‌صورت کلاس مستقل تشخیص شیء مدل می‌کند و عملکرد آشکارسازهای بلادرنگ را می‌سنجد.' },
     content: {
       en: `# Object Detection for Vehicles with YOLO
 
@@ -523,5 +926,5 @@ That same design pattern appears across modern IoT systems—move essential inte
   }
 ]
 
-export const articles = rawArticles.map((article) => ({ ...publicationMetadata[article.slug], ...article }))
+export const articles = rawArticles.map((article) => ({ ...publicationMetadata[article.slug], ...editorialMetadata[article.slug], ...article })).sort((a,b) => String(b.sortDate || b.date).localeCompare(String(a.sortDate || a.date)))
 export const getArticle = (slug) => articles.find((article) => article.slug === slug)

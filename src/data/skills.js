@@ -1,44 +1,44 @@
 export const skillGroups = [
   {
-    id: 'ai', icon: 'brain',
-    title: { en: 'AI & Deep Learning', fa: 'هوش مصنوعی و یادگیری عمیق' },
-    subtitle: { en: 'From model design to validation', fa: 'از طراحی مدل تا اعتبارسنجی' },
-    tools: ['PyTorch', 'TensorFlow', 'Keras', 'LSTM', 'Random Forest', 'SVM'],
-    evidence: { en: ['Medical AI', 'Flood-risk modeling', 'Predictive systems'], fa: ['هوش مصنوعی پزشکی', 'مدل‌سازی ریسک سیلاب', 'سامانه‌های پیش‌بینی'] }
+    id: 'vision', icon: 'scan',
+    title: { en: 'Computer Vision & Object Detection', fa: 'بینایی ماشین و تشخیص شیء' },
+    subtitle: { en: 'Perception systems built around real datasets and measurable evaluation', fa: 'سامانه‌های ادراک مبتنی بر داده واقعی و ارزیابی قابل اندازه‌گیری' },
+    tools: ['Object Detection', 'YOLO family', 'R-CNN family', 'OpenCV', 'Dataset Design', 'Data Augmentation'],
+    evidence: { en: ['2 public vehicle datasets', 'Emergency-vehicle detection', 'Medical-image analysis'], fa: ['۲ دیتاست عمومی خودرو', 'تشخیص خودروهای امدادی', 'تحلیل تصاویر پزشکی'] }
   },
   {
-    id: 'vision', icon: 'scan',
-    title: { en: 'Computer Vision', fa: 'بینایی ماشین' },
-    subtitle: { en: 'Detection, datasets and real-world perception', fa: 'تشخیص، دیتاست و ادراک در دنیای واقعی' },
-    tools: ['YOLOv5', 'YOLOv6', 'YOLOv7', 'YOLOv8', 'OpenCV', 'Roboflow'],
-    evidence: { en: ['2 public vehicle datasets', 'Emergency-vehicle detection', 'Medical imaging'], fa: ['۲ دیتاست عمومی خودرو', 'تشخیص خودروهای امدادی', 'تصویربرداری پزشکی'] }
+    id: 'ai', icon: 'brain',
+    title: { en: 'Machine Learning & Medical AI', fa: 'یادگیری ماشین و هوش مصنوعی پزشکی' },
+    subtitle: { en: 'From predictive modeling to AI-assisted diagnostic prototypes', fa: 'از مدل‌سازی پیش‌بینی تا نمونه‌های اولیه تشخیص هوشمند' },
+    tools: ['Deep Neural Networks', 'CNN', 'LSTM', 'Random Forest', 'SVM', 'Model Evaluation'],
+    evidence: { en: ['Gastric & colorectal cancer prototype', 'Flood-risk modeling', 'Predictive engineering systems'], fa: ['نمونه اولیه تشخیص سرطان معده و روده بزرگ', 'مدل‌سازی ریسک سیلاب', 'سامانه‌های پیش‌بینی مهندسی'] }
   },
   {
     id: 'rl', icon: 'network',
-    title: { en: 'Reinforcement Learning', fa: 'یادگیری تقویتی' },
-    subtitle: { en: 'Sequential decisions for intelligent control', fa: 'تصمیم‌گیری دنباله‌ای برای کنترل هوشمند' },
-    tools: ['DQN', 'Q-Learning', 'SUMO', 'Reward Design', 'Simulation'],
-    evidence: { en: ['M.S. thesis', 'Traffic-signal control', 'Dynamic optimization'], fa: ['پایان‌نامه ارشد', 'کنترل چراغ راهنمایی', 'بهینه‌سازی پویا'] }
+    title: { en: 'Reinforcement Learning & Decision Systems', fa: 'یادگیری تقویتی و سامانه‌های تصمیم‌گیری' },
+    subtitle: { en: 'Sequential decision-making for adaptive engineering control', fa: 'تصمیم‌گیری دنباله‌ای برای کنترل تطبیقی سامانه‌های مهندسی' },
+    tools: ['Q-Learning', 'Deep Q-Networks', 'Reward Design', 'SUMO', 'Simulation', 'Traffic Optimization'],
+    evidence: { en: ['M.S. thesis', 'Adaptive traffic-signal control', 'Dynamic optimization'], fa: ['پایان‌نامه ارشد', 'کنترل تطبیقی چراغ راهنمایی', 'بهینه‌سازی پویا'] }
   },
   {
     id: 'control', icon: 'waves',
-    title: { en: 'Control & Simulation', fa: 'کنترل و شبیه‌سازی' },
-    subtitle: { en: 'Nonlinear, fuzzy and model-based systems', fa: 'سیستم‌های غیرخطی، فازی و مدل‌محور' },
-    tools: ['MATLAB', 'Simulink', 'Fuzzy Logic', 'Sliding Mode', 'Nonlinear Control'],
-    evidence: { en: ['Energy management', 'HVAC control', 'Renewable integration'], fa: ['مدیریت انرژی', 'کنترل HVAC', 'یکپارچه‌سازی انرژی تجدیدپذیر'] }
+    title: { en: 'Intelligent Control & Simulation', fa: 'کنترل هوشمند و شبیه‌سازی' },
+    subtitle: { en: 'Nonlinear, fuzzy and model-based control for physical systems', fa: 'کنترل غیرخطی، فازی و مدل‌محور برای سامانه‌های فیزیکی' },
+    tools: ['MATLAB', 'Simulink', 'Fuzzy Logic', 'Sliding Mode', 'Adaptive Control', 'Nonlinear Control'],
+    evidence: { en: ['Energy management', 'HVAC control', 'Renewable-energy integration'], fa: ['مدیریت انرژی', 'کنترل HVAC', 'یکپارچه‌سازی انرژی تجدیدپذیر'] }
   },
   {
     id: 'embedded', icon: 'cpu',
-    title: { en: 'Embedded & IoT', fa: 'سیستم‌های نهفته و IoT' },
-    subtitle: { en: 'Hardware-aware intelligent prototypes', fa: 'نمونه‌سازی هوشمند با توجه به سخت‌افزار' },
-    tools: ['C/C++', 'STM32', 'AVR', 'Raspberry Pi', 'Arduino', 'Sensors'],
-    evidence: { en: ['Smart home', 'Vehicle monitoring', 'Greenhouse monitoring'], fa: ['خانه هوشمند', 'پایش خودرو', 'پایش گلخانه'] }
+    title: { en: 'Embedded Systems & Edge AI', fa: 'سیستم‌های نهفته و هوش لبه' },
+    subtitle: { en: 'Hardware-aware prototypes where sensing, inference and control meet', fa: 'نمونه‌سازی سخت‌افزارمحور در نقطه اتصال حسگر، پردازش و کنترل' },
+    tools: ['C/C++', 'STM32', 'AVR', 'Raspberry Pi', 'Arduino', 'Sensors & Actuators'],
+    evidence: { en: ['Offline smart-home voice control', 'Vehicle monitoring', 'Greenhouse monitoring'], fa: ['کنترل صوتی آفلاین خانه هوشمند', 'پایش خودرو', 'پایش گلخانه'] }
   },
   {
     id: 'industrial', icon: 'circuit',
-    title: { en: 'Industrial & Design Tools', fa: 'ابزارهای صنعتی و طراحی' },
-    subtitle: { en: 'From circuits to automation documentation', fa: 'از مدار تا مستندسازی اتوماسیون' },
-    tools: ['Siemens PLC', 'STEP 7', 'Altium', 'Multisim', 'AutoCAD Electrical', 'PCB'],
-    evidence: { en: ['Electronics teaching', 'Industrial automation', 'PCB design'], fa: ['تدریس الکترونیک', 'اتوماسیون صنعتی', 'طراحی PCB'] }
+    title: { en: 'Industrial Automation & Electronics', fa: 'اتوماسیون صنعتی و الکترونیک' },
+    subtitle: { en: 'Practical electronics, automation and engineering documentation', fa: 'الکترونیک عملی، اتوماسیون و مستندسازی مهندسی' },
+    tools: ['Siemens PLC', 'STEP 7', 'PCB Design', 'AutoCAD Electrical', 'Altium', 'Instrumentation'],
+    evidence: { en: ['Electronics teaching', 'Industrial automation', 'Circuit & PCB design'], fa: ['تدریس الکترونیک', 'اتوماسیون صنعتی', 'طراحی مدار و PCB'] }
   }
 ]
