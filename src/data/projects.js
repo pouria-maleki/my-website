@@ -47,7 +47,7 @@ export const caseStudies = [
     },
     tags: ['Deep Q-Learning', 'Reinforcement Learning', 'SUMO', 'Traffic Signal Control', 'Computer Vision'],
     heroImage: '/images/projects/traffic-rl-loop.webp',
-    gallery: ['/images/projects/traffic-intersection.webp', '/images/projects/traffic-perception.webp'],
+    gallery: ['/images/research/traffic-environment.gif', '/images/projects/traffic-intersection.webp', '/images/projects/traffic-perception.webp'],
     highlights: {
       en: ['Four-way intersection with adaptive phase selection', '80-cell traffic-state representation and four signal actions', 'Compared against a fixed-time signal controller across light, medium and heavy traffic scenarios', 'Research later evolved into vehicle-detection publications and a new LSTM-enhanced control manuscript'],
       fa: ['چهارراه با انتخاب تطبیقی فاز چراغ', 'نمایش وضعیت ترافیک با ۸۰ سلول و چهار عمل کنترلی', 'مقایسه با کنترل‌کننده زمان‌ثابت در ترافیک سبک، متوسط و سنگین', 'این مسیر بعداً به مقالات تشخیص خودرو و یک مقاله جدید کنترل مبتنی بر LSTM گسترش یافت']

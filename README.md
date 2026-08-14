@@ -102,3 +102,7 @@ The repository includes `.github/workflows/deploy.yml`.
 ## Confidential project content
 
 The medical-AI case study is intentionally public-safe. It describes the problem, role, visible outputs and model-evaluation metrics, but does **not** publish internal connectivity, integration architecture, hardware topology or proprietary implementation details.
+
+## V6 visual research assets
+
+The V6 update adds project-specific figures and photographs under `public/images/research/`. Blog posts support bilingual research galleries so published work can be presented with real experimental figures rather than generic illustrations. See `V6-UPDATE.md` for the asset mapping and UI changes.

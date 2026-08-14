@@ -113,7 +113,7 @@ const editorialMetadata = {
 const rawArticles = [
   {
     slug: 'object-detection-yolo-rcnn-practical-guide',
-    sortDate: '2026-08-14', date: '2026', readTime: 11, image: '/blog/yolo-emergency.svg',
+    sortDate: '2026-08-14', date: '2026', readTime: 11, image: '/images/research/vehicle-ambulance.webp',
     category: { en: 'Computer Vision', fa: 'بینایی ماشین' },
     title: { en: 'Object Detection in Practice: YOLO, R-CNN and Better Dataset Design', fa: 'تشخیص شیء در عمل؛ YOLO، خانواده R-CNN و طراحی بهتر دیتاست' },
     excerpt: {
@@ -275,7 +275,7 @@ Precision، Recall و mAP لازم‌اند، اما «بهترین» مدل ت�
   },
   {
     slug: 'from-detection-to-smart-traffic-control',
-    sortDate: '2026-08-13', date: '2026', readTime: 10, image: '/blog/traffic-rl.svg',
+    sortDate: '2026-08-13', date: '2026', readTime: 10, image: '/images/research/traffic-environment.gif',
     category: { en: 'Intelligent Transportation', fa: 'حمل‌ونقل هوشمند' },
     title: { en: 'From Vehicle Detection to Smart Traffic Control: Perception, RL and Emergency Priority', fa: 'از تشخیص خودرو تا کنترل هوشمند ترافیک؛ ادراک، یادگیری تقویتی و اولویت خودروهای امدادی' },
     excerpt: {
@@ -458,7 +458,10 @@ That moves the project from “YOLO + RL” as two technologies placed next to e
   {
     slug: 'iranian-vehicle-dataset-yolov8',
     category: { en: 'Computer Vision', fa: 'بینایی ماشین' },
-    date: '2024', readTime: 8, image: '/images/projects/iranian-dataset-figure.webp', imageFit: 'contain',
+    date: '2024', readTime: 8, image: '/images/research/iranian-dataset-overview.webp', imageFit: 'contain',
+    gallery: [
+      { src: '/images/research/iranian-dataset-street.webp', fit: 'contain', caption: { en: 'Vehicle detection on an urban traffic scene in Be’sat Boulevard, Hamedan.', fa: 'نمونه تشخیص خودرو در صحنه ترافیکی بلوار بعثت همدان.' } }
+    ],
     sourceUrl: 'https://jad.shahroodut.ac.ir/article_3164.html',
     title: { en: 'Iranian Vehicle Images Dataset for Object Detection Algorithm', fa: 'مجموعه‌داده تصاویر خودروهای ایرانی برای الگوریتم تشخیص شیء' },
     excerpt: {
@@ -566,7 +569,12 @@ model.train(
   {
     slug: 'vehicle-detection-yolo-emergency-vehicles',
     category: { en: 'Deep Learning', fa: 'یادگیری عمیق' },
-    date: '2024', readTime: 9, image: '/images/projects/vehicle-results-table.webp', imageFit: 'contain',
+    date: '2024', readTime: 9, image: '/images/research/vehicle-ambulance.webp',
+    gallery: [
+      { src: '/images/research/vehicle-road.webp', caption: { en: 'Vehicle detections in a road scene.', fa: 'نمونه تشخیص خودرو در یک صحنه جاده‌ای.' } },
+      { src: '/images/research/vehicle-firetruck.webp', caption: { en: 'Fire-truck detection as a dedicated emergency-vehicle class.', fa: 'تشخیص خودروی آتش‌نشانی به‌عنوان یک کلاس مستقل امدادی.' } },
+      { src: '/images/research/vehicle-results.webp', fit: 'contain', caption: { en: 'Per-class precision, recall and mAP results reported in the study.', fa: 'نتایج Precision، Recall و mAP برای کلاس‌های مختلف در پژوهش.' } }
+    ],
     sourceUrl: 'https://ieeexplore.ieee.org/abstract/document/10432884/',
     title: { en: 'Object Detection for Vehicles with Yolo', fa: 'تشخیص خودروها با YOLO' },
     excerpt: { en: 'A seven-class, 29,759-image vehicle benchmark that treats ambulances and fire trucks as dedicated object-detection classes and evaluates real-time detector performance.', fa: 'بنچمارکی هفت‌کلاسه با ۲۹٬۷۵۹ تصویر که آمبولانس و خودروی آتش‌نشانی را به‌صورت کلاس مستقل تشخیص شیء مدل می‌کند و عملکرد آشکارسازهای بلادرنگ را می‌سنجد.' },
@@ -648,7 +656,10 @@ This separation between perception and decision-making creates a practical found
   {
     slug: 'flood-risk-machine-learning',
     category: { en: 'Predictive AI', fa: 'هوش مصنوعی پیش‌بینی' },
-    date: '2024', readTime: 7, image: '/images/projects/flood-ml-overview.webp', imageFit: 'contain',
+    date: '2024', readTime: 7, image: '/images/research/flood-risk.webp', imageFit: 'contain',
+    gallery: [
+      { src: '/images/projects/flood-ml-overview.webp', fit: 'contain', caption: { en: 'Flood-risk modeling overview used in the research presentation.', fa: 'نمای کلی مدل‌سازی ریسک سیلاب در پژوهش.' } }
+    ],
     sourceUrl: 'https://ieeexplore.ieee.org/document/10737603',
     title: { en: 'Flood Risk Analysis with Deep Learning', fa: 'تحلیل ریسک سیلاب با یادگیری عمیق' },
     excerpt: { en: 'A comparison of three machine-learning approaches for predicting exposure, criticality and flood-risk scores using 2,634 bridge records.', fa: 'مقایسه سه روش یادگیری ماشین برای پیش‌بینی امتیاز مواجهه، بحرانی‌بودن و ریسک سیلاب با استفاده از داده‌های ۲۶۳۴ پل.' },
@@ -722,7 +733,11 @@ Random Forest برای روابط غیرخطی در داده‌های جدولی
   {
     slug: 'sustainable-energy-fuzzy-control',
     category: { en: 'Intelligent Control', fa: 'کنترل هوشمند' },
-    date: '2023', readTime: 8, image: '/images/projects/energy-fuzzy-membership.webp', imageFit: 'contain',
+    date: '2023', readTime: 8, image: '/images/research/energy-fuzzy.webp', imageFit: 'contain',
+    gallery: [
+      { src: '/images/research/energy-demand.webp', fit: 'contain', caption: { en: 'Available wind power and controlled cooling-load power over time.', fa: 'توان باد در دسترس و توان کنترل‌شده بارهای سرمایشی در طول زمان.' } },
+      { src: '/images/research/energy-temperature.webp', fit: 'contain', caption: { en: 'Temperature trajectories across the controlled air-conditioning loads.', fa: 'تغییرات دما در مجموعه بارهای سرمایشی کنترل‌شده.' } }
+    ],
     sourceUrl: 'https://ieeexplore.ieee.org/abstract/document/10506386',
     title: { en: 'Sustainable Energy Management in Multi-Unite Cooling Systems With Fuzzy Logic and Adaptive Nonlinear Control', fa: 'مدیریت انرژی پایدار در سیستم‌های سرمایشی چندواحدی با منطق فازی و کنترل تطبیقی غیرخطی' },
     excerpt: { en: 'A centralized controller coordinates 100 air-conditioning units using wind power, grid energy, fuzzy decision-making and adaptive nonlinear control.', fa: 'یک کنترل‌کننده مرکزی برای هماهنگی ۱۰۰ واحد تهویه مطبوع با ترکیب انرژی باد، شبکه، تصمیم‌گیری فازی و کنترل تطبیقی غیرخطی.' },
@@ -787,6 +802,10 @@ The architecture illustrates how intelligent control can connect user comfort, v
     slug: 'deep-reinforcement-learning-traffic-signals',
     category: { en: 'Reinforcement Learning', fa: 'یادگیری تقویتی' },
     date: '2021', readTime: 7, image: '/images/projects/traffic-rl-loop.webp',
+    gallery: [
+      { src: '/images/research/traffic-environment.gif', caption: { en: 'Animated SUMO intersection environment used for traffic-signal-control experiments.', fa: 'نمای متحرک محیط چهارراه SUMO مورد استفاده در آزمایش‌های کنترل چراغ راهنمایی.' } },
+      { src: '/images/projects/traffic-intersection.webp', fit: 'contain', caption: { en: 'Four-way intersection and traffic-phase representation.', fa: 'نمای چهارراه و نمایش فازهای ترافیکی.' } }
+    ],
     sourceUrl: null,
     title: { en: 'An Intelligent Traffic Light Control System using Deep Neural Network', fa: 'سیستم هوشمند کنترل چراغ راهنمایی با استفاده از شبکه عصبی عمیق' },
     excerpt: { en: 'My M.S. thesis combined Q-learning, deep neural networks, SUMO simulation and YOLO-based traffic estimation to adapt signal timing to real-time traffic conditions.', fa: 'پایان‌نامه کارشناسی ارشد من ترکیبی از Q-learning، شبکه عصبی عمیق، شبیه‌ساز SUMO و تخمین ترافیک مبتنی بر YOLO برای تنظیم هوشمند زمان چراغ‌ها بود.' },
@@ -910,7 +929,7 @@ I will update this page after submission and, later, after peer review with the 
   {
     slug: 'offline-voice-detection-smart-homes',
     category: { en: 'IoT & Edge AI', fa: 'اینترنت اشیا و هوش لبه' },
-    date: '2023', readTime: 6, image: '/blog/smart-home-voice.svg',
+    date: '2023', readTime: 6, image: '/images/research/audio-processor.webp',
     sourceUrl: 'https://www.researchgate.net/publication/375910479_Offline_voice_detection_in_smart_homes',
     title: { en: 'Offline voice detection in smart homes', fa: 'تشخیص گفتار آفلاین در خانه‌های هوشمند' },
     excerpt: {
