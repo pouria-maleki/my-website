@@ -11,7 +11,7 @@ export const skillGroups = [
     title: { en: 'Machine Learning & Medical AI', fa: 'یادگیری ماشین و هوش مصنوعی پزشکی' },
     subtitle: { en: 'From predictive modeling to AI-assisted diagnostic prototypes', fa: 'از مدل‌سازی پیش‌بینی تا نمونه‌های اولیه تشخیص هوشمند' },
     tools: ['Deep Neural Networks', 'CNN', 'LSTM', 'Random Forest', 'SVM', 'Model Evaluation'],
-    evidence: { en: ['Gastric & colorectal cancer prototype', 'Flood-risk modeling', 'Predictive engineering systems'], fa: ['نمونه اولیه تشخیص سرطان معده و روده بزرگ', 'مدل‌سازی ریسک سیلاب', 'سامانه‌های پیش‌بینی مهندسی'] }
+    evidence: { en: ['Gastrointestinal lesion-detection prototype', 'Flood-risk modeling', 'Predictive engineering systems'], fa: ['نمونه اولیه کمک‌تشخیصی ضایعات دستگاه گوارش', 'مدل‌سازی ریسک سیلاب', 'سامانه‌های پیش‌بینی مهندسی'] }
   },
   {
     id: 'rl', icon: 'network',

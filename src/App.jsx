@@ -7,6 +7,7 @@ import About from './pages/About'
 import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
 import NotFound from './pages/NotFound'
+import ProjectCaseStudy from './pages/ProjectCaseStudy'
 
 function ScrollManager(){
   const { pathname, hash } = useLocation()
@@ -23,10 +24,12 @@ export default function App(){
     <Route path="/about" element={<About/>}/>
     <Route path="/blog" element={<Blog/>}/>
     <Route path="/blog/:slug" element={<BlogPost/>}/>
+    <Route path="/projects/:slug" element={<ProjectCaseStudy/>}/>
     <Route path="/fa" element={<Home/>}/>
     <Route path="/fa/about" element={<About/>}/>
     <Route path="/fa/blog" element={<Blog/>}/>
     <Route path="/fa/blog/:slug" element={<BlogPost/>}/>
+    <Route path="/fa/projects/:slug" element={<ProjectCaseStudy/>}/>
     <Route path="/404" element={<NotFound/>}/>
     <Route path="/fa/404" element={<NotFound/>}/>
     <Route path="*" element={<NotFound/>}/>

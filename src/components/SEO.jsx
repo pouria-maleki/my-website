@@ -7,7 +7,6 @@ import liveData from '../data/live-data.json'
 const absolute = (path) => path?.startsWith('http') ? path : `${SITE.url}${path || '/'}`
 
 function personSchema(lang) {
-  const s2 = liveData?.semanticScholar?.author?.url
   return {
     '@type': 'Person', '@id': SITE.personId,
     name: SITE.name,
@@ -23,7 +22,7 @@ function personSchema(lang) {
       { '@type': 'CollegeOrUniversity', name: 'Hamedan University of Technology' }
     ],
     knowsAbout: ['Artificial Intelligence','Computer Vision','Object Detection','YOLO','R-CNN','Deep Learning','Reinforcement Learning','Control Systems','Intelligent Transportation Systems','Embedded Systems','Edge AI','IoT','MATLAB','Python'],
-    sameAs: [SITE.social.linkedin, SITE.social.github, SITE.social.scholar, SITE.social.researchGate, s2].filter(Boolean)
+    sameAs: [SITE.social.linkedin, SITE.social.github, SITE.social.scholar, SITE.social.researchGate].filter(Boolean)
   }
 }
 
@@ -47,6 +46,17 @@ export default function SEO({ title, description, path = '/', image = '/blog/ira
     graph.push({ '@type': 'ProfilePage', '@id': `${canonical}#profile`, url: canonical, name: title, description, inLanguage: lang, mainEntity: { '@id': SITE.personId }, dateModified: liveData?.syncedAt?.slice(0,10) || undefined })
     graph.push(person)
   }
+  if (pageType === 'project') {
+    graph.push({
+      '@type': 'WebPage', '@id': `${canonical}#webpage`, url: canonical, name: title, description, inLanguage: lang,
+      about: { '@id': `${canonical}#project` }, author: { '@id': SITE.personId }
+    })
+    graph.push({
+      '@type': 'CreativeWork', '@id': `${canonical}#project`, name: title, description, image: imageUrl, inLanguage: lang,
+      creator: { '@id': SITE.personId }, url: canonical
+    })
+    graph.push(person)
+  }
   if (pageType === 'blog') {
     graph.push({ '@type': 'CollectionPage', '@id': `${canonical}#collection`, url: canonical, name: title, description, inLanguage: lang, author: { '@id': SITE.personId } })
     graph.push(person)
@@ -57,7 +67,7 @@ export default function SEO({ title, description, path = '/', image = '/blog/ira
     graph.push({
       '@type': 'BlogPosting', '@id': `${canonical}#article`,
       url: canonical, mainEntityOfPage: canonical, headline: title, description, image: [imageUrl], inLanguage: lang,
-      datePublished: article.sortDate || article.date, dateModified: article.updated || article.sortDate || article.date,
+      datePublished: article.publishedDate || article.sortDate || article.date, dateModified: article.updated || article.sortDate || article.publishedDate || article.date,
       author: (article.authors || [SITE.name]).map(name => ({ '@type': 'Person', name, ...(name === SITE.name ? { '@id': SITE.personId, url: authorUrl, sameAs: SITE.social.scholar } : {}) })),
       publisher: { '@id': SITE.personId },
       articleSection: article.category?.[lang], keywords: keywords.join(', '),
@@ -67,7 +77,7 @@ export default function SEO({ title, description, path = '/', image = '/blog/ira
       '@type': article.publicationType === 'Thesis' ? 'CreativeWork' : 'ScholarlyArticle',
       '@id': `${canonical}#scholarly-work`, name: article.title.en, alternateName: article.title.fa,
       author: (article.authors || [SITE.name]).map(name => ({ '@type': 'Person', name, ...(name === SITE.name ? { '@id': SITE.personId, url: authorUrl } : {}) })),
-      datePublished: article.date, dateModified: article.updated || article.date,
+      datePublished: article.publishedDate || article.date, dateModified: article.updated || article.publishedDate || article.date,
       isPartOf: article.venue ? { '@type': 'CreativeWork', name: article.venue } : undefined,
       identifier: article.doi ? { '@type': 'PropertyValue', propertyID: 'DOI', value: article.doi } : undefined,
       sameAs: [article.sourceUrl, article.doi ? `https://doi.org/${article.doi}` : null, article.githubUrl].filter(Boolean),

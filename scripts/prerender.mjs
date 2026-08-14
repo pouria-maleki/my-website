@@ -2,6 +2,7 @@ import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node
 import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { articles } from '../src/data/articles.js'
+import { caseStudies } from '../src/data/projects.js'
 
 const root = process.cwd()
 const dist = resolve(root, 'dist')
@@ -15,12 +16,18 @@ const routePairs = [
   ['/', '/fa'],
   ['/about', '/fa/about'],
   ['/blog', '/fa/blog'],
-  ...articles.map(a => [`/blog/${a.slug}`, `/fa/blog/${a.slug}`])
+  ...articles.map(a => [`/blog/${a.slug}`, `/fa/blog/${a.slug}`]),
+  ...caseStudies.map(p => [`/projects/${p.slug}`, `/fa/projects/${p.slug}`])
 ]
 const routes = routePairs.flat()
 const articleRouteMap = new Map(articles.flatMap(a => [
   [`/blog/${a.slug}`, a],
   [`/fa/blog/${a.slug}`, a]
+]))
+
+const projectRouteMap = new Map(caseStudies.flatMap(p => [
+  [`/projects/${p.slug}`, p],
+  [`/fa/projects/${p.slug}`, p]
 ]))
 const latestArticleUpdate = articles.map(a => a.updated || a.sortDate || a.date).filter(Boolean).sort().at(-1)
 
@@ -53,7 +60,8 @@ const alternateMap = new Map(routePairs.flatMap(([en,fa]) => [[en,{en,fa}],[fa,{
 const xml = routes.map(route => {
   const pair = alternateMap.get(route)
   const article = articleRouteMap.get(route)
-  const lastmod = article?.updated || article?.sortDate || (route === '/blog' || route === '/fa/blog' ? latestArticleUpdate : null)
+  const project = projectRouteMap.get(route)
+  const lastmod = article?.updated || article?.sortDate || project?.updated || (route === '/blog' || route === '/fa/blog' ? latestArticleUpdate : null)
   return `  <url>
     <loc>${site}${route}</loc>
     <xhtml:link rel="alternate" hreflang="en" href="${site}${pair.en}"/>

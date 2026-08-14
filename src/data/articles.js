@@ -3,6 +3,7 @@ const publicationMetadata = {
     publicationType: 'JournalArticle',
     venue: 'Journal of Artificial Intelligence and Data Mining (JAIDM)',
     doi: '10.22044/jadm.2024.13858.2501',
+    publishedDate: '2024-01',
     authors: ['Pouria Maleki', 'Abbas Ramazani', 'Hassan Khotanlou', 'Sina Ojaghi'],
     githubUrl: 'https://github.com/pouria-maleki/Iranian-Vehicle-images-dataset-for-detection',
     keywords: { en: ['Pouria Maleki','Iranian vehicle dataset','YOLOv8s','object detection','computer vision','intelligent transportation'], fa: ['پوریا ملکی','دیتاست خودروهای ایرانی','YOLOv8s','تشخیص شیء','بینایی ماشین','حمل‌ونقل هوشمند'] },
@@ -12,6 +13,7 @@ const publicationMetadata = {
     publicationType: 'ConferencePaper',
     venue: 'IEEE SAMI 2024',
     doi: '10.1109/SAMI60510.2024.10432884',
+    publishedDate: '2024-01-25',
     authors: ['Pouria Maleki','Abbas Ramazani','Hassan Khotanlou','Sina Ojaghi','Milad Mousavi','Alexey Kalinin','Amir Mosavi'],
     githubUrl: 'https://github.com/pouria-maleki/TVD-dataset',
     keywords: { en: ['Pouria Maleki','YOLO','vehicle detection','emergency vehicles','TVD dataset','deep learning','traffic management'], fa: ['پوریا ملکی','YOLO','تشخیص خودرو','خودروهای امدادی','دیتاست TVD','یادگیری عمیق','مدیریت ترافیک'] },
@@ -21,6 +23,7 @@ const publicationMetadata = {
     publicationType: 'ConferencePaper',
     venue: 'IEEE SISY 2024',
     doi: '10.1109/SISY62279.2024.10737603',
+    publishedDate: '2024-09-19',
     authors: ['Saba Salmani Ghanbari','Bahram Choubin','Milad Mousavi','Pouria Maleki','Amir Mosavi'],
     keywords: { en: ['Pouria Maleki','flood risk','LSTM','Random Forest','SVM','machine learning','infrastructure resilience'], fa: ['پوریا ملکی','ریسک سیلاب','LSTM','Random Forest','SVM','یادگیری ماشین','تاب‌آوری زیرساخت'] }
   },
@@ -28,18 +31,21 @@ const publicationMetadata = {
     publicationType: 'ConferencePaper',
     venue: 'IEEE ICCIA 2023',
     doi: '10.1109/ICCIA61416.2023.10506386',
+    publishedDate: '2023-12',
     authors: ['Mohammad Soofi','Niloufar Maleki','Hadi Delavari','Pouria Maleki'],
     keywords: { en: ['Pouria Maleki','fuzzy logic','adaptive nonlinear control','energy management','HVAC','renewable energy'], fa: ['پوریا ملکی','منطق فازی','کنترل تطبیقی غیرخطی','مدیریت انرژی','HVAC','انرژی تجدیدپذیر'] }
   },
   'deep-reinforcement-learning-traffic-signals': {
     publicationType: 'Thesis',
     venue: 'Bu-Ali Sina University · M.S. Thesis',
+    publishedDate: '2021',
     authors: ['Pouria Maleki'],
     keywords: { en: ['Pouria Maleki','reinforcement learning','DQN','Q-learning','SUMO','traffic signal control','YOLO'], fa: ['پوریا ملکی','یادگیری تقویتی','DQN','Q-learning','SUMO','کنترل چراغ راهنمایی','YOLO'] }
   },
   'offline-voice-detection-smart-homes': {
     publicationType: 'ConferencePaper',
     venue: '4th International Conference on Electrical Engineering, Computer, Mechanics and Artificial Intelligence',
+    publishedDate: '2023-10',
     authors: ['Sina Ojaghi','Javid Ghafourian','Pouria Maleki','Atefeh Hedayatnia'],
     keywords: { en: ['Pouria Maleki','smart home','offline voice detection','Raspberry Pi','IoT','home automation'], fa: ['پوریا ملکی','خانه هوشمند','تشخیص گفتار آفلاین','Raspberry Pi','اینترنت اشیا','اتوماسیون خانگی'] }
   }
@@ -452,9 +458,9 @@ That moves the project from “YOLO + RL” as two technologies placed next to e
   {
     slug: 'iranian-vehicle-dataset-yolov8',
     category: { en: 'Computer Vision', fa: 'بینایی ماشین' },
-    date: '2024', readTime: 8, image: '/blog/iranian-vehicle-dataset.svg',
+    date: '2024', readTime: 8, image: '/images/projects/iranian-dataset-figure.webp', imageFit: 'contain',
     sourceUrl: 'https://jad.shahroodut.ac.ir/article_3164.html',
-    title: { en: 'Iranian Vehicle Images Dataset for Object Detection', fa: 'مجموعه‌داده تصاویر خودروهای ایرانی برای تشخیص شیء' },
+    title: { en: 'Iranian Vehicle Images Dataset for Object Detection Algorithm', fa: 'مجموعه‌داده تصاویر خودروهای ایرانی برای الگوریتم تشخیص شیء' },
     excerpt: {
       en: 'A domain-specific dataset of 3,000 Iranian vehicle images and 5,765 manually labeled bounding boxes improved YOLOv8s performance over a COCO-trained baseline.',
       fa: 'یک مجموعه‌داده بومی شامل ۳۰۰۰ تصویر خودرو و ۵۷۶۵ باکس برچسب‌گذاری‌شده که عملکرد YOLOv8s را نسبت به مدل آموزش‌دیده با COCO به‌طور محسوسی بهبود داد.'
@@ -560,9 +566,9 @@ model.train(
   {
     slug: 'vehicle-detection-yolo-emergency-vehicles',
     category: { en: 'Deep Learning', fa: 'یادگیری عمیق' },
-    date: '2024', readTime: 9, image: '/blog/yolo-emergency.svg',
+    date: '2024', readTime: 9, image: '/images/projects/vehicle-results-table.webp', imageFit: 'contain',
     sourceUrl: 'https://ieeexplore.ieee.org/abstract/document/10432884/',
-    title: { en: 'Vehicle Object Detection with Dedicated Emergency-Vehicle Classes', fa: 'تشخیص شیء خودرو با کلاس‌های مستقل خودروهای امدادی' },
+    title: { en: 'Object Detection for Vehicles with Yolo', fa: 'تشخیص خودروها با YOLO' },
     excerpt: { en: 'A seven-class, 29,759-image vehicle benchmark that treats ambulances and fire trucks as dedicated object-detection classes and evaluates real-time detector performance.', fa: 'بنچمارکی هفت‌کلاسه با ۲۹٬۷۵۹ تصویر که آمبولانس و خودروی آتش‌نشانی را به‌صورت کلاس مستقل تشخیص شیء مدل می‌کند و عملکرد آشکارسازهای بلادرنگ را می‌سنجد.' },
     content: {
       en: `# Object Detection for Vehicles with YOLO
@@ -642,9 +648,9 @@ This separation between perception and decision-making creates a practical found
   {
     slug: 'flood-risk-machine-learning',
     category: { en: 'Predictive AI', fa: 'هوش مصنوعی پیش‌بینی' },
-    date: '2024', readTime: 7, image: '/blog/flood-risk.svg',
+    date: '2024', readTime: 7, image: '/images/projects/flood-ml-overview.webp', imageFit: 'contain',
     sourceUrl: 'https://ieeexplore.ieee.org/document/10737603',
-    title: { en: 'Flood Risk Analysis with LSTM, Random Forest and SVM', fa: 'تحلیل ریسک سیلاب با LSTM، Random Forest و SVM' },
+    title: { en: 'Flood Risk Analysis with Deep Learning', fa: 'تحلیل ریسک سیلاب با یادگیری عمیق' },
     excerpt: { en: 'A comparison of three machine-learning approaches for predicting exposure, criticality and flood-risk scores using 2,634 bridge records.', fa: 'مقایسه سه روش یادگیری ماشین برای پیش‌بینی امتیاز مواجهه، بحرانی‌بودن و ریسک سیلاب با استفاده از داده‌های ۲۶۳۴ پل.' },
     content: {
       en: `# Flood Risk Analysis with Machine Learning
@@ -716,9 +722,9 @@ Random Forest برای روابط غیرخطی در داده‌های جدولی
   {
     slug: 'sustainable-energy-fuzzy-control',
     category: { en: 'Intelligent Control', fa: 'کنترل هوشمند' },
-    date: '2023', readTime: 8, image: '/blog/energy-control.svg',
+    date: '2023', readTime: 8, image: '/images/projects/energy-fuzzy-membership.webp', imageFit: 'contain',
     sourceUrl: 'https://ieeexplore.ieee.org/abstract/document/10506386',
-    title: { en: 'Sustainable Energy Management with Fuzzy Logic and Adaptive Nonlinear Control', fa: 'مدیریت انرژی پایدار با منطق فازی و کنترل تطبیقی غیرخطی' },
+    title: { en: 'Sustainable Energy Management in Multi-Unite Cooling Systems With Fuzzy Logic and Adaptive Nonlinear Control', fa: 'مدیریت انرژی پایدار در سیستم‌های سرمایشی چندواحدی با منطق فازی و کنترل تطبیقی غیرخطی' },
     excerpt: { en: 'A centralized controller coordinates 100 air-conditioning units using wind power, grid energy, fuzzy decision-making and adaptive nonlinear control.', fa: 'یک کنترل‌کننده مرکزی برای هماهنگی ۱۰۰ واحد تهویه مطبوع با ترکیب انرژی باد، شبکه، تصمیم‌گیری فازی و کنترل تطبیقی غیرخطی.' },
     content: {
       en: `# Sustainable Energy Management in Multi-Unit Cooling Systems
@@ -780,9 +786,9 @@ The architecture illustrates how intelligent control can connect user comfort, v
   {
     slug: 'deep-reinforcement-learning-traffic-signals',
     category: { en: 'Reinforcement Learning', fa: 'یادگیری تقویتی' },
-    date: '2021', readTime: 7, image: '/blog/traffic-rl.svg',
+    date: '2021', readTime: 7, image: '/images/projects/traffic-rl-loop.webp',
     sourceUrl: null,
-    title: { en: 'Deep Reinforcement Learning for Intelligent Traffic Signal Control', fa: 'کنترل هوشمند چراغ راهنمایی با یادگیری تقویتی عمیق' },
+    title: { en: 'An Intelligent Traffic Light Control System using Deep Neural Network', fa: 'سیستم هوشمند کنترل چراغ راهنمایی با استفاده از شبکه عصبی عمیق' },
     excerpt: { en: 'My M.S. thesis combined Q-learning, deep neural networks, SUMO simulation and YOLO-based traffic estimation to adapt signal timing to real-time traffic conditions.', fa: 'پایان‌نامه کارشناسی ارشد من ترکیبی از Q-learning، شبکه عصبی عمیق، شبیه‌ساز SUMO و تخمین ترافیک مبتنی بر YOLO برای تنظیم هوشمند زمان چراغ‌ها بود.' },
     content: {
       en: `# Deep Reinforcement Learning for Intelligent Traffic Signal Control
@@ -854,11 +860,59 @@ The most important lesson from the thesis was learning how to combine **mathemat
     }
   },
   {
+    slug: 'lstm-traffic-control-manuscript-in-preparation',
+    sortDate: '2026-08-14', date: 'Current', readTime: 4, image: '/images/projects/traffic-rl-loop.webp',
+    category: { en: 'Reinforcement Learning', fa: 'یادگیری تقویتی' },
+    kind: { en: 'Manuscript in preparation', fa: 'مقاله در حال آماده‌سازی برای داوری' },
+    title: { en: 'Extending Intelligent Traffic Control with LSTM — Work in Progress', fa: 'توسعه کنترل هوشمند ترافیک با LSTM — پژوهش در حال تکمیل' },
+    excerpt: {
+      en: 'A short research update on the control-side extension of my M.S. thesis: replacing the earlier fully connected representation with an LSTM-enhanced approach before journal submission.',
+      fa: 'یک به‌روزرسانی کوتاه از ادامه بخش کنترل پایان‌نامه ارشد؛ توسعه روش اولیه با رویکرد تقویت‌شده با LSTM پیش از ارسال مقاله برای داوری.'
+    },
+    keywords: { en: ['Pouria Maleki','LSTM','deep reinforcement learning','traffic signal control','DQL','intelligent transportation'], fa: ['پوریا ملکی','LSTM','یادگیری تقویتی عمیق','کنترل چراغ راهنمایی','DQL','حمل‌ونقل هوشمند'] },
+    content: {
+      en: `# Extending Intelligent Traffic Control with LSTM — Work in Progress
+
+My M.S. thesis at Bu-Ali Sina University focused on adaptive traffic-signal control with Deep Q-Learning. That work combined a simulated four-way intersection, a compact representation of traffic state and a neural-network agent that selected signal phases according to traffic conditions.
+
+## What is changing in the new work?
+
+The control side of that research has now been extended with an **LSTM-enhanced approach**. The motivation is simple: traffic is temporal. The current state of an intersection is useful, but recent changes in traffic flow can also help the controller reason about what may happen next.
+
+The manuscript is now being prepared for submission. Until peer review is complete, I am intentionally keeping the unpublished architecture and detailed result tables off the public website.
+
+## Research lineage
+
+This work is part of one continuous research path:
+
+**M.S. traffic-control thesis → vehicle perception → public vehicle datasets → published object-detection papers → LSTM-enhanced traffic control**
+
+I will update this page after submission and, later, after peer review with the final bibliographic record and reproducible details that can be made public.`,
+      fa: `# توسعه کنترل هوشمند ترافیک با LSTM — پژوهش در حال تکمیل
+
+پایان‌نامه کارشناسی ارشد من در دانشگاه بوعلی سینا بر کنترل تطبیقی چراغ راهنمایی با Deep Q-Learning متمرکز بود. در آن پژوهش، یک چهارراه شبیه‌سازی‌شده، نمایش فشرده‌ای از وضعیت ترافیک و یک عامل شبکه عصبی برای انتخاب فاز چراغ بر اساس شرایط ترافیک ترکیب شدند.
+
+## در پژوهش جدید چه چیزی تغییر کرده است؟
+
+بخش کنترلی آن پژوهش اکنون با یک **رویکرد تقویت‌شده با LSTM** توسعه یافته است. انگیزه اصلی این است که ترافیک ماهیتی زمانی دارد؛ وضعیت لحظه‌ای مهم است، اما روند تغییرات اخیر نیز می‌تواند به تصمیم‌گیری بهتر کنترل‌کننده کمک کند.
+
+مقاله در حال آماده‌سازی برای ارسال به داوری است. تا پیش از تکمیل فرآیند داوری، معماری منتشرنشده و جدول‌های دقیق نتایج عمداً روی وب‌سایت عمومی قرار نمی‌گیرند.
+
+## مسیر پژوهشی
+
+این کار ادامه یک مسیر واحد است:
+
+**پایان‌نامه کنترل ترافیک ← ادراک خودرو ← دیتاست‌های عمومی ← مقالات منتشرشده تشخیص شیء ← کنترل ترافیک تقویت‌شده با LSTM**
+
+پس از ارسال مقاله و سپس تکمیل داوری، این صفحه با اطلاعات کتاب‌شناختی نهایی و جزئیاتی که امکان انتشار عمومی دارند به‌روزرسانی خواهد شد.`
+    }
+  },
+  {
     slug: 'offline-voice-detection-smart-homes',
     category: { en: 'IoT & Edge AI', fa: 'اینترنت اشیا و هوش لبه' },
     date: '2023', readTime: 6, image: '/blog/smart-home-voice.svg',
     sourceUrl: 'https://www.researchgate.net/publication/375910479_Offline_voice_detection_in_smart_homes',
-    title: { en: 'Offline Voice Detection in Smart Homes: Privacy-Aware Edge Automation', fa: 'تشخیص گفتار آفلاین در خانه هوشمند؛ اتوماسیون لبه با حفظ حریم خصوصی' },
+    title: { en: 'Offline voice detection in smart homes', fa: 'تشخیص گفتار آفلاین در خانه‌های هوشمند' },
     excerpt: {
       en: 'A multi-purpose smart-home automation concept that processes voice commands locally, combining offline interaction, Raspberry Pi-class edge computing and environmental control.',
       fa: 'طرحی چندمنظوره برای خانه هوشمند که فرمان‌های صوتی را به‌صورت محلی پردازش می‌کند و تعامل آفلاین، رایانش لبه و کنترل محیط را در کنار هم قرار می‌دهد.'

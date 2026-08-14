@@ -1,33 +1,44 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { publications } from '../src/data/publications.js'
 
 const output = resolve(process.cwd(), 'src/data/live-data.json')
 let current
 try { current = JSON.parse(readFileSync(output, 'utf8')) } catch { current = {} }
 
-const knownTitles = [
-  'Iranian Vehicle Images Dataset for Object Detection Algorithm',
-  'Object Detection for Vehicles with Yolo',
-  'Flood Risk Analysis with Deep Learning',
-  'Sustainable Energy Management in Multi-Unite Cooling Systems With Fuzzy Logic and Adaptive Nonlinear Control',
-  'Offline voice detection in smart homes'
-]
-const norm = (s='') => s.toLowerCase().replace(/[^a-z0-9]+/g,' ').trim()
-const known = knownTitles.map(norm)
-
 async function getJson(url, headers = {}) {
   const controller = new AbortController()
-  const timer = setTimeout(() => controller.abort(), 10000)
+  const timer = setTimeout(() => controller.abort(), 12000)
   try {
-    const res = await fetch(url, { headers: { 'User-Agent':'pouriamaleki.com-build-sync', 'Accept':'application/json', ...headers }, signal: controller.signal })
+    const res = await fetch(url, {
+      headers: {
+        'User-Agent':'pouriamaleki.com-build-sync/5.0 (mailto:p.maleki.1994@gmail.com)',
+        'Accept':'application/json',
+        ...headers
+      },
+      signal: controller.signal
+    })
     if (!res.ok) throw new Error(`${res.status} ${res.statusText}`)
     return await res.json()
   } finally { clearTimeout(timer) }
 }
 
-function titleScore(papers = []) {
-  const titles = papers.map(p => norm(p.title))
-  return known.reduce((score, target) => score + (titles.some(t => t === target || t.includes(target) || target.includes(t)) ? 1 : 0), 0)
+function datePartsToIso(parts) {
+  const [year, month, day] = parts || []
+  if (!year) return null
+  return [String(year), month ? String(month).padStart(2,'0') : null, day ? String(day).padStart(2,'0') : null].filter(Boolean).join('-')
+}
+
+function crossrefDate(message) {
+  const parts = message?.['published-print']?.['date-parts']?.[0]
+    || message?.published?.['date-parts']?.[0]
+    || message?.issued?.['date-parts']?.[0]
+    || message?.created?.['date-parts']?.[0]
+  return datePartsToIso(parts)
+}
+
+function crossrefAuthors(message) {
+  return (message?.author || []).map(a => [a.given, a.family].filter(Boolean).join(' ')).filter(Boolean)
 }
 
 async function syncGitHub() {
@@ -45,31 +56,85 @@ async function syncGitHub() {
   }
 }
 
-async function syncSemanticScholar() {
-  const fields = 'name,url,paperCount,citationCount,hIndex,papers.title,papers.year,papers.venue,papers.url,papers.citationCount,papers.externalIds,papers.authors'
-  const key = process.env.SEMANTIC_SCHOLAR_API_KEY
-  const headers = key ? { 'x-api-key': key } : {}
-  const search = await getJson(`https://api.semanticscholar.org/graph/v1/author/search?query=${encodeURIComponent('Pouria Maleki')}&limit=10&fields=${encodeURIComponent(fields)}`, headers)
-  const candidates = (search.data || []).map(a => ({ ...a, _score:titleScore(a.papers || []) })).sort((a,b) => b._score - a._score)
-  const best = candidates[0]
-  if (!best || best._score < 2) throw new Error(`Could not disambiguate Semantic Scholar author (best score ${best?._score || 0})`)
-  const papers = (best.papers || []).filter(p => p?.title).map(p => ({
-    paperId:p.paperId, title:p.title, year:p.year, venue:p.venue, url:p.url, citationCount:p.citationCount,
-    externalIds:p.externalIds, authors:(p.authors || []).map(a => a.name)
-  }))
+async function syncPublication(pub) {
+  if (!pub.doi) return { ...pub, status:'fixed', citationCount:null, citationSource:null }
+
+  let crossref = null
+  let semantic = null
+
+  try {
+    const data = await getJson(`https://api.crossref.org/works/${encodeURIComponent(pub.doi)}?mailto=${encodeURIComponent('p.maleki.1994@gmail.com')}`)
+    crossref = data?.message || null
+  } catch (error) {
+    console.warn(`Crossref ${pub.doi}: ${error.message}`)
+  }
+
+  try {
+    const key = process.env.SEMANTIC_SCHOLAR_API_KEY
+    const headers = key ? { 'x-api-key': key } : {}
+    const fields = 'title,year,venue,url,citationCount,publicationDate,authors,externalIds'
+    semantic = await getJson(`https://api.semanticscholar.org/graph/v1/paper/${encodeURIComponent(`DOI:${pub.doi}`)}?fields=${encodeURIComponent(fields)}`, headers)
+  } catch (error) {
+    console.warn(`Semantic Scholar ${pub.doi}: ${error.message}`)
+  }
+
+  const crossrefAuthorsList = crossrefAuthors(crossref)
+  const crossrefAudit = crossref ? {
+    title: crossref?.title?.[0] || null,
+    publishedDate: crossrefDate(crossref),
+    venue: crossref?.['container-title']?.[0] || null,
+    authors: crossrefAuthorsList
+  } : null
+
   return {
-    status:'live',
-    matchScore:best._score,
-    author:{ authorId:best.authorId, name:best.name, url:best.url, paperCount:best.paperCount, citationCount:best.citationCount, hIndex:best.hIndex },
-    papers
+    ...pub,
+    status: crossref || semantic ? 'live' : 'fallback',
+    // Display metadata is intentionally pinned to the verified DOI record in
+    // publications.js so a provider-specific date/venue convention cannot
+    // silently change what visitors see. Crossref is retained as an audit.
+    officialTitle: pub.officialTitle,
+    publishedDate: pub.publishedDate,
+    year: pub.year,
+    venue: pub.venue,
+    authors: pub.authors,
+    citationCount: Number.isFinite(semantic?.citationCount) ? semantic.citationCount : null,
+    citationSource: Number.isFinite(semantic?.citationCount) ? 'Semantic Scholar' : null,
+    semanticScholarUrl: semantic?.url || null,
+    metadataSource: crossref ? 'Crossref DOI verified + local display record' : 'Local verified metadata',
+    crossrefAudit
+  }
+}
+
+async function syncPublications() {
+  const items = []
+  for (const pub of publications) items.push(await syncPublication(pub))
+  const citationCount = items.reduce((sum, p) => sum + (Number.isFinite(p.citationCount) ? p.citationCount : 0), 0)
+  const liveCitationWorks = items.filter(p => Number.isFinite(p.citationCount)).length
+  return {
+    status: items.some(p => p.status === 'live') ? 'live' : 'fallback',
+    items,
+    summary: { publicationCount: items.length, citationCount, liveCitationWorks }
   }
 }
 
 const next = { ...current }
-try { next.github = await syncGitHub(); console.log(`GitHub sync: ${next.github.repos.length} repos`) }
-catch (error) { console.warn(`GitHub sync skipped: ${error.message}`); next.github = current.github || { status:'fallback', profile:null, repos:[] } }
-try { next.semanticScholar = await syncSemanticScholar(); console.log(`Semantic Scholar sync: ${next.semanticScholar.author.name} (${next.semanticScholar.matchScore} known-title matches)`) }
-catch (error) { console.warn(`Semantic Scholar sync skipped: ${error.message}`); next.semanticScholar = current.semanticScholar || { status:'fallback', author:null, papers:[] } }
+try {
+  next.github = await syncGitHub()
+  console.log(`GitHub sync: ${next.github.repos.length} repos`)
+} catch (error) {
+  console.warn(`GitHub sync skipped: ${error.message}`)
+  next.github = current.github || { status:'fallback', profile:null, repos:[] }
+}
 
-if (next.github?.status === 'live' || next.semanticScholar?.status === 'live') next.syncedAt = new Date().toISOString()
+try {
+  next.publications = await syncPublications()
+  console.log(`Publication sync: ${next.publications.items.length} verified works`)
+} catch (error) {
+  console.warn(`Publication sync skipped: ${error.message}`)
+  next.publications = current.publications || { status:'fallback', items:publications, summary:{ publicationCount:publications.length, citationCount:0, liveCitationWorks:0 } }
+}
+
+// Keep the old field only for backward compatibility with existing deployments.
+next.semanticScholar = current.semanticScholar || { status:'fallback', author:null, papers:[] }
+if (next.github?.status === 'live' || next.publications?.status === 'live') next.syncedAt = new Date().toISOString()
 writeFileSync(output, `${JSON.stringify(next, null, 2)}\n`)

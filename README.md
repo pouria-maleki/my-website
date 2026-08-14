@@ -1,96 +1,73 @@
-# Pouria Maleki — Living Research Portfolio v4
+# Pouria Maleki — Living Research Portfolio v5
 
-A bilingual, SEO-first academic/research portfolio for **Pouria Maleki (پوریا ملکی)**. The project is built with React, Vite, Tailwind CSS and React Router, but it is also statically prerendered at build time so important pages and paper metadata are present in the initial HTML.
+A bilingual, SEO-first academic/research portfolio for **Pouria Maleki**. Built with React, Vite, Tailwind CSS and React Router, with static prerendering for important EN/FA routes.
 
-## What changed in v4
+## What changed in v5
 
-- English pages now display only **Pouria Maleki** and Persian pages only **پوریا ملکی**; alternate spellings remain in structured data for entity SEO.
-- Skills now describe durable capabilities (Object Detection, YOLO/R-CNN families, dataset design, RL, intelligent control, Edge AI) instead of model-version lists.
-- The medical-AI project is presented as an **AI-assisted gastric & colorectal cancer detection prototype** with **98% reported accuracy during project evaluation**, avoiding unsupported clinical-validation wording.
-- Two new long-form bilingual research notes: **Object Detection in Practice: YOLO, R-CNN and Better Dataset Design** and **From Vehicle Detection to Smart Traffic Control**.
-- Blog archive now includes search, category filtering, featured “Start here” posts, key-takeaway cards, reading progress, and a generated table of contents.
-- Article Markdown no longer renders a duplicate H1; the page title remains the single primary H1.
-- Article JSON-LD now exposes all listed authors and an accurate `dateModified`; research notes stay BlogPosting-only while actual papers receive scholarly-work schema.
-- Prominent LinkedIn, GitHub, Google Scholar, ResearchGate and email links in the hero, header/mobile navigation, article author cards and footer.
-- Separate indexable English and Persian URLs (`/` and `/fa`) with matching `hreflang` links instead of language query parameters.
-- A dedicated `/about` and `/fa/about` researcher profile page.
-- Evidence-based skills instead of arbitrary percentage bars.
-- Pointer-reactive 3D skill cards with spotlight/tilt effects and reduced-motion accessibility support.
-- Build-time GitHub sync for public repositories, stars/forks/language/update date, with research repositories linked to their related blog stories.
-- Build-time Semantic Scholar sync for scholarly metrics and indexed papers. Google Scholar and ResearchGate remain prominent first-class profile links.
-- Weekly GitHub Actions rebuild so public GitHub/research data can refresh without manually editing the site.
-- Teaching experience is calculated from `2018` automatically, so the displayed number of years stays current.
-- Eight bilingual research stories, including the previously missing **Offline Voice Detection in Smart Homes** work.
-- Strong entity SEO for `Pouria Maleki`, `پوریا ملکی`, and common transliterations.
-- `ProfilePage`, `Person`, `WebSite`, `CollectionPage`, `BlogPosting`, `ScholarlyArticle`, `Dataset` and `BreadcrumbList` JSON-LD where applicable.
-- Static prerendering + React hydration for every EN/FA page and article.
-- Generated bilingual sitemap and GitHub Pages `404.html` fallback.
+- Publication titles, dates and venues are no longer inferred from an author-name search.
+- DOI-linked works use verified local metadata and refresh from **Crossref DOI metadata** at build time.
+- Paper-level citation counts refresh from **Semantic Scholar by exact DOI**, avoiding author-name ambiguity.
+- Google Scholar remains prominently linked as the primary scholarly profile; the site does not scrape Scholar pages.
+- Published-paper cards now use the official bibliographic title instead of an editorial rewrite.
+- Added a visual **Research Lineage**: 2021 M.S. thesis → vehicle perception → published datasets/papers → current LSTM-enhanced traffic-control manuscript.
+- Added a high-level **AI-Assisted Gastrointestinal Lesion Detection** case study using real project imagery.
+- The medical case study intentionally omits implementation/integration details to protect company IP.
+- Medical model metrics are shown only in the case-study context and are explicitly labeled as project/model evaluation, not clinical claims.
+- Added a dedicated **Intelligent Traffic Signal Control with Deep Q-Learning** case study using original figures from the research presentation.
+- Added a short bilingual research update for the new LSTM-enhanced traffic-control manuscript, marked **Manuscript in preparation** rather than submitted/under review.
+- Replaced several generic blog thumbnails with real figures from the research presentation.
+- Removed the old “98% accuracy” homepage emphasis; the homepage now highlights published works, public datasets, GPA and automatically calculated teaching experience.
+- Teaching experience continues to calculate automatically from 2018.
+- Project pages are prerendered, localized and included in `sitemap.xml` with SEO metadata.
 
 ## Live-data strategy
 
-The site does **not** scrape Google Scholar pages. Instead:
+The site deliberately separates **bibliographic truth** from **citation freshness**:
 
-- Google Scholar is linked prominently as the canonical scholarly profile.
-- `scripts/sync-live-data.mjs` uses public GitHub data for repositories.
-- The same script uses the Semantic Scholar Academic Graph API for publication/citation metadata when the author can be safely disambiguated against known paper titles.
-- If a live source is unavailable, the build does not fail; verified local fallback data stays visible.
-- GitHub Actions runs every Monday and on every push to `main`.
+- Crossref / DOI metadata → official title, publication date, venue and authors for DOI-linked works.
+- Semantic Scholar exact DOI lookup → citation count for each DOI-linked work.
+- GitHub API → public repositories, stars, forks, language and update date.
+- Google Scholar → prominent direct profile link, not scraped.
+- If any API is unavailable, the build continues using verified local fallback metadata.
 
-Optional: add a repository secret called `SEMANTIC_SCHOLAR_API_KEY` if you have an API key. The workflow also uses GitHub's built-in `GITHUB_TOKEN` for the GitHub API.
+GitHub Actions rebuilds on every push and every Monday.
 
 ## URL structure
 
 ```text
-/                         English home
-/about                    English research profile
-/blog                     English research blog
-/blog/:slug               English article
-/fa                       Persian home
-/fa/about                 Persian research profile
-/fa/blog                  Persian research blog
-/fa/blog/:slug             Persian article
+/                                   English home
+/about                              English profile
+/blog                               English research blog
+/blog/:slug                         English article
+/projects/:slug                     English case study
+/fa                                 Persian home
+/fa/about                           Persian profile
+/fa/blog                            Persian research blog
+/fa/blog/:slug                      Persian article
+/fa/projects/:slug                  Persian case study
 ```
 
-## Main project structure
+Current case studies:
 
 ```text
-src/
-├── components/
-│   ├── Header.jsx
-│   ├── Footer.jsx
-│   ├── SocialLinks.jsx
-│   ├── InteractiveSkillCard.jsx
-│   ├── LiveGithubProjects.jsx
-│   ├── ResearchImpact.jsx
-│   ├── SEO.jsx
-│   └── ...
-├── context/
-│   └── AppContext.jsx
-├── data/
-│   ├── articles.js
-│   ├── skills.js
-│   ├── site.js
-│   ├── translations.js
-│   └── live-data.json
-├── pages/
-│   ├── Home.jsx
-│   ├── About.jsx
-│   ├── Blog.jsx
-│   ├── BlogPost.jsx
-│   └── NotFound.jsx
-├── utils/
-│   ├── dates.js
-│   └── routes.js
-├── entry-server.jsx
-├── App.jsx
-└── main.jsx
-
-scripts/
-├── sync-live-data.mjs
-└── prerender.mjs
+/projects/ai-gastrointestinal-lesion-detection
+/projects/intelligent-traffic-control-dql
 ```
 
-## Local development
+## Main content files
+
+```text
+src/data/publications.js   Verified publication metadata / DOI records
+src/data/articles.js       Bilingual blog and research notes
+src/data/projects.js       Public-safe case-study content
+src/data/skills.js         Evidence-based capability cards
+src/data/site.js           Social/profile links
+src/data/translations.js   Main EN/FA UI copy
+scripts/sync-live-data.mjs DOI/citation/GitHub refresh
+scripts/prerender.mjs      Static routes + sitemap generation
+```
+
+## Development
 
 ```bash
 npm install
@@ -103,51 +80,25 @@ npm run dev
 npm run build
 ```
 
-The build performs four jobs:
+The build:
 
-1. Sync public GitHub and scholarly data.
-2. Build the React client bundle.
-3. Build an SSR rendering bundle.
-4. Prerender all EN/FA routes and generate `sitemap.xml`, `404.html` and `200.html`.
+1. Refreshes DOI publication metadata, citations and GitHub data.
+2. Builds the React client bundle.
+3. Builds the SSR rendering bundle.
+4. Prerenders EN/FA pages, articles and case studies.
+5. Generates `sitemap.xml`, `404.html` and `200.html`.
 
-The final deployable directory is `dist/`.
+The deployable output is `dist/`.
 
-## GitHub Pages deployment
+## GitHub Pages
 
-The repository already contains `.github/workflows/deploy.yml`.
+The repository includes `.github/workflows/deploy.yml`.
 
-1. Upload/commit the project to the repository's `main` branch.
-2. Go to **Settings → Pages**.
-3. Set **Source** to **GitHub Actions**.
-4. Keep the custom domain set to `pouriamaleki.com`.
-5. Go to **Actions** and verify **Deploy to GitHub Pages** completes successfully.
+1. Upload/commit the project to `main`.
+2. **Settings → Pages → Source: GitHub Actions**.
+3. Keep custom domain `pouriamaleki.com`.
+4. Verify the **Deploy to GitHub Pages** workflow is green.
 
-`public/CNAME` contains `pouriamaleki.com` as an additional safeguard for the generated static artifact.
+## Confidential project content
 
-## Updating content
-
-- Social/profile information: `src/data/site.js`
-- Articles and publication metadata: `src/data/articles.js`
-- Skills: `src/data/skills.js`
-- Main translations: `src/data/translations.js`
-- Teaching start year: `src/utils/dates.js`
-- Live-data sync behavior: `scripts/sync-live-data.mjs`
-
-## Portfolio-design research applied
-
-The v4 information architecture was shaped after comparing academic-profile guidance and portfolio patterns from more than ten sources, including Rice University, Elsevier, NC State, LSE, UC Berkeley, University of Delaware, Oregon State University, J-PAL, academic portfolio/template guides and researcher-visibility guidance. The recurring ideas applied here are:
-
-- Make identity, role and research direction immediately clear.
-- Treat the homepage as a concise navigation/impact layer rather than a full CV dump.
-- Put publications, research projects, code/data and scholarly profiles near the top.
-- Show evidence and outputs instead of self-rated skill percentages.
-- Keep the profile visibly current through recent activity/live data.
-- Use stable DOI/source/code/data links for research outputs.
-- Provide a dedicated long-form biography/profile page.
-- Keep mobile navigation and content scanning simple.
-- Make contact and scholarly identity easy to verify.
-- Use semantic HTML, structured data and crawlable page-level URLs.
-
-## SEO notes
-
-The site intentionally uses separate localized paths rather than `?lang=fa`, and every important route is prerendered. Article pages include canonical and alternate-language links, Open Graph/Twitter metadata and scholarly structured data. The main profile uses a stable `Person` entity ID and `sameAs` links to LinkedIn, GitHub, Google Scholar, ResearchGate and Semantic Scholar when a verified live author match is available.
+The medical-AI case study is intentionally public-safe. It describes the problem, role, visible outputs and model-evaluation metrics, but does **not** publish internal connectivity, integration architecture, hardware topology or proprietary implementation details.

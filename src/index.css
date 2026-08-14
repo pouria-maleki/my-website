@@ -75,3 +75,15 @@
   *, *::before, *::after { scroll-behavior:auto !important; animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
   .skill-tilt { transform:none !important; }
 }
+
+@layer components {
+  .journey-shell { @apply rounded-[2.25rem] border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-950 md:p-9; }
+  .journey-step { @apply rounded-3xl border border-slate-200 bg-slate-50 p-5 transition duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-blue-500/40; }
+  .case-hero { @apply overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-2 shadow-xl dark:border-slate-800 dark:bg-slate-900; }
+  .case-hero img { @apply rounded-[1.55rem]; }
+  .case-device { @apply overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900; }
+  .case-device img { @apply w-full rounded-[1.5rem] object-contain; }
+  .case-gallery { @apply grid gap-4; }
+  .case-gallery img { @apply w-full rounded-[1.75rem] border border-slate-200 bg-white object-cover shadow-sm dark:border-slate-800 dark:bg-slate-900; }
+  .confidential-note { @apply flex gap-3 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-7 text-amber-900 dark:border-amber-500/20 dark:bg-amber-500/10 dark:text-amber-100; }
+}
