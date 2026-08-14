@@ -9,12 +9,12 @@ A bilingual, SEO-first academic/research portfolio for **Pouria Maleki**. Built 
 - Paper-level citation counts refresh from **Semantic Scholar by exact DOI**, avoiding author-name ambiguity.
 - Google Scholar remains prominently linked as the primary scholarly profile; the site does not scrape Scholar pages.
 - Published-paper cards now use the official bibliographic title instead of an editorial rewrite.
-- Added a visual **Research Lineage**: 2021 M.S. thesis → vehicle perception → published datasets/papers → current LSTM-enhanced traffic-control manuscript.
+- Added a visual **Research Lineage**: 2021 M.S. thesis → vehicle perception → published datasets/papers → current Deep Q-Learning traffic-control manuscript.
 - Added a high-level **AI-Assisted Gastrointestinal Lesion Detection** case study using real project imagery.
 - The medical case study intentionally omits implementation/integration details to protect company IP.
 - Medical model metrics are shown only in the case-study context and are explicitly labeled as project/model evaluation, not clinical claims.
 - Added a dedicated **Intelligent Traffic Signal Control with Deep Q-Learning** case study using original figures from the research presentation.
-- Added a short bilingual research update for the new LSTM-enhanced traffic-control manuscript, marked **Manuscript in preparation** rather than submitted/under review.
+- Added a short bilingual research update for the new Deep Q-Learning traffic-control manuscript, marked **Manuscript in preparation** rather than submitted/under review.
 - Replaced several generic blog thumbnails with real figures from the research presentation.
 - Removed the old “98% accuracy” homepage emphasis; the homepage now highlights published works, public datasets, GPA and automatically calculated teaching experience.
 - Teaching experience continues to calculate automatically from 2018.

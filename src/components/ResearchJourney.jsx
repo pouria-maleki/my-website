@@ -10,12 +10,12 @@ export default function ResearchJourney() {
     ['۲۰۲۱','پایان‌نامه ارشد','کنترل هوشمند چراغ راهنمایی با Deep Q-Learning', BrainCircuit],
     ['۲۰۲۴','ادراک خودرو','تشخیص خودرو و خودروهای امدادی با بینایی ماشین', Radar],
     ['۲۰۲۴','دیتاست دامنه‌محور','دیتاست خودروهای ایرانی و ارزیابی تشخیص شیء', Database],
-    ['اکنون','توسعه بخش کنترل','مقاله جدید با رویکرد تقویت‌شده با LSTM در حال آماده‌سازی برای داوری', Route]
+    ['اکنون','توسعه بخش کنترل','مقاله جدید در ادامه مسیر کنترل ترافیک مبتنی بر Deep Q-Learning در حال آماده‌سازی برای داوری', Route]
   ] : [
     ['2021','M.S. thesis','Intelligent traffic-signal control with Deep Q-Learning', BrainCircuit],
     ['2024','Vehicle perception','Object detection for vehicles and emergency-vehicle classes', Radar],
     ['2024','Domain-specific data','Iranian vehicle dataset and object-detection evaluation', Database],
-    ['Now','Control-side extension','New LSTM-enhanced manuscript being prepared for peer review', Route]
+    ['Now','Control-side extension','New Deep Q-Learning traffic-control manuscript being prepared for peer review', Route]
   ]
   return <div className="journey-shell">
     <div className="max-w-3xl">

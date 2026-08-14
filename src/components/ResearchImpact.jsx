@@ -32,8 +32,8 @@ export default function ResearchImpact() {
         <h2 className="mt-5 text-3xl font-black tracking-tight sm:text-4xl">{lang === 'fa' ? 'انتشارات و استنادهای پژوهشی' : 'Publications & research citations'}</h2>
         <p className="mt-4 leading-8 text-slate-500 dark:text-slate-400">
           {lang === 'fa'
-            ? 'عنوان، تاریخ و محل انتشار هر مقاله بر اساس رکورد DOI تأییدشده نگهداری می‌شود و هنگام Build با Crossref کنترل می‌شود؛ تعداد استناد هر مقاله نیز با شناسه DOI از Semantic Scholar به‌روزرسانی می‌شود. Google Scholar به‌عنوان پروفایل علمی اصلی در دسترس است.'
-            : 'Each DOI-linked paper uses a verified bibliographic record that is checked against Crossref during build; paper-level citation counts are refreshed by exact DOI from Semantic Scholar. Google Scholar remains the primary scholarly-profile link.'}
+            ? 'برای مقالات دارای DOI، عنوان، تاریخ و محل انتشار بر اساس رکورد تأییدشده نگهداری و هنگام Build با Crossref کنترل می‌شود؛ تعداد استناد همان مقالات نیز با DOI از Semantic Scholar به‌روزرسانی می‌شود. Google Scholar به‌عنوان پروفایل علمی اصلی در دسترس است.'
+            : 'DOI-linked papers use verified bibliographic records checked against Crossref during build; their paper-level citation counts are refreshed by exact DOI from Semantic Scholar. Google Scholar remains the primary scholarly-profile link.'}
         </p>
         <div className="mt-7 grid grid-cols-2 gap-3">
           <div className="metric-tile"><strong>{publications.length}</strong><span>{lang === 'fa' ? 'مقاله منتشرشده' : 'published works'}</span></div>

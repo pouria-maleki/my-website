@@ -17,7 +17,7 @@ export const skillGroups = [
     id: 'rl', icon: 'network',
     title: { en: 'Reinforcement Learning & Decision Systems', fa: 'یادگیری تقویتی و سامانه‌های تصمیم‌گیری' },
     subtitle: { en: 'Sequential decision-making for adaptive engineering control', fa: 'تصمیم‌گیری دنباله‌ای برای کنترل تطبیقی سامانه‌های مهندسی' },
-    tools: ['Q-Learning', 'Deep Q-Networks', 'Reward Design', 'SUMO', 'Simulation', 'Traffic Optimization'],
+    tools: ['Q-Learning', 'Deep Q-Learning (DQL)', 'Reward Design', 'SUMO', 'Simulation', 'Traffic Optimization'],
     evidence: { en: ['M.S. thesis', 'Adaptive traffic-signal control', 'Dynamic optimization'], fa: ['پایان‌نامه ارشد', 'کنترل تطبیقی چراغ راهنمایی', 'بهینه‌سازی پویا'] }
   },
   {

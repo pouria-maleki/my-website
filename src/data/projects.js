@@ -49,12 +49,12 @@ export const caseStudies = [
     heroImage: '/images/projects/traffic-rl-loop.webp',
     gallery: ['/images/research/traffic-environment.gif', '/images/projects/traffic-intersection.webp', '/images/projects/traffic-perception.webp'],
     highlights: {
-      en: ['Four-way intersection with adaptive phase selection', '80-cell traffic-state representation and four signal actions', 'Compared against a fixed-time signal controller across light, medium and heavy traffic scenarios', 'Research later evolved into vehicle-detection publications and a new LSTM-enhanced control manuscript'],
-      fa: ['چهارراه با انتخاب تطبیقی فاز چراغ', 'نمایش وضعیت ترافیک با ۸۰ سلول و چهار عمل کنترلی', 'مقایسه با کنترل‌کننده زمان‌ثابت در ترافیک سبک، متوسط و سنگین', 'این مسیر بعداً به مقالات تشخیص خودرو و یک مقاله جدید کنترل مبتنی بر LSTM گسترش یافت']
+      en: ['Four-way intersection with adaptive phase selection', '80-cell traffic-state representation and four signal actions', 'Compared against a fixed-time signal controller across light, medium and heavy traffic scenarios', 'The perception side later evolved into vehicle-detection publications, while the control side is being extended in a new manuscript'],
+      fa: ['چهارراه با انتخاب تطبیقی فاز چراغ', 'نمایش وضعیت ترافیک با ۸۰ سلول و چهار عمل کنترلی', 'مقایسه با کنترل‌کننده زمان‌ثابت در ترافیک سبک، متوسط و سنگین', 'بخش ادراک این مسیر بعداً به مقالات تشخیص خودرو رسید و بخش کنترل نیز در یک مقاله جدید در حال توسعه است']
     },
     currentWork: {
-      en: 'A new manuscript extending the control side of the thesis with an LSTM-enhanced approach is currently being prepared for submission.',
-      fa: 'یک مقاله جدید که بخش کنترل پایان‌نامه را با رویکرد تقویت‌شده با LSTM توسعه می‌دهد، در حال آماده‌سازی برای ارسال به داوری است.'
+      en: 'A new manuscript extending the Deep Q-Learning traffic-control line is currently being prepared for submission. Methodological details are kept concise while the work is unpublished.',
+      fa: 'یک مقاله جدید در ادامه مسیر کنترل ترافیک مبتنی بر Deep Q-Learning در حال آماده‌سازی برای ارسال به داوری است. تا پیش از انتشار، جزئیات روش به‌صورت خلاصه نگه داشته می‌شود.'
     }
   }
 ]

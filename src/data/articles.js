@@ -3,7 +3,7 @@ const publicationMetadata = {
     publicationType: 'JournalArticle',
     venue: 'Journal of Artificial Intelligence and Data Mining (JAIDM)',
     doi: '10.22044/jadm.2024.13858.2501',
-    publishedDate: '2024-01',
+    publishedDate: '2024',
     authors: ['Pouria Maleki', 'Abbas Ramazani', 'Hassan Khotanlou', 'Sina Ojaghi'],
     githubUrl: 'https://github.com/pouria-maleki/Iranian-Vehicle-images-dataset-for-detection',
     keywords: { en: ['Pouria Maleki','Iranian vehicle dataset','YOLOv8s','object detection','computer vision','intelligent transportation'], fa: ['پوریا ملکی','دیتاست خودروهای ایرانی','YOLOv8s','تشخیص شیء','بینایی ماشین','حمل‌ونقل هوشمند'] },
@@ -31,7 +31,7 @@ const publicationMetadata = {
     publicationType: 'ConferencePaper',
     venue: 'IEEE ICCIA 2023',
     doi: '10.1109/ICCIA61416.2023.10506386',
-    publishedDate: '2023-12',
+    publishedDate: '2023',
     authors: ['Mohammad Soofi','Niloufar Maleki','Hadi Delavari','Pouria Maleki'],
     keywords: { en: ['Pouria Maleki','fuzzy logic','adaptive nonlinear control','energy management','HVAC','renewable energy'], fa: ['پوریا ملکی','منطق فازی','کنترل تطبیقی غیرخطی','مدیریت انرژی','HVAC','انرژی تجدیدپذیر'] }
   },
@@ -40,12 +40,12 @@ const publicationMetadata = {
     venue: 'Bu-Ali Sina University · M.S. Thesis',
     publishedDate: '2021',
     authors: ['Pouria Maleki'],
-    keywords: { en: ['Pouria Maleki','reinforcement learning','DQN','Q-learning','SUMO','traffic signal control','YOLO'], fa: ['پوریا ملکی','یادگیری تقویتی','DQN','Q-learning','SUMO','کنترل چراغ راهنمایی','YOLO'] }
+    keywords: { en: ['Pouria Maleki','reinforcement learning','Deep Q-Learning','DQL','SUMO','traffic signal control','YOLO'], fa: ['پوریا ملکی','یادگیری تقویتی','Deep Q-Learning','DQL','SUMO','کنترل چراغ راهنمایی','YOLO'] }
   },
   'offline-voice-detection-smart-homes': {
     publicationType: 'ConferencePaper',
     venue: '4th International Conference on Electrical Engineering, Computer, Mechanics and Artificial Intelligence',
-    publishedDate: '2023-10',
+    publishedDate: '2023',
     authors: ['Sina Ojaghi','Javid Ghafourian','Pouria Maleki','Atefeh Hedayatnia'],
     keywords: { en: ['Pouria Maleki','smart home','offline voice detection','Raspberry Pi','IoT','home automation'], fa: ['پوریا ملکی','خانه هوشمند','تشخیص گفتار آفلاین','Raspberry Pi','اینترنت اشیا','اتوماسیون خانگی'] }
   }
@@ -83,8 +83,8 @@ const editorialMetadata = {
   'deep-reinforcement-learning-traffic-signals': {
     kind: { en: 'M.S. thesis note', fa: 'یادداشت پایان‌نامه کارشناسی ارشد' }, updated: '2026-08-14',
     takeaways: {
-      en: ['SUMO provides the traffic environment while Q-learning / deep networks drive sequential decisions', 'Computer vision supplies traffic-state estimates for adaptive control', 'The project connects perception, simulation and control rather than treating AI as an isolated model'],
-      fa: ['SUMO محیط ترافیک را می‌سازد و Q-learning / شبکه‌های عمیق تصمیم‌گیری دنباله‌ای را انجام می‌دهند', 'بینایی ماشین وضعیت ترافیک را برای کنترل تطبیقی تخمین می‌زند', 'پروژه ادراک، شبیه‌سازی و کنترل را در یک سامانه واحد به هم متصل می‌کند']
+      en: ['SUMO provides the traffic environment while Deep Q-Learning drives sequential signal decisions', 'Computer vision supplies traffic-state estimates for adaptive control', 'The project connects perception, simulation and control rather than treating AI as an isolated model'],
+      fa: ['SUMO محیط ترافیک را می‌سازد و Deep Q-Learning تصمیم‌گیری دنباله‌ای چراغ‌ها را انجام می‌دهد', 'بینایی ماشین وضعیت ترافیک را برای کنترل تطبیقی تخمین می‌زند', 'پروژه ادراک، شبیه‌سازی و کنترل را در یک سامانه واحد به هم متصل می‌کند']
     }
   },
   'offline-voice-detection-smart-homes': {
@@ -664,7 +664,7 @@ This separation between perception and decision-making creates a practical found
     title: { en: 'Flood Risk Analysis with Deep Learning', fa: 'تحلیل ریسک سیلاب با یادگیری عمیق' },
     excerpt: { en: 'A comparison of three machine-learning approaches for predicting exposure, criticality and flood-risk scores using 2,634 bridge records.', fa: 'مقایسه سه روش یادگیری ماشین برای پیش‌بینی امتیاز مواجهه، بحرانی‌بودن و ریسک سیلاب با استفاده از داده‌های ۲۶۳۴ پل.' },
     content: {
-      en: `# Flood Risk Analysis with Machine Learning
+      en: `# Flood Risk Analysis with Deep Learning: LSTM, Random Forest and SVM
 
 Flood-risk planning is fundamentally a prediction problem under uncertainty. This study evaluates three machine-learning approaches—**Random Forest, LSTM and SVM**—for estimating infrastructure-related flood risk.
 
@@ -696,7 +696,7 @@ The broader engineering point is that there is rarely a universal “best model.
 ## Application
 
 More reliable flood-risk estimates can support infrastructure planning, prioritization of mitigation measures and disaster-preparedness decisions.`,
-      fa: `# تحلیل ریسک سیلاب با یادگیری ماشین
+      fa: `# تحلیل ریسک سیلاب با LSTM، Random Forest و SVM
 
 برنامه‌ریزی برای ریسک سیلاب در اصل یک مسئله پیش‌بینی در شرایط عدم‌قطعیت است. در این پژوهش سه رویکرد **Random Forest، LSTM و SVM** برای تخمین ریسک مرتبط با زیرساخت بررسی شدند.
 
@@ -764,7 +764,7 @@ The MATLAB simulation considered **100 air-conditioning units** and three electr
 - Usage-time pricing
 - Real-time pricing
 
-Reported power savings were **1821.6, 2401.9 and 2131.5 kW/h** respectively across the three scenarios, while maintaining a comfortable temperature envelope.
+The paper reports power-saving figures of **1821.6, 2401.9 and 2131.5** for the three pricing scenarios (using the study's reported metric), while maintaining a comfortable temperature envelope.
 
 ## Broader relevance
 
@@ -791,7 +791,7 @@ The architecture illustrates how intelligent control can connect user comfort, v
 - قیمت‌گذاری بر اساس زمان مصرف
 - قیمت‌گذاری بلادرنگ
 
-مقادیر صرفه‌جویی گزارش‌شده برای توان به‌ترتیب **۱۸۲۱٫۶، ۲۴۰۱٫۹ و ۲۱۳۱٫۵ کیلووات‌ساعت** بود و هم‌زمان محدوده آسایش دمایی حفظ شد.
+مقادیر گزارش‌شده برای شاخص صرفه‌جویی توان در سه سناریو به‌ترتیب **۱۸۲۱٫۶، ۲۴۰۱٫۹ و ۲۱۳۱٫۵** بود و هم‌زمان محدوده آسایش دمایی حفظ شد.
 
 ## اهمیت گسترده‌تر
 
@@ -807,8 +807,8 @@ The architecture illustrates how intelligent control can connect user comfort, v
       { src: '/images/projects/traffic-intersection.webp', fit: 'contain', caption: { en: 'Four-way intersection and traffic-phase representation.', fa: 'نمای چهارراه و نمایش فازهای ترافیکی.' } }
     ],
     sourceUrl: null,
-    title: { en: 'An Intelligent Traffic Light Control System using Deep Neural Network', fa: 'سیستم هوشمند کنترل چراغ راهنمایی با استفاده از شبکه عصبی عمیق' },
-    excerpt: { en: 'My M.S. thesis combined Q-learning, deep neural networks, SUMO simulation and YOLO-based traffic estimation to adapt signal timing to real-time traffic conditions.', fa: 'پایان‌نامه کارشناسی ارشد من ترکیبی از Q-learning، شبکه عصبی عمیق، شبیه‌ساز SUMO و تخمین ترافیک مبتنی بر YOLO برای تنظیم هوشمند زمان چراغ‌ها بود.' },
+    title: { en: 'An Intelligent Traffic Light Control System Using Deep Neural Networks', fa: 'سیستم هوشمند کنترل چراغ راهنمایی با استفاده از شبکه‌های عصبی عمیق' },
+    excerpt: { en: 'My 2021 M.S. thesis used Reinforcement Learning with Deep Q-Learning, SUMO simulation and YOLO-based traffic estimation for adaptive traffic-signal control.', fa: 'پایان‌نامه کارشناسی ارشد من در سال ۱۴۰۰ از یادگیری تقویتی با Deep Q-Learning، شبیه‌ساز SUMO و تخمین ترافیک مبتنی بر YOLO برای کنترل تطبیقی چراغ راهنمایی استفاده کرد.' },
     content: {
       en: `# Deep Reinforcement Learning for Intelligent Traffic Signal Control
 
@@ -819,7 +819,7 @@ Traditional traffic lights usually operate with fixed timing plans or manually t
 The traffic environment was modeled in **SUMO**. At every decision step, the agent received a representation of current traffic conditions, selected a signal action and observed a reward related to traffic performance.
 
 \`\`\`text
-Traffic state → DQN/Q-learning agent → Signal phase
+Traffic state → Deep Q-Learning agent → Signal phase
       ↑                               ↓
       └──────── reward / delay ───────┘
 \`\`\`
@@ -852,7 +852,7 @@ The most important lesson from the thesis was learning how to combine **mathemat
 محیط ترافیک با **SUMO** شبیه‌سازی شد. در هر مرحله تصمیم‌گیری، عامل وضعیت فعلی ترافیک را دریافت می‌کرد، یک فاز چراغ را انتخاب می‌کرد و سپس پاداشی متناسب با عملکرد ترافیک دریافت می‌شد.
 
 \`\`\`text
-وضعیت ترافیک ← عامل DQN/Q-learning ← فاز چراغ
+وضعیت ترافیک ← عامل Deep Q-Learning ← فاز چراغ
       ↑                              ↓
       └──────── پاداش / تأخیر ───────┘
 \`\`\`
@@ -879,51 +879,52 @@ The most important lesson from the thesis was learning how to combine **mathemat
     }
   },
   {
-    slug: 'lstm-traffic-control-manuscript-in-preparation',
+    slug: 'deep-q-learning-traffic-control-manuscript-in-preparation',
+    aliases: ['lstm-traffic-control-manuscript-in-preparation'],
     sortDate: '2026-08-14', date: 'Current', readTime: 4, image: '/images/projects/traffic-rl-loop.webp',
     category: { en: 'Reinforcement Learning', fa: 'یادگیری تقویتی' },
     kind: { en: 'Manuscript in preparation', fa: 'مقاله در حال آماده‌سازی برای داوری' },
-    title: { en: 'Extending Intelligent Traffic Control with LSTM — Work in Progress', fa: 'توسعه کنترل هوشمند ترافیک با LSTM — پژوهش در حال تکمیل' },
+    title: { en: 'Extending Intelligent Traffic Control with Deep Q-Learning — Work in Progress', fa: 'توسعه کنترل هوشمند ترافیک با Deep Q-Learning — پژوهش در حال تکمیل' },
     excerpt: {
-      en: 'A short research update on the control-side extension of my M.S. thesis: replacing the earlier fully connected representation with an LSTM-enhanced approach before journal submission.',
-      fa: 'یک به‌روزرسانی کوتاه از ادامه بخش کنترل پایان‌نامه ارشد؛ توسعه روش اولیه با رویکرد تقویت‌شده با LSTM پیش از ارسال مقاله برای داوری.'
+      en: 'A short update on the control-side continuation of my M.S. thesis, extending the Deep Q-Learning traffic-signal-control research before submission for peer review.',
+      fa: 'به‌روزرسانی کوتاهی از ادامه بخش کنترل پایان‌نامه ارشد؛ توسعه پژوهش کنترل چراغ راهنمایی مبتنی بر Deep Q-Learning پیش از ارسال برای داوری.'
     },
-    keywords: { en: ['Pouria Maleki','LSTM','deep reinforcement learning','traffic signal control','DQL','intelligent transportation'], fa: ['پوریا ملکی','LSTM','یادگیری تقویتی عمیق','کنترل چراغ راهنمایی','DQL','حمل‌ونقل هوشمند'] },
+    keywords: { en: ['Pouria Maleki','Deep Q-Learning','DQL','reinforcement learning','traffic signal control','SUMO','intelligent transportation'], fa: ['پوریا ملکی','Deep Q-Learning','DQL','یادگیری تقویتی','کنترل چراغ راهنمایی','SUMO','حمل‌ونقل هوشمند'] },
     content: {
-      en: `# Extending Intelligent Traffic Control with LSTM — Work in Progress
+      en: `# Extending Intelligent Traffic Control with Deep Q-Learning — Work in Progress
 
-My M.S. thesis at Bu-Ali Sina University focused on adaptive traffic-signal control with Deep Q-Learning. That work combined a simulated four-way intersection, a compact representation of traffic state and a neural-network agent that selected signal phases according to traffic conditions.
+My 2021 M.S. thesis at Bu-Ali Sina University focused on **adaptive traffic-signal control with Reinforcement Learning and Deep Q-Learning**. The work modeled a four-way intersection in SUMO, represented traffic state for sequential decision-making, and used a neural-network-based Q-learning agent to select signal phases according to traffic conditions.
 
-## What is changing in the new work?
+## Current research continuation
 
-The control side of that research has now been extended with an **LSTM-enhanced approach**. The motivation is simple: traffic is temporal. The current state of an intersection is useful, but recent changes in traffic flow can also help the controller reason about what may happen next.
+The control side of that research is now being developed into a new manuscript. The new work remains part of the **Deep Q-Learning traffic-control line**, with an updated formulation and broader evaluation being prepared for peer review.
 
-The manuscript is now being prepared for submission. Until peer review is complete, I am intentionally keeping the unpublished architecture and detailed result tables off the public website.
+Because the manuscript is not yet published, I am intentionally keeping unpublished methodological details and full result tables off the public website.
 
 ## Research lineage
 
 This work is part of one continuous research path:
 
-**M.S. traffic-control thesis → vehicle perception → public vehicle datasets → published object-detection papers → LSTM-enhanced traffic control**
+**M.S. Deep Q-Learning traffic-control thesis → vehicle perception → public vehicle datasets → published object-detection papers → new traffic-control manuscript**
 
-I will update this page after submission and, later, after peer review with the final bibliographic record and reproducible details that can be made public.`,
-      fa: `# توسعه کنترل هوشمند ترافیک با LSTM — پژوهش در حال تکمیل
+After submission and peer review, this page can be updated with the final bibliographic record and the technical details that are appropriate to publish.`,
+      fa: `# توسعه کنترل هوشمند ترافیک با Deep Q-Learning — پژوهش در حال تکمیل
 
-پایان‌نامه کارشناسی ارشد من در دانشگاه بوعلی سینا بر کنترل تطبیقی چراغ راهنمایی با Deep Q-Learning متمرکز بود. در آن پژوهش، یک چهارراه شبیه‌سازی‌شده، نمایش فشرده‌ای از وضعیت ترافیک و یک عامل شبکه عصبی برای انتخاب فاز چراغ بر اساس شرایط ترافیک ترکیب شدند.
+پایان‌نامه کارشناسی ارشد من در سال ۱۴۰۰ در دانشگاه بوعلی سینا بر **کنترل تطبیقی چراغ راهنمایی با یادگیری تقویتی و Deep Q-Learning** متمرکز بود. در این پژوهش، چهارراه در SUMO شبیه‌سازی شد، وضعیت ترافیک برای تصمیم‌گیری دنباله‌ای مدل شد و عامل مبتنی بر Q-Learning و شبکه عصبی، فاز چراغ را متناسب با شرایط ترافیک انتخاب می‌کرد.
 
-## در پژوهش جدید چه چیزی تغییر کرده است؟
+## ادامه پژوهش فعلی
 
-بخش کنترلی آن پژوهش اکنون با یک **رویکرد تقویت‌شده با LSTM** توسعه یافته است. انگیزه اصلی این است که ترافیک ماهیتی زمانی دارد؛ وضعیت لحظه‌ای مهم است، اما روند تغییرات اخیر نیز می‌تواند به تصمیم‌گیری بهتر کنترل‌کننده کمک کند.
+بخش کنترلی این مسیر اکنون در قالب یک مقاله جدید در حال توسعه است. این کار همچنان در ادامه **مسیر کنترل ترافیک مبتنی بر Deep Q-Learning** قرار دارد و با فرمول‌بندی و ارزیابی گسترده‌تر برای ارسال به داوری آماده می‌شود.
 
-مقاله در حال آماده‌سازی برای ارسال به داوری است. تا پیش از تکمیل فرآیند داوری، معماری منتشرنشده و جدول‌های دقیق نتایج عمداً روی وب‌سایت عمومی قرار نمی‌گیرند.
+از آنجا که مقاله هنوز منتشر نشده است، جزئیات روش منتشرنشده و جدول‌های کامل نتایج عمداً روی وب‌سایت عمومی قرار نمی‌گیرند.
 
 ## مسیر پژوهشی
 
-این کار ادامه یک مسیر واحد است:
+این کار ادامه یک مسیر پژوهشی واحد است:
 
-**پایان‌نامه کنترل ترافیک ← ادراک خودرو ← دیتاست‌های عمومی ← مقالات منتشرشده تشخیص شیء ← کنترل ترافیک تقویت‌شده با LSTM**
+**پایان‌نامه کنترل ترافیک با Deep Q-Learning ← ادراک خودرو ← دیتاست‌های عمومی ← مقالات منتشرشده تشخیص شیء ← مقاله جدید کنترل ترافیک**
 
-پس از ارسال مقاله و سپس تکمیل داوری، این صفحه با اطلاعات کتاب‌شناختی نهایی و جزئیاتی که امکان انتشار عمومی دارند به‌روزرسانی خواهد شد.`
+پس از ارسال و داوری، این صفحه می‌تواند با اطلاعات کتاب‌شناختی نهایی و جزئیات فنی قابل انتشار به‌روزرسانی شود.`
     }
   },
   {
@@ -1000,4 +1001,4 @@ That same design pattern appears across modern IoT systems—move essential inte
 ]
 
 export const articles = rawArticles.map((article) => ({ ...publicationMetadata[article.slug], ...editorialMetadata[article.slug], ...article })).sort((a,b) => String(b.sortDate || b.date).localeCompare(String(a.sortDate || a.date)))
-export const getArticle = (slug) => articles.find((article) => article.slug === slug)
+export const getArticle = (slug) => articles.find((article) => article.slug === slug || article.aliases?.includes(slug))

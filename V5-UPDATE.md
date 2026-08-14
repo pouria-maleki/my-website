@@ -6,7 +6,7 @@
 - DOI-based publication record + exact-DOI citation refresh.
 - New public-safe medical AI case study with real project images.
 - New DQL traffic-control case study with original thesis/presentation figures.
-- Research-lineage timeline connecting thesis, object-detection publications and the new LSTM manuscript.
+- Research-lineage timeline connecting thesis, object-detection publications and the new Deep Q-Learning traffic-control manuscript.
 - New “manuscript in preparation” blog update without exposing unpublished method/result details.
 - More authentic research thumbnails from the presentation.
 - No 98% marketing claim on the homepage.
